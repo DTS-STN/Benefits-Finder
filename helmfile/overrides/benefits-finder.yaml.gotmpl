@@ -1,0 +1,31 @@
+image:
+  repository: mtscontainers.azurecr.io/benefits-finder
+  tag: "{{ requiredEnv "DOCKER_TAG" }}" 
+  pullPolicy: Always
+
+extraEnv:
+  - name: foo
+    value: bar
+
+ingress:
+      enabled: true
+      hosts:
+      {{- if or (eq .Environment.Name "prod-blue") (eq .Environment.Name "prod-green") }}
+          - benefits-finder.{{ .Environment.Name }}.{{ requiredEnv "BASE_DOMAIN" }}
+          - benefits-finder.{{ requiredEnv "BASE_DOMAIN" }}
+      {{ else }}
+          - benefits-finder-{{ .Environment.Name }}.{{ requiredEnv "BASE_DOMAIN_DEV" }}
+          - benefits-finder.{{ requiredEnv "BASE_DOMAIN_DEV" }}
+      {{ end }} 
+      annotations: {}
+      # kubernetes.io/ingress.class: traefik
+
+resources:
+  requests:
+    cpu: 200m
+    memory: 512Mi
+livenessDelay: 60
+readinessDelay: 60
+livenessPath: /
+readinessPath: /
+port: 3000
