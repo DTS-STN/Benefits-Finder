@@ -9,12 +9,15 @@
     "test:unit": "jest --passWithNoTests",
     "test:coverage": "jest --coverage",
     "cypress:open": "cypress open",
-    "cypress:run": "cypress run"
+    "cypress:run": "cypress run",
+    "lint": "prettier --write \"pages/**/*.{js,jsx,ts,tsx,json,md}\"",
+    "lint:test": "prettier --check \"pages/**/*.{js,jsx,ts,tsx,json,md}\""
   },
   "dependencies": {
     "next": "10.1.2",
     "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react-dom": "17.0.2",
+    "prettier": "^2.2.1"
   },
   "devDependencies": {
     "@testing-library/dom": "^7.30.2",
