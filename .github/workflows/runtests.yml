@@ -29,8 +29,9 @@ jobs:
   #Linting test
     runs-on: ubuntu-latest
     steps:
-      - name: test
-        run: npm run lint:test
+    - name: test
+    - run: npm ci
+    - run: npm run lint:test
 
   build_and_e2e_test:
     #Cypress Tests
