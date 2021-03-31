@@ -1,0 +1,41 @@
+# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: Build and Test (Unit, Lint, E2E)
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build_and_unit_test:
+  #Unit Tests
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [12.x, 14.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+    steps:
+    - uses: actions/checkout@v2
+    - name: Building and Unit Tests Against Node ${{ matrix.node-version }} to identify issues with various node versions
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: npm ci
+    - run: npm run build --if-present
+    - run: npm run test:unit
+
+  build_and_e2e_test:
+    #Cypress Tests
+    needs: build_and_unit_test
+    runs-on: ubuntu-16.04
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Cypress E2E Tests
+      uses: cypress-io/github-action@v2
+      with:
+        build: npm run build
+        start: npm start
+        wait-on: http://localhost:3000
+
