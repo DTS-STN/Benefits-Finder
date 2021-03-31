@@ -4,7 +4,6 @@
 describe("home page", () => {
     beforeEach(() => {
         cy.visit("/");
-        cy.injectAxe();
     });
 
     it("landing page loaded", () =>{
