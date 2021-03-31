@@ -8,18 +8,15 @@ on:
     branches: [ main ]
 
 jobs:
-  build and test:
-
+  build_and_unit_test:
+  #Unit Tests
     runs-on: ubuntu-latest
-
     strategy:
       matrix:
         node-version: [10.x, 12.x, 14.x, 15.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-
     steps:
     - uses: actions/checkout@v2
-    # Jest Tests
     - name: Building and Unit Tests Against Node ${{ matrix.node-version }} to identify issues with various node versions
       uses: actions/setup-node@v1
       with:
@@ -27,11 +24,15 @@ jobs:
     - run: npm ci
     - run: npm run build --if-present
     - run: npm run test:unit
+
+  build_and_e2e_test:
     #Cypress Tests
+    runs-on: ubuntu-latest
+    steps:
     - name: Cypress E2E Tests
       uses: cypress-io/github-action@v1
       with:
         build: npm run build
         start: npm start
         wait-on: http://localhost:3000
-        
+
