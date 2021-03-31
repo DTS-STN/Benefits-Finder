@@ -10,3 +10,6 @@
 1. how to test...
 1. or inspect this...
 1. feature manually.
+
+## Meets Definition of Done
+- [ ] TODO: Add Criteria
