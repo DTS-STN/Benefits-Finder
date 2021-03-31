@@ -27,6 +27,7 @@ jobs:
 
   build_and_e2e_test:
     #Cypress Tests
+    needs: build_and_unit_test
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
