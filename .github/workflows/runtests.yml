@@ -21,6 +21,7 @@ jobs:
 
   build_and_unit_test:
   #Unit Tests
+    needs: linting_test
     runs-on: ubuntu-latest
     strategy:
       matrix:
