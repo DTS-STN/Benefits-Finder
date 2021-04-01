@@ -30,8 +30,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-      name: linting test
-      run: npm ci
+    - name: linting test
+      run: |
+        npm ci
         npm run lint:test
 
   build_and_e2e_test:
