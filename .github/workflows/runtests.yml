@@ -8,6 +8,17 @@ on:
     branches: [ main ]
 
 jobs:
+
+  linting_test:
+  #Linting test
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: linting test
+      run: |
+        npm ci
+        npm run lint:test
+
   build_and_unit_test:
   #Unit Tests
     runs-on: ubuntu-latest
@@ -24,16 +35,6 @@ jobs:
     - run: npm ci
     - run: npm run build --if-present
     - run: npm run test:unit
-
-  linting_test:
-  #Linting test
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-    - name: linting test
-      run: |
-        npm ci
-        npm run lint:test
 
   build_and_e2e_test:
     #Cypress Tests
