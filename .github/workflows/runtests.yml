@@ -30,9 +30,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: test
-    - run: npm ci
-    - run: npm run lint:test
+      name: linting test
+      run: npm ci
+        npm run lint:test
 
   build_and_e2e_test:
     #Cypress Tests
