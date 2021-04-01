@@ -29,6 +29,7 @@ jobs:
   #Linting test
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v2
     - name: test
     - run: npm ci
     - run: npm run lint:test
