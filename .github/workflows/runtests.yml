@@ -83,8 +83,7 @@ jobs:
         path: ./node_modules
         key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
     - name: Cypress E2E Tests
-      uses: cypress-io/github-action@v2.9.7
+      uses: cypress-io/github-action@v2
       with:
         install: false
         start: npm start
-        wait-on: http://localhost:3000
