@@ -9,19 +9,49 @@ on:
 
 jobs:
 
-  linting_test:
-  #Linting test
+  cache-build:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: linting test
-      run: |
-        npm ci
-        npm run lint:test
+    - name: Cache node modules
+      uses: actions/cache@v2
+      env:
+        cache-name: cache-node-modules
+      with:
+        # npm cache files are stored in `~/.npm` on Linux
+        path: ~/.npm
+        key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-build-${{ env.cache-name }}-
+          ${{ runner.os }}-build-
+          ${{ runner.os }}-
+        id: restore-build
 
-  build_and_unit_test:
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Build
+      run: npm build --if-present
+
+  linting-test:
+  #Linting test
+    runs-on: ubuntu-latest
+    needs: cache-build
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/cache@v2
+      id: restore-build
+      env:
+        cache-name: cache-node-modules
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+    - name: linting test
+      run: npm run lint:test
+
+  unit-test:
   #Unit Tests
-    needs: linting_test
+    needs: cache-build
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -29,74 +59,35 @@ jobs:
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
     steps:
     - uses: actions/checkout@v2
-    - name: Building and Unit Tests Against Node ${{ matrix.node-version }} to identify issues with various node versions
+    - uses: actions/cache@v2
+      id: restore-build
+      env:
+        cache-name: cache-node-modules
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+    - name: Unit Tests Against Node ${{ matrix.node-version }} to identify issues with various node versions
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: npm ci
-    - run: npm run build --if-present
     - run: npm run test:unit
 
-  build_and_e2e_test:
+  e2e_test:
     #Cypress Tests
-    needs: build_and_unit_test
+    needs: cache-build
     runs-on: ubuntu-16.04
     steps:
-    - name: Checkout
-      uses: actions/checkout@v2
+    - uses: actions/checkout@v2
+    - uses: actions/cache@v2
+      id: restore-build
+      env:
+        cache-name: cache-node-modules
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
     - name: Cypress E2E Tests
       uses: cypress-io/github-action@v2.9.7
       with:
-        build: npm run build
+        install: false
         start: npm start
         wait-on: http://localhost:3000
-#         record: # optional
-#         # Set configuration values. Separate multiple values with a comma. The values set here override any values set in your configuration file.
-#         config: # optional
-#         # Path to a JSON file where configuration values are set.
-#         config-file: # optional, default is cypress.json
-#         # Sets Cypress environment variables
-#         env: # optional
-#         # Name of the browser to use
-#         browser: # optional
-#         # Command that overrides cypress run
-#         command: # optional
-#         # Command for starting local server in the background
-#         start: # optional
-#         # A different start command on Windows
-#         start-windows: # optional
-#         # Command to run in build step before starting tests
-#         build: # optional
-#         # Whether or not to run install
-#         install: # optional
-#         # Custom install command to use
-#         install-command: # optional
-#         # Whether or not to run tests
-#         runTests: # optional
-#         # Local server URL to wait for
-#         wait-on: # optional
-#         # Amount of time to wait for wait-on url to be available
-#         wait-on-timeout: # optional
-#         # Whether or not to load balance tests using multiple containers
-#         parallel: # optional
-#         # Group setting for tests
-#         group: # optional
-#         # Tag setting for tests
-#         tag: # optional
-#         # Working directory containing Cypress folder
-#         working-directory: # optional
-#         # Whether or not to use headless mode
-#         headless: # optional
-#         # Provide a specific specs to run
-#         spec: # optional
-#         # Path of project to run
-#         project: # optional
-#         # You can prefix the default test command using the command-prefix option.
-#         command-prefix: # optional
-#         # ID associates multiple CI machines to one test run
-#         ci-build-id: # optional
-#         # Custom cache key
-#         cache-key: # optional
-#         # Whether or not to silence any Cypress specific output from stdout
-#         quiet: # optional
-
