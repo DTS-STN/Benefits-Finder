@@ -18,7 +18,7 @@ jobs:
       run: npm ci
 
     - name: Build
-      run: npm build --if-present
+      run: npm run build
 
     - name: Cache node modules
       uses: actions/cache@v2
