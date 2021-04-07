@@ -85,5 +85,4 @@ jobs:
     - name: Cypress E2E Tests
       uses: cypress-io/github-action@v2
       with:
-        install: false
         start: npm start
