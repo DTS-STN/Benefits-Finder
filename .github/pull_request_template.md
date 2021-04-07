@@ -12,4 +12,9 @@
 1. feature manually.
 
 ## Meets Definition of Done
-- [ ] TODO: Add Criteria
+- [ ] Checked against style guide as currently understood
+- [ ] Acceptance criteria met
+- [ ] Unit tests up to date
+- [ ] E2E tests up to date
+- [ ] Security up to standards
+- [ ] I18n
