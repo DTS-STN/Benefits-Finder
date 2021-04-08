@@ -114,9 +114,9 @@ ActionButton.propTypes = {
   disabled: PropTypes.bool,
 };
 
-
 // some possible uses
-{/* <ActionButton
+{
+  /* <ActionButton
 //  id={id + "-MoreInfo"}
   text='Action button'
   rounded={true}
@@ -124,4 +124,5 @@ ActionButton.propTypes = {
   className={"font-semibold"}
   disabled={false}
   dataCyButton='action-button'
-/> */}
+/> */
+}
