@@ -1,21 +1,11 @@
 import PropTypes from "prop-types";
 
-export const Benefit = ({
-      type,
-      outcomes,
-      provider,
-}) => {
+export const Benefit = ({ type, outcomes, provider }) => {
   return (
     <div>
-      <section>
-        {type}
-      </section>
-      <section>
-        {outcomes}
-      </section>
-      <section>
-        {provider}
-      </section>
+      <section>{type}</section>
+      <section>{outcomes}</section>
+      <section>{provider}</section>
     </div>
   );
 };
