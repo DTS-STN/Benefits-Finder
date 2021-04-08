@@ -15,8 +15,8 @@
     "test:coverage": "jest --coverage",
     "cypress:open": "cypress open",
     "cypress:run": "cypress run",
-    "lint": "prettier --write \"pages/**/*.{js,jsx,ts,tsx,json,md}\"",
-    "lint:test": "prettier --check \"pages/**/*.{js,jsx,ts,tsx,json,md}\"",
+    "lint": "prettier --write \"pages/**/*.{js,jsx,ts,tsx,json,md}\" --write \"lib/**/*.{js,jsx,ts,tsx,json,md}\" --write \"components/**/*.{js,jsx,ts,tsx,json,md}\"",
+    "lint:test": "prettier --check \"pages/**/*.{js,jsx,ts,tsx,json,md}\" --check \"lib/**/*.{js,jsx,ts,tsx,json,md}\" --check \"components/**/*.{js,jsx,ts,tsx,json,md}\"",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
@@ -49,6 +49,12 @@
   },
   "lint-staged": {
     "pages/**/*.{js,jsx,ts,tsx,json,md}": [
+      "prettier --write"
+    ],
+    "lib/**/*.{js,jsx,ts,tsx,json,md}": [
+      "prettier --write"
+    ],
+    "components/**/*.{js,jsx,ts,tsx,json,md}": [
       "prettier --write"
     ]
   }
