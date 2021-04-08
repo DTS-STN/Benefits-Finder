@@ -31,8 +31,9 @@ Rounded.args = {
 // };
 
 StartAgain.args = {
-  notRound: true,
-  className: "bg-bg-gray-dk text-white",
+  notFullRound: true,
+  className:
+    "bg-lightBlue-700 text-white border-gray-400 hover:bg-blue-700 hover:text-white focus:bg-blue-900 focus:text-white focus:ring",
   icon: "icon-loop2 my-1 mr-4",
   text: "Start again and clear answers",
 };

@@ -26,7 +26,8 @@ export default function Home() {
         <ActionButton
           // id={id + "-MoreInfo"}
           text="Action button"
-          rounded={true}
+          notFullRound={false}
+          //  rounded={true}
           invert={false}
           className={"font-semibold"}
           disabled={false}

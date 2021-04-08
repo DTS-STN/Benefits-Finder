@@ -9,10 +9,10 @@ export function ActionButton(props) {
     <button
       className={`flex mx-auto ${
         props.rounded
-          ? "rounded-md py-2 px-4"
-          : props.notRound
-          ? "rounded-sm"
-          : "rounded-md"
+          ? "rounded-full py-2 px-4"
+          : props.notFullRound
+          ? "rounded-sm py-2 px-4"
+          : "rounded-md py-2 px-4"
       } shadow-lg ${
         !props.invert && !props.disabled
           ? "bg-lightBlue-700 text-white border-gray-400 hover:bg-blue-700 hover:text-white focus:bg-blue-900 focus:text-white focus:ring"
@@ -21,7 +21,7 @@ export function ActionButton(props) {
         props.disabled
           ? "bg-gray-400 text-gray-700 border border-gray-500 "
           : props.className
-      } text-md focus:outline-none`}
+      } text-md focus:outline-none tracking-wide`}
       onClick={props.onClick}
       onMouseEnter={props.onHover}
       onMouseLeave={props.onMouseLeave}
@@ -41,9 +41,9 @@ export function ActionButton(props) {
 
 ActionButton.propTypes = {
   /**
-   * This will add the smallest rd css to the button
+   * true will add the smallest rd css to the button, false will add rounded-md to the button
    */
-  notRound: PropTypes.bool,
+  notFullRound: PropTypes.bool,
   /**
    * This will add a img inside the button when needed
    */
@@ -64,7 +64,7 @@ ActionButton.propTypes = {
   invert: PropTypes.bool,
 
   /**
-   * Boolean flag that specifies the button should be rounded
+   * Boolean flag that specifies the button should be full rounded if true
    */
   rounded: PropTypes.bool,
 

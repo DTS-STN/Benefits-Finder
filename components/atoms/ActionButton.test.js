@@ -18,7 +18,7 @@ it("renders ActionButton in its primary state", () => {
 it("renders ActionButton in its rounded state", () => {
   render(<Rounded {...Rounded.args} />);
   expect(screen.getByRole("button")).toHaveTextContent(Rounded.args.text);
-  expect(screen.getByRole("button").classList).toContain("rounded-md");
+  expect(screen.getByRole("button").classList).toContain("rounded-full");
 });
 
 it.skip("renders ActionButton in its withCounter state", () => {
