@@ -50,6 +50,9 @@
   "lint-staged": {
     "pages/**/*.{js,jsx,ts,tsx,json,md}": [
       "prettier --write"
+    ],
+    "components/**/*.{js, jsx, ts, tsx, json, md}": [
+      "prettier --write"
     ]
   }
 }
