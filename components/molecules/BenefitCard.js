@@ -7,6 +7,7 @@ export function BenefitCard(props) {
         <h3 className="text-lg leading-6 font-medium text-gray-900">
           {props.title}
         </h3>
+        <small>{props.type}</small>
         <p className="mt-1 max-w-2xl text-sm text-gray-500">
           {props.description}
         </p>
@@ -35,6 +36,11 @@ BenefitCard.propTypes = {
    * benefit description
    */
   description: PropTypes.string,
+
+  /**
+   * benefit type
+   */
+  type: PropTypes.string,
 
   /**
    * link to apply to the benefit
