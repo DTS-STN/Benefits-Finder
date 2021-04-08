@@ -21,15 +21,23 @@ export function BenefitCard(props) {
 }
 
 BenefitCard.propTypes = {
-  // benefit id
+  /**
+   * benefit id
+   */
   id: PropTypes.string.isRequired,
 
-  // benefit title
+  /**
+   * benefit title
+   */
   title: PropTypes.string.isRequired,
 
-  // benefit description
+  /**
+   * benefit description
+   */
   description: PropTypes.string,
 
-  // link to apply to the benefit
+  /**
+   * link to apply to the benefit
+   */
   applyLink: PropTypes.string,
 };
