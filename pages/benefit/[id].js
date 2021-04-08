@@ -1,29 +1,46 @@
 import Head from "next/head";
-import { useRouter } from "next/router";
+import { Banner } from "../../components/atoms/Banner";
+import { Benefit } from "../../components/organisms/Benefit.js";
 
-export default function Home() {
-  const router = useRouter();
-  const { id } = router.query;
+//TODO: replace lib/benefits with proper source of data
+import { getBenefitData, getBenefitIds } from "../../lib/benefits";
+
+//TODO: get benefitData from better source
+export async function getStaticProps({ params }) {
+  const benefitData = getBenefitData(params.id);
+  return {
+    props: {
+      benefitData,
+    },
+  };
+}
+
+//TODO: get paths data from better source
+export async function getStaticPaths() {
+  const paths = getBenefitIds();
+  return {
+    paths,
+    fallback: false,
+  };
+}
+
+export default function BenefitPage({ benefitData }) {
   return (
     <div className="mx-auto">
       <Head>
-        <title>Create Next App</title>
+        <title>{benefitData.name}</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main className="mx-auto">
-        <h1>Welcome to Page {id}!</h1>
+        <Banner siteTitle={benefitData.name}></Banner>
+        <Benefit
+          type={benefitData.type}
+          outcomes={benefitData.outcomes}
+          provider={benefitData.provider}
+        ></Benefit>
       </main>
-
-      <footer>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by <img src="/vercel.svg" alt="Vercel Logo" />
-        </a>
-      </footer>
+      <footer>Footer</footer>
     </div>
   );
 }
