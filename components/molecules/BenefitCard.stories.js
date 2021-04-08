@@ -19,5 +19,6 @@ Primary.args = {
   id: "benefit-id",
   title: "Benefit Title",
   description: "Benefit description",
-  applyLink: "#"
-}
+  type: "Benefit type",
+  applyLink: "#",
+};

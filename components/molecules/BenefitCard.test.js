@@ -10,10 +10,12 @@ describe("BenefitCard tests", () => {
     render(<Primary {...Primary.args} />);
     const title = screen.getByText("Benefit Title");
     const description = screen.getByText("Benefit description");
+    const type = screen.getByText("Benefit type");
     const benefitLink = screen.getByText("More info");
     const applyLink = screen.getByText("Apply now!");
     expect(title).toBeTruthy();
     expect(description).toBeTruthy();
+    expect(type).toBeTruthy();
     expect(benefitLink.href).toBe("http://localhost/benefit/benefit-id");
     expect(applyLink.href).toBe("http://localhost/#");
   });
