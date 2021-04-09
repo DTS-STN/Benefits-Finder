@@ -21,7 +21,16 @@ export async function getStaticProps(context) {
 
 //TODO: get paths data from better source
 export async function getStaticPaths() {
-  const paths = getBenefitIds();
+  //There is probably a better way to create all the paths needed
+  const benefitIds = getBenefitIds();
+  const pathsEn = benefitIds.map((x) => {
+    return { params: { id: x }, locale: "en" };
+  });
+  const pathsFr = benefitIds.map((x) => {
+    return { params: { id: x }, locale: "fr" };
+  });
+  const paths = pathsEn.concat(pathsFr);
+
   return {
     paths,
     fallback: false,
