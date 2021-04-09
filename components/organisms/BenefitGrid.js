@@ -5,6 +5,7 @@ export function BenefitGrid(props) {
   const benefitCards = props.benefits.map((benefitData) => {
     return (
       <BenefitCard
+        key={benefitData.id}
         id={benefitData.id}
         title={benefitData.title}
         description={benefitData.description}
