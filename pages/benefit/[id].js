@@ -1,16 +1,20 @@
 import Head from "next/head";
 import { Banner } from "../../components/atoms/Banner";
 import { Benefit } from "../../components/organisms/Benefit.js";
+import { useI18n } from "next-rosetta";
 
 //TODO: replace lib/benefits with proper source of data
 import { getBenefitData, getBenefitIds } from "../../lib/benefits";
 
 //TODO: get benefitData from better source
-export async function getStaticProps({ params }) {
-  const benefitData = getBenefitData(params.id);
+export async function getStaticProps(context) {
+  const locale = context.locale || context.defaultLocale;
+  const { table = {} } = await import(`../../i18n/${locale}`);
+  const benefitId = context.params.id;
   return {
     props: {
-      benefitData,
+      benefitId,
+      table,
     },
   };
 }
@@ -24,7 +28,9 @@ export async function getStaticPaths() {
   };
 }
 
-export default function BenefitPage({ benefitData }) {
+export default function BenefitPage({ benefitId }) {
+  const { t } = useI18n();
+  const benefitData = getBenefitData(benefitId, t);
   return (
     <div className="mx-auto">
       <Head>
