@@ -2,29 +2,16 @@ import PropTypes from "prop-types";
 import { BenefitCard } from "../molecules/BenefitCard";
 
 export function BenefitGrid(props) {
-  //const benefitCards = [];
-
-  // for (let i =0; i < props.benefits.length; i++) {
-  //   benefitData = props.benefits[i];
-  //   benefitCards.push(
-  //     <BenefitCard
-  //       id={benefitData.id}
-  //       title={benefitData.title}
-  //       description={benefitData.description}
-  //       type={benefitData.type}
-  //       applyLink={benefitData.applyLink}
-  //     />
-  //   )
-  // }
-
   const benefitCards = props.benefits.map((benefitData) => {
-    <BenefitCard
-      id={benefitData.id}
-      title={benefitData.title}
-      description={benefitData.description}
-      type={benefitData.type}
-      applyLink={benefitData.applyLink}
-    />;
+    return (
+      <BenefitCard
+        id={benefitData.id}
+        title={benefitData.title}
+        description={benefitData.description}
+        type={benefitData.type}
+        applyLink={benefitData.applyLink}
+      />
+    );
   });
 
   return (

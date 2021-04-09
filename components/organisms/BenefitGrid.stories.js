@@ -16,7 +16,7 @@ Primary.args = {
       description:
         "This is a description for the first benefit card " +
         "about the benefit that this card represents.",
-      type: "benefit",
+      type: "Funding",
       applyLink: "#",
     },
     {
@@ -25,7 +25,7 @@ Primary.args = {
       description:
         "This is a description for the first benefit card " +
         "about the benefit that this card represents.",
-      type: "benefit",
+      type: "Program",
       applyLink: "#",
     },
     {
@@ -34,7 +34,7 @@ Primary.args = {
       description:
         "This is a description for the first benefit card " +
         "about the benefit that this card represents.",
-      type: "benefit",
+      type: "Information",
       applyLink: "#",
     },
     {
@@ -43,7 +43,7 @@ Primary.args = {
       description:
         "This is a description for the first benefit card " +
         "about the benefit that this card represents.",
-      type: "benefit",
+      type: "Feature",
       applyLink: "#",
     },
     {
@@ -52,7 +52,7 @@ Primary.args = {
       description:
         "This is a description for the first benefit card " +
         "about the benefit that this card represents.",
-      type: "benefit",
+      type: "Tool",
       applyLink: "#",
     },
     {
@@ -61,7 +61,7 @@ Primary.args = {
       description:
         "This is a description for the first benefit card " +
         "about the benefit that this card represents.",
-      type: "benefit",
+      type: "Payment / Tax credit",
       applyLink: "#",
     },
   ],
