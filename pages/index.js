@@ -22,19 +22,6 @@ export default function Home() {
         </p>
       </main>
 
-      <div className="pt-4">
-        <ActionButton
-          // id={id + "-MoreInfo"}
-          text="Action button"
-          notFullRound={false}
-          //  rounded={true}
-          invert={false}
-          className={"font-semibold"}
-          disabled={false}
-          dataCyButton="action-button"
-        />
-      </div>
-
       <footer className="text-center text-4xl uppercase text-bold py-3">
         <a
           href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
