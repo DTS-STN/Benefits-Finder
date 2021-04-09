@@ -1,4 +1,5 @@
 import Head from "next/head";
+import { ActionButton } from "../components/atoms/ActionButton";
 
 export default function Home() {
   return (
@@ -20,6 +21,19 @@ export default function Home() {
           </code>
         </p>
       </main>
+
+      <div className="pt-4">
+        <ActionButton
+          // id={id + "-MoreInfo"}
+          text="Action button"
+          notFullRound={false}
+          //  rounded={true}
+          invert={false}
+          className={"font-semibold"}
+          disabled={false}
+          dataCyButton="action-button"
+        />
+      </div>
 
       <footer className="text-center text-4xl uppercase text-bold py-3">
         <a
