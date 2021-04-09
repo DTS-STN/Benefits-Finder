@@ -2,17 +2,16 @@ import PropTypes from "prop-types";
 
 export function BenefitCard(props) {
   return (
-    <div className="bg-white shadow overflow-hidden sm:rounded-lg">
-      <div className="px-4 py-5 sm:px-6">
-        <h3 className="text-lg leading-6 font-medium text-gray-900">
-          {props.title}
-        </h3>
-        <small>{props.type}</small>
-        <p className="mt-1 max-w-2xl text-sm text-gray-500">
-          {props.description}
-        </p>
+    <div className="flex flex-col flex-grow w-full md:w-64 lg:w-1/4 rounded-lg shadow pt-5 pb-5 pl-6 pr-6 m-1 hover:bg-gray-300">
+      <div className="flex justify-between items-center w-full">
+        <div className="flex flex-col justify-start">
+          <h3 className="text-l">{props.title}</h3>
+          <small>{props.type}</small>
+        </div>
       </div>
-      <div className="border-t border-gray-200">
+      <p className="truncate-4-lines ">{props.description}</p>
+
+      <div className="bg-bg-gray-dk">
         {/* TODO: these links will be replaced by a component when they are created */}
         <a href={`/benefit/${props.id}`}>More info</a>
         <a href={props.applyLink}>Apply now!</a>

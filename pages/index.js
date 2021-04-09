@@ -1,49 +1,41 @@
 import Head from "next/head";
-import { ActionButton } from "../components/atoms/ActionButton";
+import { BenefitGrid } from "../components/organisms/BenefitGrid";
+import { getBenefits } from "../lib/benefits";
 
-export default function Home() {
+export async function getStaticProps({ params }) {
+  const benefits = getBenefits();
+  return {
+    props: {
+      benefits,
+    },
+  };
+}
+
+export default function Home({ benefits }) {
   return (
     <div className="bg-gray-100 flex flex-col h-screen">
       <Head>
-        <title>Benefit Finder 2</title>
+        <title>Benefit Finder</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main>
-        <h1 className="text-center text-4xl uppercase text-bold py-3">
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
+        <h1 className="text-center text-4xl text-bold py-3">
+          Let's help you find support ...
         </h1>
 
-        <p className="text-center text-4xl uppercase text-bold py-3">
-          Get started by editing{" "}
-          <code className="text-center text-4xl uppercase text-bold py-3">
-            pages/index.js
-          </code>
-        </p>
+        <section className="text-center py-4">
+          <h3 className="text-2xl text-bold py-3">Popular catagories</h3>
+          <p>🔧 Under construction 🔧</p>
+        </section>
+
+        <section className="text-center py-4">
+          <h3 className="text-2xl text-bold py-3">Catalog</h3>
+          <BenefitGrid benefits={benefits} />
+        </section>
       </main>
 
-      <div className="pt-4">
-        <ActionButton
-          // id={id + "-MoreInfo"}
-          text="Action button"
-          notFullRound={false}
-          //  rounded={true}
-          invert={false}
-          className={"font-semibold"}
-          disabled={false}
-          dataCyButton="action-button"
-        />
-      </div>
-
-      <footer className="text-center text-4xl uppercase text-bold py-3">
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by <img src="/vercel.svg" alt="Vercel Logo" />
-        </a>
-      </footer>
+      <footer className="text-center text-bold py-3"></footer>
     </div>
   );
 }
