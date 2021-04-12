@@ -7,7 +7,7 @@ export function ButtonLink(props) {
       <Link href={props.href}>
         <a
           className={
-            "w-full flex items-center justify-center p-2 border border-transparent text-base font-medium rounded-md bg-lightBlue-700 text-white hover:bg-blue-900 hover:text-white focus:bg-blue-900 focus:text-white"
+            "w-full flex items-center justify-center p-2 border border-transparent text-base font-medium rounded-md bg-lightBlue-700 text-white hover:bg-blue-900 hover:text-white focus:bg-blue-700 focus:text-white border-gray-400"
           }
         >
           {props.text}
