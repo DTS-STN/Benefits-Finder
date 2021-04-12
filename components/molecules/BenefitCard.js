@@ -2,9 +2,6 @@ import { ButtonLink } from "../atoms/ButtonLink";
 import PropTypes from "prop-types";
 
 export function BenefitCard(props) {
-  function moreInfoHandler() {
-    window.location.assign(`/benefit/${props.id}`);
-  }
   return (
     <div className="flex flex-col md:w-64 lg:w-1/4 rounded-lg border pt-5 pb-5 pl-6 pr-6 m-1">
       <small className="text-gray-500 uppercase">{props.type}</small>
