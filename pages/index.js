@@ -1,5 +1,6 @@
 import Head from "next/head";
 import { BenefitGrid } from "../components/organisms/BenefitGrid";
+import { LanguageToggle } from "../components/atoms/LanguageToggle";
 import { getBenefits } from "../lib/benefits";
 import { useI18n } from "next-rosetta";
 
@@ -9,11 +10,12 @@ export async function getStaticProps(context) {
   return {
     props: {
       table,
+      locale,
     },
   };
 }
 
-export default function Home() {
+export default function Home({ locale }) {
   const { t } = useI18n();
   const benefits = getBenefits(t);
   return (
@@ -22,7 +24,11 @@ export default function Home() {
         <title>{t("siteTitle")}</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
+      <LanguageToggle
+        lang={locale}
+        languageToggleText={t("toggleLanguageText")}
+        queryValues=""
+      />
       <main>
         <h1 className="text-center text-4xl text-bold py-3">
           {t("findSupport")}
