@@ -48,7 +48,10 @@ export default function BenefitPage({ benefitId }) {
       </Head>
 
       <main className="mx-auto">
-        <Banner siteTitle={benefitData.name}></Banner>
+        <Banner
+          siteTitle={benefitData.name}
+          headline={benefitData.type}
+        ></Banner>
         <Benefit
           type={benefitData.type}
           outcomes={benefitData.outcomes}
