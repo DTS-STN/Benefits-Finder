@@ -1,8 +1,6 @@
 import PropTypes from "prop-types";
-import { useI18n } from "next-rosetta";
 
 export function BenefitCard(props) {
-  const { t } = useI18n();
   return (
     <div className="flex flex-col flex-grow w-full md:w-64 lg:w-1/4 rounded-lg shadow pt-5 pb-5 pl-6 pr-6 m-1 hover:bg-gray-300">
       <div className="flex justify-between items-center w-full">
@@ -15,8 +13,8 @@ export function BenefitCard(props) {
 
       <div className="bg-bg-gray-dk">
         {/* TODO: these links will be replaced by a component when they are created */}
-        <a href={`/benefit/${props.id}`}>{t("moreInfo")}</a>
-        <a href={props.applyLink}>{t("applyNow")}</a>
+        <a href={`/benefit/${props.id}`}>More info</a>
+        <a href={props.applyLink}>Apply now!</a>
       </div>
     </div>
   );
