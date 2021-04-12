@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import { ButtonLink } from "../atoms/ButtonLink";
 
 export function BenefitCard(props) {
   return (
@@ -12,8 +13,7 @@ export function BenefitCard(props) {
       <p className="truncate-4-lines ">{props.description}</p>
 
       <div className="bg-bg-gray-dk">
-        {/* TODO: these links will be replaced by a component when they are created */}
-        <a href={`/benefit/${props.id}`}>More info</a>
+        <ButtonLink href={`/benefit/${props.id}`} text="More info"></ButtonLink>
         <a href={props.applyLink}>Apply now!</a>
       </div>
     </div>
