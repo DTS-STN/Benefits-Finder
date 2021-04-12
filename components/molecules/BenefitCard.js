@@ -1,20 +1,20 @@
+import { ButtonLink } from "../atoms/ButtonLink";
 import PropTypes from "prop-types";
 
 export function BenefitCard(props) {
   return (
-    <div className="flex flex-col flex-grow w-full md:w-64 lg:w-1/4 rounded-lg shadow pt-5 pb-5 pl-6 pr-6 m-1 hover:bg-gray-300">
-      <div className="flex justify-between items-center w-full">
+    <div className="flex flex-col md:w-64 lg:w-1/4 rounded-lg border pt-5 pb-5 pl-6 pr-6 m-1">
+      <small className="text-gray-500 uppercase">{props.type}</small>
+      <div className="flex w-full">
         <div className="flex flex-col justify-start">
-          <h3 className="text-l">{props.title}</h3>
-          <small>{props.type}</small>
+          <h3 className="text-lg">{props.title}</h3>
         </div>
       </div>
-      <p className="truncate-4-lines ">{props.description}</p>
+      <p className="truncate-4-lines py-2">{props.description}</p>
 
-      <div className="bg-bg-gray-dk">
-        {/* TODO: these links will be replaced by a component when they are created */}
-        <a href={`/benefit/${props.id}`}>More info</a>
-        <a href={props.applyLink}>Apply now!</a>
+      <div className="w-full flex flex-wrap justify-end">
+        <ButtonLink href={`/benefit/${props.id}`} text={"More info"} />
+        <ButtonLink href={props.applyLink} text={"Apply now!"} primary />
       </div>
     </div>
   );

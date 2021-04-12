@@ -5,7 +5,7 @@ export default {
   component: ButtonLink,
   decorators: [
     (Story) => (
-      <div className="flex w-full p-6">
+      <div className="flex p-6">
         <Story />
       </div>
     ),
@@ -15,7 +15,16 @@ export default {
 const Template = (args) => <ButtonLink {...args} />;
 
 export const Primary = Template.bind({});
+export const Secondary = Template.bind({});
+
 Primary.args = {
   href: "#",
-  text: "Button text",
+  text: "Primary button text",
+  primary: true,
+};
+
+Secondary.args = {
+  href: "#",
+  text: "Secondary button text",
+  primary: false,
 };
