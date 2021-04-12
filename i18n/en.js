@@ -6,6 +6,7 @@ export const table = {
   catalog: "Catalog",
   moreInfo: "More info",
   applyNow: "Apply now!",
+  toggleLanguageText: "(FR) french",
   benefits: {
     oas: {
       name: "Old Age Security",

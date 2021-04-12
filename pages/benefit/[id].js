@@ -1,5 +1,6 @@
 import Head from "next/head";
 import { Banner } from "../../components/atoms/Banner";
+import { LanguageToggle } from "../../components/atoms/LanguageToggle";
 import { Benefit } from "../../components/organisms/Benefit.js";
 import { useI18n } from "next-rosetta";
 
@@ -15,6 +16,7 @@ export async function getStaticProps(context) {
     props: {
       benefitId,
       table,
+      locale,
     },
   };
 }
@@ -37,7 +39,7 @@ export async function getStaticPaths() {
   };
 }
 
-export default function BenefitPage({ benefitId }) {
+export default function BenefitPage({ benefitId, locale }) {
   const { t } = useI18n();
   const benefitData = getBenefitData(benefitId, t);
   return (
@@ -46,7 +48,11 @@ export default function BenefitPage({ benefitId }) {
         <title>{benefitData.name}</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
+      <LanguageToggle
+        lang={locale}
+        languageToggleText={t("toggleLanguageText")}
+        queryValues={benefitId}
+      />
       <main className="mx-auto">
         <Banner
           siteTitle={benefitData.name}
