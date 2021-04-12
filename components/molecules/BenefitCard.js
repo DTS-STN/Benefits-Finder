@@ -13,7 +13,6 @@ export function BenefitCard(props) {
       <p className="truncate-4-lines py-2">{props.description}</p>
 
       <div className="w-full flex flex-wrap justify-end">
-        {/* TODO: these links will be replaced by a component when they are created */}
         <ButtonLink href={`/benefit/${props.id}`} text={"More info"} />
         <ButtonLink href={props.applyLink} text={"Apply now!"} primary />
       </div>
