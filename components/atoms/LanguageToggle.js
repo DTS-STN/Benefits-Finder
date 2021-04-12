@@ -7,6 +7,7 @@ import Link from "next/link";
  */
 export function LanguageToggle(props) {
   const langSwap = props.lang == "en" ? "fr" : "en";
+  const href = props.queryValues == null ? "" : props.queryValues;
   return (
     <Link href={props.queryValues} locale={langSwap}>
       <a>{props.languageToggleText}</a>
@@ -16,15 +17,15 @@ export function LanguageToggle(props) {
 
 LanguageToggle.propTypes = {
   /**
-   * The text that the button will display
+   * The language that the toggle will display
    */
   lang: PropTypes.string.isRequired,
   /**
-   * The text that the button will display
+   * The text that the toggle will display
    */
   languageToggleText: PropTypes.string.isRequired,
   /**
-   * The text that the button will display
+   * The query values for navigation
    */
   queryValues: PropTypes.string,
 };
