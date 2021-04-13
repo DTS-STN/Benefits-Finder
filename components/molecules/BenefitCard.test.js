@@ -13,11 +13,12 @@ describe("BenefitCard tests", () => {
     const type = screen.getByText("Benefit type");
     const benefitLink = screen.getByText("More info");
     const applyLink = screen.getByText("Apply now!");
-    expect(title).toBeTruthy();
-    expect(description).toBeTruthy();
-    expect(type).toBeTruthy();
-    expect(benefitLink.href).toBe("http://localhost/benefit/benefit-id");
-    expect(applyLink.href).toBe("http://localhost/#");
+
+    expect(title).toBeInTheDocument();
+    expect(description).toBeInTheDocument();
+    expect(type).toBeInTheDocument();
+    expect(benefitLink).toBeInTheDocument();
+    expect(applyLink).toBeInTheDocument();
   });
 
   it("has no a11y violations", async () => {
