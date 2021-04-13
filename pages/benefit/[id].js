@@ -45,7 +45,7 @@ export default function BenefitPage({ benefitId, locale }) {
   return (
     <div className="mx-auto">
       <Head>
-        <title>{benefitData.name}</title>
+        <title>{benefitData.id}</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <LanguageToggle
@@ -54,10 +54,7 @@ export default function BenefitPage({ benefitId, locale }) {
         queryValues={benefitId}
       />
       <main className="mx-auto">
-        <Banner
-          siteTitle={benefitData.name}
-          headline={benefitData.type}
-        ></Banner>
+        <Banner siteTitle={benefitData.id} headline={benefitData.type}></Banner>
         <Benefit
           type={benefitData.type}
           outcomes={benefitData.outcomes}
