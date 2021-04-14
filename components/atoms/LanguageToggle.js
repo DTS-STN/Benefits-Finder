@@ -10,7 +10,7 @@ export function LanguageToggle(props) {
   const href = props.queryValues == null ? "" : props.queryValues;
   return (
     <Link href={props.queryValues} locale={langSwap}>
-      <a>{props.languageToggleText}</a>
+      <a data-cy="toggle-language-link">{props.languageToggleText}</a>
     </Link>
   );
 }
