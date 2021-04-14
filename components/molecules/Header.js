@@ -1,12 +1,11 @@
 import PropTypes from "prop-types";
 import { SearchBar } from "../atoms/SearchBar";
-import Image from "next/image";
 
 export function Header(props) {
   return (
     <header>
       <div className="relative bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="w-full">
           <div className="flex justify-between items-center border-b-2 border-custom-blue-dark py-6 md:justify-start md:space-x-10">
             <div className="flex justify-start lg:w-0 lg:flex-1">
               <a href="#">
