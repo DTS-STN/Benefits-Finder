@@ -22,4 +22,4 @@ export function Header(props) {
   );
 }
 
-Header.PropTypes = {};
+Header.propTypes = {};
