@@ -20,8 +20,6 @@ export default function Home({ benefits }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Header />
-
       <main>
         <h1 className="text-center text-4xl text-bold py-3">
           Let's help you find support ...
