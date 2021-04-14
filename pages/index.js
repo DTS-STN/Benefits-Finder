@@ -1,4 +1,5 @@
 import Head from "next/head";
+import { Header } from "../components/molecules/Header";
 import { BenefitGrid } from "../components/organisms/BenefitGrid";
 import { getBenefits } from "../lib/benefits";
 

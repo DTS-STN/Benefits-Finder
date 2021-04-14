@@ -1,4 +1,5 @@
-import "../styles/globals.css"
+import "../styles/globals.css";
+import "../icomoon/style.css";
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
@@ -8,4 +9,4 @@ export const parameters = {
       date: /Date$/,
     },
   },
-}
+};
