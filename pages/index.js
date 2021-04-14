@@ -1,4 +1,5 @@
 import Head from "next/head";
+import { Header } from "../components/molecules/Header";
 import { BenefitGrid } from "../components/organisms/BenefitGrid";
 import { getBenefits } from "../lib/benefits";
 
@@ -18,6 +19,8 @@ export default function Home({ benefits }) {
         <title>Benefit Finder</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
+
+      <Header />
 
       <main>
         <h1 className="text-center text-4xl text-bold py-3">
