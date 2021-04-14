@@ -2,21 +2,21 @@ import Head from "next/head";
 import { BenefitGrid } from "../components/organisms/BenefitGrid";
 import { LanguageToggle } from "../components/atoms/LanguageToggle";
 import { getBenefits } from "../lib/benefits";
-import { useI18n } from "next-rosetta";
+import { useTranslation } from "next-i18next";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 export async function getStaticProps(context) {
   const locale = context.locale || context.defaultLocale;
-  const { table = {} } = await import(`../i18n/${locale}`);
   return {
     props: {
-      table,
       locale,
+      ...(await serverSideTranslations(locale, ["common"])),
     },
   };
 }
 
 export default function Home({ locale }) {
-  const { t } = useI18n();
+  const { t } = useTranslation("common");
   const benefits = getBenefits(t);
   return (
     <div className="bg-gray-100 flex flex-col h-screen">

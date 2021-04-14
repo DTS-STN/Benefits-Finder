@@ -2,7 +2,8 @@ import Head from "next/head";
 import { Banner } from "../../components/atoms/Banner";
 import { LanguageToggle } from "../../components/atoms/LanguageToggle";
 import { Benefit } from "../../components/organisms/Benefit.js";
-import { useI18n } from "next-rosetta";
+import { useTranslation } from "next-i18next";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 //TODO: replace lib/benefits with proper source of data
 import { getBenefitData, getBenefitIds } from "../../lib/benefits";
@@ -10,13 +11,12 @@ import { getBenefitData, getBenefitIds } from "../../lib/benefits";
 //TODO: get benefitData from better source
 export async function getStaticProps(context) {
   const locale = context.locale || context.defaultLocale;
-  const { table = {} } = await import(`../../i18n/${locale}`);
   const benefitId = context.params.id;
   return {
     props: {
       benefitId,
-      table,
       locale,
+      ...(await serverSideTranslations(locale, ["common"])),
     },
   };
 }
@@ -40,7 +40,7 @@ export async function getStaticPaths() {
 }
 
 export default function BenefitPage({ benefitId, locale }) {
-  const { t } = useI18n();
+  const { t } = useTranslation("common");
   const benefitData = getBenefitData(benefitId, t);
   return (
     <div className="mx-auto">

@@ -1,12 +1,8 @@
-import { I18nProvider } from "next-rosetta";
+import { appWithTranslation } from "next-i18next";
 import "../styles/globals.css";
 
 function MyApp({ Component, pageProps }) {
-  return (
-    <I18nProvider table={pageProps.table}>
-      <Component {...pageProps} />
-    </I18nProvider>
-  );
+  return <Component {...pageProps} />;
 }
 
-export default MyApp;
+export default appWithTranslation(MyApp);
