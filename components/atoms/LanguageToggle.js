@@ -7,7 +7,8 @@ import Link from "next/link";
  */
 export function LanguageToggle(props) {
   const langSwap = props.lang === "en" ? "fr" : "en";
-  const href = props.queryValues === null ? "" : props.queryValues;
+  const href = props.queryValues === undefined ? "" : props.queryValues;
+  console.log(href);
   return (
     <Link href={href} locale={langSwap}>
       <a data-cy="toggle-language-link">{props.languageToggleText}</a>

@@ -27,7 +27,6 @@ export default function Home({ locale }) {
       <LanguageToggle
         lang={locale}
         languageToggleText={t("toggleLanguageText")}
-        queryValues=""
       />
       <main>
         <h1 className="text-center text-4xl text-bold py-3">
