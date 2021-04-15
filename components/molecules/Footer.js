@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 export function Footer(props) {
   return (
     <footer>
-      <div className="relative bg-white w-full">
+      <div className="relative bg-white w-full mt-5">
         <div className="bg-custom-blue-dark text-white w-full mx-auto flex">
           <div className="flex-col justify-between mr-auto ml-8">
             <div className="my-8 mr-8">

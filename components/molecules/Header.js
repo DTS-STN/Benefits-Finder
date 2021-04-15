@@ -4,7 +4,7 @@ import { SearchBar } from "../atoms/SearchBar";
 export function Header(props) {
   return (
     <header>
-      <div className="relative bg-white">
+      <div className="relative bg-white mb-5">
         <div className="w-full">
           <div className="flex justify-between items-center border-b-2 border-custom-blue-dark py-6 md:justify-start md:space-x-10">
             <div className="flex justify-start lg:w-0 lg:flex-1">
