@@ -6,10 +6,10 @@ import Link from "next/link";
  * Language component which is used to change language on the page
  */
 export function LanguageToggle(props) {
-  const langSwap = props.lang == "en" ? "fr" : "en";
-  const href = props.queryValues == null ? "" : props.queryValues;
+  const langSwap = props.lang === "en" ? "fr" : "en";
+  const href = props.queryValues === null ? "" : props.queryValues;
   return (
-    <Link href={props.queryValues} locale={langSwap}>
+    <Link href={href} locale={langSwap}>
       <a data-cy="toggle-language-link">{props.languageToggleText}</a>
     </Link>
   );
