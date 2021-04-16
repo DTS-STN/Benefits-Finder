@@ -8,7 +8,31 @@ module.exports = {
       display: ["Lato", "sans-serif"],
       body: ["Noto", "sans-serif"],
     },
+    fontSize: {
+      xxs: ["13px", "16px"],
+      xs: ["14px", "16px"],
+      sm: ["16px", "22px"],
+      base: ["18px", "28px"],
+      p: ["20px", "30px"],
+      h4: ["22px", "20px"],
+      h3: ["24px", "24.3px"],
+      h2: ["30px", "33.5px"],
+      h1: ["34px", "42px"],
+      "h1-xl": ["40px", "46px"],
+    },
+    screens: {
+      xxs: "280px",
+      xs: "325px",
+      sm: "450px",
+      md: "550px",
+      lg: "768px",
+      xl: "992px",
+      xxl: "1200px",
+    },
     extend: {
+      backgroundImage: (theme) => ({
+        "footer-parliament-image": "url(../public/landscape.png)",
+      }),
       colors: {
         // extended base Tailwind colors
         gray: colors.trueGray,
@@ -56,6 +80,7 @@ module.exports = {
   variants: {
     extend: {
       backgroundColor: ["active", "hover"],
+      textColor: ["visited"],
     },
   },
   plugins: [],

@@ -1,4 +1,80 @@
-/* ./styles/globals.css */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@tailwind screens;
+
+html {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+@layer base {
+  /* Font families */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    @apply font-display font-semibold;
+  }
+  h6 {
+    @apply font-display;
+  }
+  p {
+    @apply font-body;
+  }
+  /* Font sizes */
+  h1 {
+    @apply text-h1;
+  }
+  h2 {
+    @apply text-h2;
+  }
+  h3 {
+    @apply text-h3;
+  }
+  h4 {
+    @apply text-h4;
+  }
+  h5,
+  p {
+    @apply text-p;
+  }
+  h6 {
+    @apply text-base;
+  }
+}
+
+@layer utilities {
+  /*Default page layout*/
+  .layout-container {
+    @apply mx-6;
+  }
+
+  @screen xxs {
+    .layout-container {
+      @apply mx-4;
+    }
+  }
+
+  @screen xs {
+    .layout-container {
+      @apply px-0;
+    }
+  }
+
+  @screen md {
+    .layout-container {
+      @apply px-0;
+    }
+  }
+
+  @screen lg {
+    .layout-container {
+      @apply container mx-auto px-6;
+    }
+  }
+}
+.footerBackground {
+  background: #26374a url(../public/landscape.png) no-repeat right bottom;
+}

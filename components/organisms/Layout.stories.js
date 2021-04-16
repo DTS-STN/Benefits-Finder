@@ -1,5 +1,6 @@
 import React from "react";
 import { Layout } from "./Layout";
+//import logo from "../../public/wmms-blk.svg";
 
 export default {
   title: "Components/Organisms/Layout",
@@ -22,6 +23,17 @@ const sampleText = () => {
 
 const Template = (args) => <Layout {...args}>{sampleText()}</Layout>;
 
-export const Primary = Template.bind({});
+export const NoBanner = Template.bind({});
+export const WithBanner = Template.bind({});
 
-Primary.args = {};
+NoBanner.args = {
+  langUrl: "someUrl",
+  locale: "someLocale",
+};
+
+WithBanner.args = {
+  bannerTitle: "Banner Title",
+  bannerText: "Banner Text",
+  langUrl: "someUrl",
+  locale: "someLocale",
+};
