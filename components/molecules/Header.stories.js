@@ -1,4 +1,5 @@
 import { Header } from "./Header";
+import logo from "../../public/wmms-blk.svg";
 
 export default {
   title: "Components/Molecules/Header",
@@ -8,5 +9,7 @@ export default {
 const Template = (args) => <Header {...args} />;
 
 export const Primary = Template.bind({});
-
-Primary.args = {};
+Primary.args = {
+  headerLogoAltText: "Symbol of the Government of Canada",
+  headerLogoImage: logo,
+};
