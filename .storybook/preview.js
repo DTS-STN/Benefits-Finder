@@ -1,5 +1,8 @@
 import "../styles/globals.css";
 import "../icomoon/style.css";
+import "../styles/globals.css";
+import { I18nextProvider } from "react-i18next";
+import i18n from "./i18n";
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
@@ -10,3 +13,11 @@ export const parameters = {
     },
   },
 };
+
+export const decorators = [
+  (Story) => (
+    <I18nextProvider i18n={i18n}>
+      <Story />
+    </I18nextProvider>
+  ),
+];
