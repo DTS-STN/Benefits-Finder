@@ -17,7 +17,9 @@ export function BenefitGrid(props) {
 
   return (
     <div className="w-full flex flex-col items-center md:items-start">
-      <div className="w-full flex flex-wrap mb-5">{benefitCards}</div>
+      <div className="w-full flex flex-wrap justify-between">
+        {benefitCards}
+      </div>
     </div>
   );
 }
