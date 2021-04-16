@@ -11,8 +11,8 @@ describe("BenefitCard tests", () => {
     const title = screen.getByText("Benefit Title");
     const description = screen.getByText("Benefit description");
     const type = screen.getByText("Benefit type");
-    const benefitLink = screen.getByText("More info");
-    const applyLink = screen.getByText("Apply now!");
+    const benefitLink = screen.getByText("moreInfo");
+    const applyLink = screen.getByText("applyNow");
 
     expect(title).toBeInTheDocument();
     expect(description).toBeInTheDocument();

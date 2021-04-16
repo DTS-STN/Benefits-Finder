@@ -1,7 +1,9 @@
 import { ButtonLink } from "../atoms/ButtonLink";
 import PropTypes from "prop-types";
+import { useTranslation } from "next-i18next";
 
 export function BenefitCard(props) {
+  const { t } = useTranslation("common");
   return (
     <div className="flex flex-col md:w-64 lg:w-1/4 rounded-lg border pt-5 pb-5 pl-6 pr-6 m-1">
       <small className="text-gray-500 uppercase">{props.type}</small>
@@ -13,8 +15,8 @@ export function BenefitCard(props) {
       <p className="truncate-4-lines py-2">{props.description}</p>
 
       <div className="w-full flex flex-wrap justify-end">
-        <ButtonLink href={`/benefit/${props.id}`} text={"More info"} />
-        <ButtonLink href={props.applyLink} text={"Apply now!"} primary />
+        <ButtonLink href={`/benefit/${props.id}`} text={t("moreInfo")} />
+        <ButtonLink href={props.applyLink} text={t("applyNow")} primary />
       </div>
     </div>
   );
