@@ -40,9 +40,11 @@ export const Layout = ({
         ) : null}
       </header>
 
-      <main className="layout-container">
-        <div>{children}</div>
-      </main>
+      <div className="layout-container py-6">
+        <main>
+          <div>{children}</div>
+        </main>
+      </div>
 
       <footer>
         <Footer
