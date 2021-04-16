@@ -1,5 +1,4 @@
 import PropTypes from "prop-types";
-// import Head from "next/head";
 import { Banner } from "../atoms/Banner";
 import { Footer } from "../molecules/Footer";
 import { Header } from "../molecules/Header";
