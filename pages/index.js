@@ -7,17 +7,18 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 export async function getStaticProps(context) {
   const locale = context.locale || context.defaultLocale;
+  const benefits = await getBenefits();
   return {
     props: {
       locale,
       ...(await serverSideTranslations(locale, ["common"])),
+      benefits,
     },
   };
 }
 
-export default function Home({ locale }) {
+export default function Home({ locale, benefits }) {
   const { t } = useTranslation("common");
-  const benefits = getBenefits(t);
   return (
     <div className="bg-gray-100 flex flex-col h-screen">
       <Head>
