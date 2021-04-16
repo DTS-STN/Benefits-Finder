@@ -26,16 +26,16 @@ export default function Home({ locale }) {
         <title>{t("siteTitle")}</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="layout-container">
+      <div className="">
         <h1 className="text-4xl text-bold">{t("findSupport")}</h1>
       </div>
 
-      <section className="layout-container">
+      <section className="">
         <h3 className="text-2xl text-bold py-3">{t("popularCatagories")}</h3>
         <p>{t("underConstruction")}</p>
       </section>
 
-      <section className="layout-container">
+      <section className="">
         <h3 className="text-2xl text-bold py-3">{t("catalog")}</h3>
         <BenefitGrid benefits={benefits} />
       </section>

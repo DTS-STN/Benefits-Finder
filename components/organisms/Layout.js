@@ -40,7 +40,7 @@ export const Layout = ({
         ) : null}
       </header>
 
-      <main>
+      <main className="layout-container">
         <div>{children}</div>
       </main>
 
