@@ -7,6 +7,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useRouter } from "next/router";
 
 export async function getStaticProps(context) {
+  console.log(context);
   const locale = context.locale || context.defaultLocale;
   return {
     props: {
