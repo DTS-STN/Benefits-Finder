@@ -22,5 +22,5 @@ Primary.args = {
   description: "Category description",
   type: "Category type",
   imgSource: "/landscape.png",
-  altText: "Category image alt text",
+  imgAltText: "Category image alt text",
 };

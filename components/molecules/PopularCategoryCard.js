@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import { useTranslation } from "next-i18next";
+import Image from "next/image";
 
 export function PopularCategoryCard(props) {
   const { t } = useTranslation("common");
@@ -7,11 +8,19 @@ export function PopularCategoryCard(props) {
     <div className="flex flex-col md:w-64 lg:w-1/3 ">
       <div className="px-3 py-2">
         <div className="rounded-lg border p-5">
-          <div>
-            <img src={props.imgSource} alt={props.altText} />
+          <div
+            className={"py-2"}
+            style={{ position: "relative", width: "100%", height: "5rem" }}
+          >
+            <Image
+              layout="fill"
+              objectFit="contain"
+              src={props.imgSource}
+              alt={props.imgAltText}
+            />
           </div>
           <small className="text-gray-500 uppercase">{props.type}</small>
-          <div className="flex w-full">
+          <div className="flex w-full py-2">
             <div className="flex flex-col justify-start">
               <a href="#catalog">
                 <h3 className="text-lg">{props.title}</h3>
@@ -44,7 +53,7 @@ PopularCategoryCard.propTypes = {
   /**
    * category image alt text
    */
-  altText: PropTypes.string.isRequired,
+  imgAltText: PropTypes.string.isRequired,
 
   /**
    * category description
