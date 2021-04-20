@@ -30,12 +30,12 @@ export default function Home({ locale }) {
         <h1 className="text-4xl text-bold">{t("findSupport")}</h1>
       </div>
 
-      <section className="">
+      <section id="popular_catagories" className="">
         <h3 className="text-2xl text-bold py-3">{t("popularCatagories")}</h3>
         <p>{t("underConstruction")}</p>
       </section>
 
-      <section className="">
+      <section id="catalog" className="">
         <h3 className="text-2xl text-bold py-3">{t("catalog")}</h3>
         <BenefitGrid benefits={benefits} />
       </section>
