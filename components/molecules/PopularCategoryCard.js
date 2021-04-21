@@ -1,9 +1,7 @@
 import PropTypes from "prop-types";
-import { useTranslation } from "next-i18next";
 import Image from "next/image";
 
 export function PopularCategoryCard(props) {
-  const { t } = useTranslation("common");
   return (
     <div className="flex flex-col md:w-64 lg:w-1/3 ">
       <div className="px-3 py-2">

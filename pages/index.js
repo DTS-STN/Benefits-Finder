@@ -33,7 +33,7 @@ export default function Home({ locale, popularCatagories }) {
         description={cat.description}
         type={cat.type}
         imgSource={cat.imgSource}
-        imgAltText={cat.imgSource}
+        imgAltText={cat.imgAltText}
       />
     );
   });
