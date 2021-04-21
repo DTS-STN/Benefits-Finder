@@ -25,7 +25,6 @@ export async function getStaticProps(context) {
 export default function Home({ locale, benefits, popularCatagories }) {
   const { t } = useTranslation("common");
   const { asPath } = useRouter();
-  const benefits = getBenefits(t);
   const categories = popularCatagories.map((cat) => {
     return (
       <PopularCategoryCard
