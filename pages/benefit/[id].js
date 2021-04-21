@@ -1,9 +1,9 @@
 import Head from "next/head";
-import { Banner } from "../../components/atoms/Banner";
-import { LanguageToggle } from "../../components/atoms/LanguageToggle";
+import { Layout } from "../../components/organisms/Layout";
 import { Benefit } from "../../components/organisms/Benefit.js";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useRouter } from "next/router";
 
 //TODO: replace lib/benefits with proper source of data
 import { getBenefitData, getBenefitIds } from "../../lib/benefits";
@@ -41,29 +41,26 @@ export async function getStaticPaths() {
 
 export default function BenefitPage({ benefitData, locale }) {
   const { t } = useTranslation("common");
+  const { asPath } = useRouter();
   return (
-    <div className="mx-auto">
+    <Layout
+      locale={locale}
+      langUrl={asPath}
+      siteTitle={benefitData.title}
+      headline={benefitData.type}
+    >
       <Head>
         <title>{benefitData.title}</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <LanguageToggle
-        lang={locale}
-        languageToggleText={t("toggleLanguageText")}
-        queryValues={benefitData.id}
-      />
-      <main className="mx-auto">
-        <Banner
-          siteTitle={benefitData.title}
-          headline={benefitData.type}
-        ></Banner>
+      <div className="">
+        <h1>{benefitData.title}</h1>
         <Benefit
           type={benefitData.type}
           outcomes={benefitData.outcomes}
           provider={benefitData.provider}
-        ></Benefit>
-      </main>
-      <footer>Footer</footer>
-    </div>
+        />
+      </div>
+    </Layout>
   );
 }

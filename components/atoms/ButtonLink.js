@@ -6,11 +6,11 @@ export function ButtonLink(props) {
     <div className="rounded-md shadow ml-2 mt-2">
       <Link href={props.href}>
         <a
-          className={`flex items-center justify-center p-2 border border-transparent text-base font-medium rounded-md text-white border-gray-400  hover:text-white focus:text-white
+          className={`flex justify-center content-center h-auto p-1 rounded-sm py-2 px-4 focus:ring-1 focus:ring-black focus:ring-offset-2
           ${
             props.primary
-              ? "bg-lightBlue-700 hover:bg-blue-700 focus:bg-blue-900"
-              : "bg-gray-500 hover:bg-gray-700 focus:bg-gray-700"
+              ? "bg-custom-blue-blue text-white border border-custom-blue-blue active:bg-custom-blue-dark hover:bg-custom-blue-light"
+              : "bg-white text-custom-blue-blue border border-custom-blue-blue active:bg-gray-400 hover:bg-gray-200"
           }`}
         >
           {props.text}
