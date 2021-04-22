@@ -6,7 +6,8 @@
   "catalog": "Catalog",
   "moreInfo": "More info",
   "applyNow": "Apply now!",
-  "toggleLanguageText": "(FR) french",
+  "outcomes": "Outcomes",
+  "provider": "Provider",
   "benefits": {
     "benefit_1": {
       "title": "Benefit 1 Card",

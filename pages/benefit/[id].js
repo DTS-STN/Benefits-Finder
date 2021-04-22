@@ -1,6 +1,6 @@
 import Head from "next/head";
 import { Layout } from "../../components/organisms/Layout";
-import { Benefit } from "../../components/organisms/Benefit.js";
+import { Banner } from "../../components/atoms/Banner";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useRouter } from "next/router";
@@ -54,12 +54,18 @@ export default function BenefitPage({ benefitData, locale }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="">
-        <h1>{benefitData.title}</h1>
-        <Benefit
-          type={benefitData.type}
-          outcomes={benefitData.outcomes}
-          provider={benefitData.provider}
-        />
+        <Banner siteTitle={benefitData.title} headline={benefitData.type} />
+        <section>
+          <h2>{t("outcomes")}</h2>
+          <br />
+          <p>{benefitData.outcomes}</p>
+        </section>
+        <br />
+        <section>
+          <h2>{t("provider")}</h2>
+          <br />
+          <p>{benefitData.provider}</p>
+        </section>
       </div>
     </Layout>
   );
