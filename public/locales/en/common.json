@@ -8,8 +8,8 @@
   "applyNow": "Apply now!",
   "toggleLanguageText": "(FR) french",
 
-  "alphaBannerText": "Early Access",
-  "alphaBannerDesc": "This site will change as we test ideas",
+  "bannerText": "Early Access",
+  "bannerDesc": "This site will change as we test ideas",
   "provideFeedback": "Provide Feedback",
   "activeExperimentsList": "Back to list of Active Experiments",
 

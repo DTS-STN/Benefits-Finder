@@ -8,10 +8,10 @@ expect.extend(toHaveNoViolations);
 describe("AlphaBanner tests", () => {
   it("renders the Alpha Banner in its primary state", () => {
     render(<Primary {...Primary.args} />);
-    const alphaBannerText = screen.getByText("Alpha Banner Text");
-    expect(alphaBannerText).toBeTruthy();
-    const alphaBannerDesc = screen.getByText("Alpha Banner Desc");
-    expect(alphaBannerDesc).toBeTruthy();
+    const bannerText = screen.getByText("Alpha Banner Text");
+    expect(bannerText).toBeTruthy();
+    const bannerDesc = screen.getByText("Alpha Banner Desc");
+    expect(bannerDesc).toBeTruthy();
     const linkText = screen.getByText("linkText");
     expect(linkText).toBeTruthy();
   });

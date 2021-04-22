@@ -25,10 +25,10 @@ export const Layout = ({
         <div className="bg-gray-100">
           <div className="layout-container ">
             <AlphaBanner
-              alphaBannerText={t("alphaBannerText")}
-              alphaBannerDesc={t("alphaBannerDesc")}
-              feedbackButton={`/benefit/`}
-              link="https://www.canada.ca"
+              bannerText={t("alphaBannerText")}
+              bannerDesc={t("alphaBannerDesc")}
+              feedbackButton={`https://alphasite-main.dev.dts-stn.com/`}
+              link="https://alphasite-main.dev.dts-stn.com/"
               linkText={t("activeExperimentsList")}
             />
           </div>

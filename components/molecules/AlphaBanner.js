@@ -14,7 +14,7 @@ export function AlphaBanner(props) {
             className="font-medium break-normal text-sm"
             data-cy="alpha-banner-text"
           >
-            {props.alphaBannerText}
+            {props.bannerText}
           </p>
         </div>
 
@@ -22,7 +22,7 @@ export function AlphaBanner(props) {
           className=" font-medium pl-2 text-sm"
           data-cy="alpha-banner-description"
         >
-          {props.alphaBannerDesc}
+          {props.bannerDesc}
         </p>
       </div>
 
@@ -65,11 +65,11 @@ AlphaBanner.propTypes = {
   /**
    * alpha banner text
    */
-  alphaBannerText: PropTypes.string,
+  bannerText: PropTypes.string,
   /**
    * top banner description text
    */
-  alphaBannerDesc: PropTypes.string,
+  bannerDesc: PropTypes.string,
   /**
    * Button to link to feedback page (??)
    */

@@ -11,8 +11,8 @@ const Template = (args) => <AlphaBanner {...args} />;
 export const Primary = Template.bind({});
 
 Primary.args = {
-  alphaBannerText: "Alpha Banner Text",
-  alphaBannerDesc: "Alpha Banner Desc",
+  bannerText: "Alpha Banner Text",
+  bannerDesc: "Alpha Banner Desc",
   feedbackButton: "Feedback",
   link: "#",
   linkText: "linkText",
