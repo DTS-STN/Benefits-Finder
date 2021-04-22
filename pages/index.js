@@ -10,20 +10,21 @@ import { PopularCategoryCard } from "../components/molecules/PopularCategoryCard
 
 export async function getStaticProps(context) {
   const locale = context.locale || context.defaultLocale;
+  const benefits = await getBenefits();
   const popularCatagories = getPopularCategories(locale);
   return {
     props: {
       locale,
       ...(await serverSideTranslations(locale, ["common"])),
+      benefits,
       popularCatagories,
     },
   };
 }
 
-export default function Home({ locale, popularCatagories }) {
+export default function Home({ locale, benefits, popularCatagories }) {
   const { t } = useTranslation("common");
   const { asPath } = useRouter();
-  const benefits = getBenefits(t);
   const categories = popularCatagories.map((cat) => {
     return (
       <PopularCategoryCard

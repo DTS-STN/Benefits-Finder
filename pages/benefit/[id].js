@@ -11,10 +11,10 @@ import { getBenefitData, getBenefitIds } from "../../lib/benefits";
 //TODO: get benefitData from better source
 export async function getStaticProps(context) {
   const locale = context.locale || context.defaultLocale;
-  const benefitId = context.params.id;
+  const benefitData = await getBenefitData(context.params.id, locale);
   return {
     props: {
-      benefitId,
+      benefitData,
       locale,
       ...(await serverSideTranslations(locale, ["common"])),
     },
@@ -24,7 +24,7 @@ export async function getStaticProps(context) {
 //TODO: get paths data from better source
 export async function getStaticPaths() {
   //There is probably a better way to create all the paths needed
-  const benefitIds = getBenefitIds();
+  const benefitIds = await getBenefitIds();
   const pathsEn = benefitIds.map((x) => {
     return { params: { id: x }, locale: "en" };
   });
@@ -39,10 +39,9 @@ export async function getStaticPaths() {
   };
 }
 
-export default function BenefitPage({ benefitId, locale }) {
+export default function BenefitPage({ benefitData, locale }) {
   const { t } = useTranslation("common");
   const { asPath } = useRouter();
-  const benefitData = getBenefitData(benefitId, t);
   return (
     <Layout
       locale={locale}
