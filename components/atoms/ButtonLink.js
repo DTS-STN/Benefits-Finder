@@ -12,6 +12,7 @@ export function ButtonLink(props) {
               ? "bg-custom-blue-blue text-white border border-custom-blue-blue active:bg-custom-blue-dark hover:bg-custom-blue-light"
               : "bg-white text-custom-blue-blue border border-custom-blue-blue active:bg-gray-400 hover:bg-gray-200"
           }`}
+          data-cy={props.dataCy}
         >
           {props.text}
         </a>
@@ -35,4 +36,8 @@ ButtonLink.propTypes = {
    * Change appearance (colour) if it's a primary/secondary button
    */
   primary: PropTypes.bool,
+  /**
+   * Test id for cypress test
+   */
+  dataCy: PropTypes.string,
 };
