@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 export function ButtonLink(props) {
   return (
     <div className="rounded-md shadow ml-2 mt-2">
-      <Link href={props.href}>
+      <Link href={props.href} locale={props.locale}>
         <a
           className={`flex justify-center content-center h-auto p-1 rounded-sm py-2 px-4 focus:ring-1 focus:ring-black focus:ring-offset-2
           ${
@@ -40,4 +40,9 @@ ButtonLink.propTypes = {
    * Test id for cypress test
    */
   dataCy: PropTypes.string,
+
+  /**
+   * The locale of the destination
+   */
+  locale: PropTypes.string,
 };

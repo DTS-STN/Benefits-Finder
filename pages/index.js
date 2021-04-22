@@ -10,7 +10,7 @@ import { PopularCategoryCard } from "../components/molecules/PopularCategoryCard
 
 export async function getStaticProps(context) {
   const locale = context.locale || context.defaultLocale;
-  const benefits = await getBenefits();
+  const benefits = await getBenefits(locale);
   const popularCatagories = getPopularCategories(locale);
   return {
     props: {
