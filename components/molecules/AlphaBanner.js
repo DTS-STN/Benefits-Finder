@@ -51,7 +51,7 @@ export function AlphaBanner(props) {
           </a>
         </Link>
         <ButtonLink
-          href={props.feedbackButton}
+          href={props.feedbackButtonLink}
           text={t("provideFeedback")}
           dataCy={"feedback-button"}
           primary
@@ -73,7 +73,7 @@ AlphaBanner.propTypes = {
   /**
    * Button to link to feedback page (??)
    */
-  feedbackButton: PropTypes.string,
+  feedbackButtonLink: PropTypes.string,
   /**
    * link to another page
    */

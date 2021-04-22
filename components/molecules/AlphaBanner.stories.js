@@ -13,7 +13,7 @@ export const Primary = Template.bind({});
 Primary.args = {
   bannerText: "Alpha Banner Text",
   bannerDesc: "Alpha Banner Desc",
-  feedbackButton: "Feedback",
+  feedbackButtonLink: "Feedback",
   link: "#",
   linkText: "linkText",
 };

@@ -27,7 +27,7 @@ export const Layout = ({
             <AlphaBanner
               bannerText={t("alphaBannerText")}
               bannerDesc={t("alphaBannerDesc")}
-              feedbackButton={`https://alphasite-main.dev.dts-stn.com/`}
+              feedbackButtonLink={`https://alphasite-main.dev.dts-stn.com/`}
               link="https://alphasite-main.dev.dts-stn.com/"
               linkText={t("activeExperimentsList")}
             />
