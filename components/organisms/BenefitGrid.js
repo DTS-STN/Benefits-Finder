@@ -9,8 +9,10 @@ export function BenefitGrid(props) {
         id={benefitData.id}
         title={benefitData.title}
         description={benefitData.description}
-        type={benefitData.type}
         applyLink={benefitData.applyLink}
+        type={benefitData.type}
+        program={benefitData.program}
+        collections={benefitData.collections}
       />
     );
   });
@@ -31,11 +33,13 @@ BenefitGrid.propTypes = {
    */
   benefits: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.string.isRequired,
+      id: PropTypes.number.isRequired,
       title: PropTypes.string.isRequired,
       description: PropTypes.string,
-      type: PropTypes.string,
       applyLink: PropTypes.string,
+      type: PropTypes.string,
+      program: PropTypes.string,
+      collections: PropTypes.arrayOf(PropTypes.string),
     })
   ),
 };

@@ -30,7 +30,7 @@ BenefitCard.propTypes = {
   /**
    * benefit id
    */
-  id: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
 
   /**
    * benefit title
@@ -43,12 +43,22 @@ BenefitCard.propTypes = {
   description: PropTypes.string,
 
   /**
+   * link to apply to the benefit
+   */
+  applyLink: PropTypes.string,
+
+  /**
    * benefit type
    */
   type: PropTypes.string,
 
   /**
-   * link to apply to the benefit
+   * which program the benefit falls into
    */
-  applyLink: PropTypes.string,
+  program: PropTypes.string,
+
+  /**
+   * which collections the benefit belongs to
+   */
+  collections: PropTypes.arrayOf(PropTypes.string),
 };
