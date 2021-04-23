@@ -51,6 +51,10 @@ module.exports = {
         "canada-footer-font": "#284162",
         "canada-footer-hover-font-blue": "#0535d2",
         "footer-background-color": "#f8f8f8",
+        "link-unvisited": "#284162",
+        "link-hover": "#0000EE",
+        "link-visited": "#29156B",
+        
       },
     },
   },
