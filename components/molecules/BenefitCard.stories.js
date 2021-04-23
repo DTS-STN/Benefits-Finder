@@ -16,7 +16,7 @@ const Template = (args) => <BenefitCard {...args} />;
 
 export const Primary = Template.bind({});
 Primary.args = {
-  id: "benefit-id",
+  id: 1,
   title: "Benefit Title",
   description: "Benefit description",
   type: "Benefit type",
