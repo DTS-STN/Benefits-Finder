@@ -41,7 +41,7 @@ export const Layout = ({
           <Link key={language} href={langUrl} locale={language}>
             <a
               className="flex md:hidden justify-end font-semibold underline text-link-unvisited hover:text-link-hover "
-              data-cy="toggle-language-link"
+              data-cy="toggle-language-link-small"
             >
               {language === "en" ? "EN" : "FR"}
             </a>
