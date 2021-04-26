@@ -9,7 +9,7 @@ export function AlphaBanner(props) {
   return (
     <div className="flex items-center flex-wrap lg:flex lg:flex-row justify-between bg-gray-100 ">
       <div className="flex justify-start items-center flex-wrap pl-2">
-        <div className=" bg-gray-100  border-2 border-gray-700 p-1">
+        <div className=" bg-gray-100  border-2 border-gray-700 p-1 mt-2 lg:mt-0">
           <p
             className="font-medium break-normal text-sm"
             data-cy="alpha-banner-text"
@@ -26,7 +26,7 @@ export function AlphaBanner(props) {
         </p>
       </div>
 
-      <div className="flex items-center justify-end flex-wrap  m-4 lg:mt-0 ">
+      <div className="flex items-center justify-end flex-wrap my-4 lg:mt-0 ">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="h-4 w-4 items-center pt-1"

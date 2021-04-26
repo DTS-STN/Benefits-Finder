@@ -3,6 +3,7 @@ import { Banner } from "../atoms/Banner";
 import { AlphaBanner } from "../molecules/AlphaBanner";
 import { Footer } from "../molecules/Footer";
 import { Header } from "../molecules/Header";
+
 import Link from "next/link";
 import { useTranslation } from "next-i18next";
 
@@ -25,8 +26,8 @@ export const Layout = ({
         <div className="bg-gray-100">
           <div className="layout-container ">
             <AlphaBanner
-              bannerText={t("alphaBannerText")}
-              bannerDesc={t("alphaBannerDesc")}
+              bannerText={t("bannerText")}
+              bannerDesc={t("bannerDesc")}
               feedbackButtonLink={`https://alphasite-main.dev.dts-stn.com/`}
               link="https://alphasite-main.dev.dts-stn.com/"
               linkText={t("activeExperimentsList")}
@@ -35,9 +36,20 @@ export const Layout = ({
         </div>
         {/* Alpha banner end */}
 
-        <div className="layout-container ">
+        <div className="layout-container">
           <Link key={language} href={langUrl} locale={language}>
-            <a data-cy="toggle-language-link">
+            <a
+              className="flex md:hidden justify-end font-semibold underline text-link-unvisited hover:text-link-hover "
+              data-cy="toggle-language-link-small"
+            >
+              {language === "en" ? "EN" : "FR"}
+            </a>
+          </Link>
+          <Link key={language} href={langUrl} locale={language}>
+            <a
+              className="md:flex sm:hidden justify-end font-semibold underline text-link-unvisited hover:text-link-hover "
+              data-cy="toggle-language-link"
+            >
               {language === "en" ? "English" : "Français"}
             </a>
           </Link>

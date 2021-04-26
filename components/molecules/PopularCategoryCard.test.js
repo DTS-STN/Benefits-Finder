@@ -5,7 +5,7 @@ import { Primary } from "./PopularCategoryCard.stories";
 expect.extend(toHaveNoViolations);
 
 describe("PopularCategoryCard tests", () => {
-  it("renders a Popular Category Card in its primary state", () => {
+  it("renders a Popular Category Card in its primary state", async () => {
     render(<Primary {...Primary.args} />);
     const title = screen.getByText("Category Title");
     const description = screen.getByText("Category description");
