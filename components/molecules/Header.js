@@ -21,7 +21,7 @@ export function Header(props) {
           alt={props.headerLogoAltText}
         />
       </div>
-      <div className="xl:w-4/12 mt-4 lg:mt-0 ">
+      <div className="mt-4 lg:mt-0 ">
         <SearchBar
           placeholder={"Search Canada.ca"}
           onChange={handleInputChange}
