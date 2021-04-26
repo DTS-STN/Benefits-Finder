@@ -6,7 +6,6 @@ import { Header } from "../molecules/Header";
 
 import Link from "next/link";
 import { useTranslation } from "next-i18next";
-import { LanguageToggle } from "../atoms/LanguageToggle";
 
 /**
  * Component which defines the layout of the page for all screen sizes
