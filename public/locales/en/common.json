@@ -6,7 +6,13 @@
   "catalog": "Catalog",
   "moreInfo": "More info",
   "applyNow": "Apply now!",
+  "outcomes": "Outcomes",
+  "provider": "Provider",
   "toggleLanguageText": "(FR) french",
+  "bannerText": "Early Access",
+  "bannerDesc": "This site will change as we test ideas",
+  "provideFeedback": "Provide Feedback",
+  "activeExperimentsList": "Back to list of Active Experiments",
   "benefits": {
     "benefit_1": {
       "title": "Benefit 1 Card",
