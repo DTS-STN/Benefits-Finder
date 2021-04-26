@@ -8,6 +8,11 @@
   "applyNow": "(FR) Apply now!",
   "outcomes": "(FR) Outcomes",
   "provider": "(FR) Provider",
+  "toggleLanguageText": "English",
+  "bannerText": "(FR) Early Access",
+  "bannerDesc": "(FR) This site will change as we test ideas",
+  "provideFeedback": "(FR) Provide Feedback",
+  "activeExperimentsList": "(FR) Back to list of Active Experiments",
   "benefits": {
     "benefit_1": {
       "title": "(FR) Benefit 1 Card",

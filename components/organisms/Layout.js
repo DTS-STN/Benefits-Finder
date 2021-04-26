@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import { Banner } from "../atoms/Banner";
+import { AlphaBanner } from "../molecules/AlphaBanner";
 import { Footer } from "../molecules/Footer";
 import { Header } from "../molecules/Header";
 import Link from "next/link";
@@ -20,6 +21,20 @@ export const Layout = ({
   return (
     <div className="overflow-x-hidden">
       <header>
+        {/* layout for the Early Access Alpha banner start */}
+        <div className="bg-gray-100">
+          <div className="layout-container ">
+            <AlphaBanner
+              bannerText={t("alphaBannerText")}
+              bannerDesc={t("alphaBannerDesc")}
+              feedbackButtonLink={`https://alphasite-main.dev.dts-stn.com/`}
+              link="https://alphasite-main.dev.dts-stn.com/"
+              linkText={t("activeExperimentsList")}
+            />
+          </div>
+        </div>
+        {/* Alpha banner end */}
+
         <div className="layout-container ">
           <Link key={language} href={langUrl} locale={language}>
             <a data-cy="toggle-language-link">
