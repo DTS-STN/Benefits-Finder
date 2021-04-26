@@ -11,7 +11,7 @@ import { PopularCategoryCard } from "../components/molecules/PopularCategoryCard
 export async function getStaticProps(context) {
   const locale = context.locale || context.defaultLocale;
   const benefits = await getBenefits(locale);
-  const popularCatagories = getPopularCategories(locale);
+  const popularCatagories = await getPopularCategories(locale);
   return {
     props: {
       locale,
@@ -29,10 +29,9 @@ export default function Home({ locale, benefits, popularCatagories }) {
     return (
       <PopularCategoryCard
         key={cat.id}
-        id={cat.id}
+        id={`${cat.id}`}
         title={cat.title}
         description={cat.description}
-        type={cat.type}
         imgSource={cat.imgSource}
         imgAltText={cat.imgAltText}
       />
