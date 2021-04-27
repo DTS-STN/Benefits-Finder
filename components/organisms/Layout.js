@@ -37,7 +37,7 @@ export const Layout = ({
         {/* Alpha banner end */}
 
         <div className="layout-container">
-          <Link key={language} href={langUrl} locale={language}>
+          <Link href={langUrl} locale={language}>
             <a
               className="flex md:hidden justify-end font-semibold underline text-link-unvisited hover:text-link-hover "
               data-cy="toggle-language-link-small"
@@ -45,7 +45,7 @@ export const Layout = ({
               {language === "en" ? "EN" : "FR"}
             </a>
           </Link>
-          <Link key={language} href={langUrl} locale={language}>
+          <Link href={langUrl} locale={language}>
             <a
               className="md:flex sm:hidden justify-end font-semibold underline text-link-unvisited hover:text-link-hover "
               data-cy="toggle-language-link"
