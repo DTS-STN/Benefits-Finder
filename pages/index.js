@@ -1,6 +1,5 @@
 import Head from "next/head";
 import { Layout } from "../components/organisms/Layout";
-import { BenefitGrid } from "../components/organisms/BenefitGrid";
 import { getBenefits } from "../lib/benefits";
 import { getPopularCategories } from "../lib/categories";
 import { useTranslation } from "next-i18next";
@@ -43,7 +42,7 @@ export default function Home({ locale, benefits, popularCatagories }) {
     return (
       <BenefitCard
         key={benefitData.id}
-        id={benefitData.id}
+        id={`${benefitData.id}`}
         title={benefitData.title}
         description={benefitData.description}
         applyLink={benefitData.applyLink}

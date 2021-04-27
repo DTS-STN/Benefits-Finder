@@ -12,8 +12,8 @@ export function BenefitCard(props) {
           <h2 className="text-h3">{props.title}</h2>
         </a>
       </div>
-      <p className="pb-4">description{props.description}</p>
-      <div className="pb-5 pt-1 flex justify-end">
+      <p className="pb-4">{props.description}</p>
+      <div className="pb-5 pt-1 flex justify-end justify-items-end">
         <ButtonLink href={`/benefit/${props.id}`} text={t("moreInfo")} />
         <ButtonLink href={props.applyLink} text={t("applyNow")} primary />
       </div>
@@ -25,7 +25,7 @@ BenefitCard.propTypes = {
   /**
    * benefit id
    */
-  id: PropTypes.number.isRequired,
+  id: PropTypes.string.isRequired,
 
   /**
    * benefit title
