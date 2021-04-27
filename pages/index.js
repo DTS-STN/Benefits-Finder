@@ -47,12 +47,9 @@ export default function Home({ locale, benefits, popularCatagories }) {
         <h1 className="text-4xl text-bold">{t("findSupport")}</h1>
       </div>
 
-      <section id="popular_catagories" className="">
-        <h3 className="text-2xl text-bold py-3">{t("popularCatagories")}</h3>
-        <div className="w-full flex flex-col items-center md:items-start">
-          <div className="w-full flex flex-wrap justify-between">
-            {categories}
-          </div>
+      <section id="popular_catagories">
+        <div className="flex flex-wrap py-5">
+          <div className="sm:grid grid-cols-3 gap-10">{categories}</div>
         </div>
       </section>
 
