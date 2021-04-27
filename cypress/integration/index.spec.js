@@ -3,7 +3,7 @@
 
 // Define at the top of the spec file or just import it
 function checkA11y(cy) {
-  cy.checkA11y({
+  cy.checkA11y('', {
     runonly: {
       type: "tag",
       values: ["wcag2a", "wcag2aa"],
@@ -22,7 +22,12 @@ describe("home page", () => {
   });
 
   it("Checkes a11y violations", () => {
-    cy.checkA11y();
+    cy.checkA11y('', {
+        runonly: {
+          type: "tag",
+          values: ["wcag2a", "wcag2aa"],
+        }
+      })
   });
 
   it("Toggles content language when language button is clicked", () => {

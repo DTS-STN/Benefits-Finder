@@ -63,7 +63,7 @@ export default function Home({ locale, benefits, popularCatagories }) {
       </div>
 
       <section id="popular_catagories">
-        <h3 className="text-2xl text-bold py-3">{t("popularCatagories")}</h3>
+        <h2 className="text-2xl text-bold py-3">{t("popularCatagories")}</h2>
         <CardGrid>{categories}</CardGrid>
       </section>
 
