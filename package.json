@@ -44,7 +44,7 @@
     "axe-core": "^4.1.4",
     "babel-jest": "^26.6.3",
     "babel-loader": "^8.2.2",
-    "cypress": "^6.9.1",
+    "cypress": "^7.2.0",
     "cypress-axe": "^0.12.2",
     "jest": "^26.6.3",
     "jest-axe": "^4.1.0",

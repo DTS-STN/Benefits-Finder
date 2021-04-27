@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-/// <reference types="Cypress" />
+// /// <reference types="Cypress" />
 
 // Define at the top of the spec file or just import it
   function checkA11y(cy) {
@@ -27,7 +27,7 @@ describe("home page", () => {
         
     });
 
-    it.only('Logs violations to the terminal', () => {
+    it('Checkes a11y violations', () => {
         cy.checkA11y()
       })
 
