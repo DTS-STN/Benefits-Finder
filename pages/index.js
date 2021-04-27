@@ -48,7 +48,7 @@ export default function Home({ locale, benefits, popularCatagories }) {
       </div>
 
       <section id="popular_catagories" className="">
-        <h3 className="text-2xl text-bold py-3">{t("popularCatagories")}</h3>
+        <h2 className="text-2xl text-bold py-3">{t("popularCatagories")}</h2>
         <div className="w-full flex flex-col items-center md:items-start">
           <div className="w-full flex flex-wrap justify-between">
             {categories}
