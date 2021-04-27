@@ -7,6 +7,8 @@ import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useRouter } from "next/router";
 import { PopularCategoryCard } from "../components/molecules/PopularCategoryCard";
+import { BenefitCard } from "../components/molecules/BenefitCard";
+import { CardGrid } from "../components/organisms/CardGrid";
 
 export async function getStaticProps(context) {
   const locale = context.locale || context.defaultLocale;
@@ -37,6 +39,20 @@ export default function Home({ locale, benefits, popularCatagories }) {
       />
     );
   });
+  const benefitCards = benefits.map((benefitData) => {
+    return (
+      <BenefitCard
+        key={benefitData.id}
+        id={benefitData.id}
+        title={benefitData.title}
+        description={benefitData.description}
+        applyLink={benefitData.applyLink}
+        type={benefitData.type}
+        program={benefitData.program}
+        collections={benefitData.collections}
+      />
+    );
+  });
   return (
     <Layout locale={locale} langUrl={asPath}>
       <Head>
@@ -48,14 +64,13 @@ export default function Home({ locale, benefits, popularCatagories }) {
       </div>
 
       <section id="popular_catagories">
-        <div className="flex flex-wrap py-5">
-          <div className="sm:grid grid-cols-3 gap-10">{categories}</div>
-        </div>
+        <h3 className="text-2xl text-bold py-3">{t("popularCatagories")}</h3>
+        <CardGrid>{categories}</CardGrid>
       </section>
 
       <section id="catalog" className="">
         <h3 className="text-2xl text-bold py-3">{t("catalog")}</h3>
-        <BenefitGrid benefits={benefits} />
+        <CardGrid>{benefitCards}</CardGrid>
       </section>
     </Layout>
   );
