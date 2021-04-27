@@ -3,31 +3,27 @@ import Image from "next/image";
 
 export function PopularCategoryCard(props) {
   return (
-    <div className="flex flex-col md:w-64 lg:w-1/3 ">
-      <div className="px-3 py-2">
-        <div className="rounded-lg border p-5">
-          <div
-            className={"py-2"}
-            style={{ position: "relative", width: "100%", height: "5rem" }}
-          >
+    <div className="md:shadow-md h-auto min-h-96 w-full rounded-md border pl-3 pr-3">
+      {props.imgSource ? (
+        <div className="py-5">
+          <div style={{ position: "relative", width: "100%", height: "5rem" }}>
             <Image
-              layout="fill"
-              objectFit="contain"
               src={props.imgSource}
               alt={props.imgAltText}
-            />
+              layout="fill"
+            ></Image>
           </div>
-          <small className="text-gray-500 uppercase">{props.type}</small>
-          <div className="flex w-full py-2">
-            <div className="flex flex-col justify-start">
-              <a href="#catalog">
-                <h3 className="text-lg">{props.title}</h3>
-              </a>
-            </div>
-          </div>
-          <p className="truncate-4-lines py-2">{props.description}</p>
         </div>
+      ) : (
+        ""
+      )}
+      <div className="my-5">
+        <small className="text-gray-500 uppercase">{props.type}</small>
+        <a href="#catalog">
+          <h2 className="text-h3">{props.title}</h2>
+        </a>
       </div>
+      <p className="pb-4">{props.description}</p>
     </div>
   );
 }
