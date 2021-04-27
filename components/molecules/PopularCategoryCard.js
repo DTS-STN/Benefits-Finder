@@ -6,17 +6,21 @@ export function PopularCategoryCard(props) {
     <div className="flex flex-col md:w-64 lg:w-1/3 ">
       <div className="px-3 py-2">
         <div className="rounded-lg border p-5">
-          <div
-            className={"py-2"}
-            style={{ position: "relative", width: "100%", height: "5rem" }}
-          >
-            <Image
-              layout="fill"
-              objectFit="contain"
-              src={props.imgSource}
-              alt={props.imgAltText}
-            />
-          </div>
+          {props.imgSource ? (
+            <div
+              className={"py-2"}
+              style={{ position: "relative", width: "100%", height: "5rem" }}
+            >
+              <Image
+                layout="fill"
+                objectFit="contain"
+                src={props.imgSource}
+                alt={props.imgAltText}
+              />
+            </div>
+          ) : (
+            ""
+          )}
           <small className="text-gray-500 uppercase">{props.type}</small>
           <div className="flex w-full py-2">
             <div className="flex flex-col justify-start">

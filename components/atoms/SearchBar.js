@@ -10,7 +10,7 @@ export function SearchBar(props) {
         <input
           type="text"
           placeholder={props.placeholder}
-          className="w-full placeholder-text-gray text-text-gray font-body py-1 px-2 w-72 focus:outline-none"
+          className="w-full placeholder-text-gray text-text-gray font-body py-1 px-2 focus:outline-none"
           onChange={props.onChange}
         />
 
