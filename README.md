@@ -1,12 +1,22 @@
 ## Getting Started
 
-First, run the development server:
+1. Set your CMS:
 
-```bash
-npm run dev
-```
+   Clone and run the [CMS repo](https://github.com/DTS-STN/Benefits-Finder-CMS),
+   **or**
+   Add a `.env.local` file at the _root_ of the project and include the following:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+   ```
+   NEXT_PUBLIC_STRAPI_API_URL=https://benefits-finder-cms-api-dev.dev.dts-stn.com 
+   ```
+
+2. Run the development server:
+
+    ```bash
+    npm run dev
+    ```
+
+3. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 ## Learn More
 
