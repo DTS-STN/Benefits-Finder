@@ -39,7 +39,7 @@ export const Layout = ({
         <div className="layout-container">
           <Link href={langUrl} locale={language}>
             <a
-              className="flex md:hidden justify-end font-semibold underline text-link-unvisited hover:text-link-hover "
+              className="flex md:hidden justify-end font-display font-medium underline text-link-unvisited hover:text-link-hover "
               data-cy="toggle-language-link-small"
             >
               {language === "en" ? "EN" : "FR"}
@@ -47,7 +47,7 @@ export const Layout = ({
           </Link>
           <Link href={langUrl} locale={language}>
             <a
-              className="md:flex sm:hidden justify-end font-semibold underline text-link-unvisited hover:text-link-hover "
+              className="md:flex sm:hidden justify-end font-body underline text-link-unvisited hover:text-link-hover "
               data-cy="toggle-language-link"
             >
               {language === "en" ? "English" : "Français"}

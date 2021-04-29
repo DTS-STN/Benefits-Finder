@@ -26,7 +26,7 @@ export function AlphaBanner(props) {
         </p>
       </div>
 
-      <div className="flex items-center justify-end flex-wrap my-4 lg:mt-0 ">
+      <div className="flex items-baseline justify-end flex-wrap my-4 lg:mt-0 ">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="h-4 w-4 items-center pt-1"
@@ -44,7 +44,7 @@ export function AlphaBanner(props) {
 
         <Link href={props.link}>
           <a
-            className="text-custom-blue-dark hover:text-custom-blue-link visited:text-purple-700 underline pr-2"
+            className="font-body text-custom-blue-dark hover:text-custom-blue-link visited:text-purple-700 underline pr-2"
             data-cy="back-to-active-experiments"
           >
             {props.linkText}
