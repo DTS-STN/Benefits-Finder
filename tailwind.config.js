@@ -2,10 +2,6 @@ module.exports = {
   purge: ["./pages/**/*.{js,ts,jsx,tsx}", "./components/**/*.{js,ts,jsx,tsx}"],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    fontFamily: {
-      display: ["Lato"],
-      body: ["Noto sans"],
-    },
     fontSize: {
       xxs: ["13px", "16px"],
       xs: ["14px", "16px"],
@@ -31,6 +27,10 @@ module.exports = {
       backgroundImage: (theme) => ({
         "footer-parliament-image": "url(../public/landscape.png)",
       }),
+      fontFamily: {
+        display: ['Lato', 'sans-serif'],
+        body: ["Noto sans"],
+      },
       colors: {
         "custom-blue": {
           blue: "#2572B4",
