@@ -1,18 +1,21 @@
 import Head from "next/head";
 import { Layout } from "../components/organisms/Layout";
-import { getBenefits } from "../lib/benefits";
 import { getPopularCategories } from "../lib/categories";
+import { getBenefits } from "../lib/benefits";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useRouter } from "next/router";
 import { PopularCategoryCard } from "../components/molecules/PopularCategoryCard";
 import { BenefitCard } from "../components/molecules/BenefitCard";
 import { CardGrid } from "../components/organisms/CardGrid";
+import { useCookies } from "react-cookie";
 
 export async function getStaticProps(context) {
   const locale = context.locale || context.defaultLocale;
+
   const benefits = await getBenefits(locale);
   const popularCatagories = await getPopularCategories(locale);
+
   return {
     props: {
       locale,
@@ -26,6 +29,21 @@ export async function getStaticProps(context) {
 export default function Home({ locale, benefits, popularCatagories }) {
   const { t } = useTranslation("common");
   const { asPath } = useRouter();
+
+  const [cookie, setCookie] = useCookies(["user"]);
+  setCookie(
+    "user",
+    {
+      location: "ontario",
+      age: "",
+      income: "",
+    },
+    {
+      maxAge: 60 * 60 * 24, // 1 day
+      sameSite: true,
+    }
+  );
+
   const categories = popularCatagories.map((cat) => {
     return (
       <PopularCategoryCard
