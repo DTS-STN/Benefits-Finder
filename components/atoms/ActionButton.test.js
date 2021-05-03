@@ -21,12 +21,6 @@ it("renders ActionButton in its rounded state", () => {
   expect(screen.getByRole("button").classList).toContain("rounded-full");
 });
 
-it.skip("renders ActionButton in its withCounter state", () => {
-  render(<WithCounter {...WithCounter.args} />);
-  expect(screen.getByRole("button")).toHaveTextContent(WithCounter.args.text);
-  expect(screen.getByRole("button").classList).toContain("bg-gray-light");
-});
-
 it("renders StartAgainButton in its icon state", () => {
   render(<StartAgain {...StartAgain.args} />);
   expect(screen.getByText(StartAgain.args.text)).toBeTruthy();
