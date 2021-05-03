@@ -8,9 +8,8 @@ import { useRouter } from "next/router";
 import { PopularCategoryCard } from "../components/molecules/PopularCategoryCard";
 import { BenefitCard } from "../components/molecules/BenefitCard";
 import { CardGrid } from "../components/organisms/CardGrid";
-import { useCookies } from "react-cookie";
 
-export async function getStaticProps(context) {
+export async function getServerSideProps(context) {
   const locale = context.locale || context.defaultLocale;
 
   const benefits = await getBenefits(locale);
@@ -22,27 +21,19 @@ export async function getStaticProps(context) {
       ...(await serverSideTranslations(locale, ["common"])),
       benefits,
       popularCatagories,
+      situation: context.req.cookies.situation || "",
     },
   };
 }
 
-export default function Home({ locale, benefits, popularCatagories }) {
+export default function Home({
+  locale,
+  benefits,
+  popularCatagories,
+  situation,
+}) {
   const { t } = useTranslation("common");
   const { asPath } = useRouter();
-
-  const [cookie, setCookie] = useCookies(["user"]);
-  setCookie(
-    "user",
-    {
-      location: "ontario",
-      age: "",
-      income: "",
-    },
-    {
-      maxAge: 60 * 60 * 24, // 1 day
-      sameSite: true,
-    }
-  );
 
   const categories = popularCatagories.map((cat) => {
     return (
@@ -70,6 +61,17 @@ export default function Home({ locale, benefits, popularCatagories }) {
       />
     );
   });
+  //function onLoad() {
+  fetch(`http://localhost:3000/api/situation`, {
+    method: "post",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      location: "default location",
+    }),
+  });
+  //}
   return (
     <Layout locale={locale} langUrl={asPath}>
       <Head>
@@ -79,6 +81,13 @@ export default function Home({ locale, benefits, popularCatagories }) {
       <div className="">
         <h1 className="text-4xl text-bold">{t("findSupport")}</h1>
       </div>
+
+      <section>
+        <h2>Situation</h2>
+        <p>Location: {situation.location}</p>
+        <p>Age: {situation.age}</p>
+        <p>Income: {situation.income}</p>
+      </section>
 
       <section id="popular_catagories">
         <h2 className="text-2xl text-bold py-3">{t("popularCatagories")}</h2>
