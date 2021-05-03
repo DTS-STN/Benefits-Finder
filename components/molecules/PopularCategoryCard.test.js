@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { axe, toHaveNoViolations } from "jest-axe";
 import { Primary } from "./PopularCategoryCard.stories";
+import { act } from "react-dom/test-utils";
 
 expect.extend(toHaveNoViolations);
 
