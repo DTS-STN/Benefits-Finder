@@ -83,5 +83,11 @@
   "age": {
     "title": "(FR) Age",
     "placeholder": "(FR) Please enter your age"
+  },
+  "income": {
+    "title": "(FR)Your Income",
+    "option-1": "(FR)$0 to $30,000",
+    "option-2": "(FR)$30,001 to $60,000",
+    "option-3": "(FR)$60,001 and above"
   }
 }

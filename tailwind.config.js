@@ -29,7 +29,7 @@ module.exports = {
       }),
       fontFamily: {
         display: ['Lato', 'sans-serif'],
-        body: ["Noto sans"],
+        body: ['Noto sans', 'sans-serif'],
       },
       colors: {
         "custom-blue": {

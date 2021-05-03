@@ -10,9 +10,7 @@ export function NumInput(props) {
       className="form-input my-2  block w-full rounded"
       placeholder={props.placeholder}
       data-cy={props.dataCy}
-    >
-      {props.criteriaNumber}
-    </input>
+    ></input>
   );
 }
 
@@ -21,10 +19,7 @@ NumInput.propTypes = {
    * Placeholder text for the field
    */
   placeholder: PropTypes.string,
-  /**
-   * the number ?? is this required
-   */
-  criteriaNumber: PropTypes.number,
+
   /**
    * cypress selector
    */

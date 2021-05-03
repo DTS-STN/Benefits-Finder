@@ -67,21 +67,11 @@ export default function Home({ locale, benefits, popularCatagories }) {
         <h2 className="text-2xl text-bold py-3">{t("popularCatagories")}</h2>
         <CardGrid>{categories}</CardGrid>
       </section>
+
+      {/* your situation section */}
       <section id="eligibility_criteria" className="">
         <h3 className="text-2xl text-bold py-3">{t("eligibilityCriteria")}</h3>
-        <CriteriaGrid
-        // selects={[
-        //   {
-        //     criteriaSelect: t("location.on")
-        //   },
-        //   {
-        //     criteriaSelect: t("location.yt")
-        //   }
-        // ]}
-        //  criteriaTitle={t("location.title")}
-        // criteriaValue={t("location.ON")}
-        //  placeholder={t("age.placeholder")}
-        ></CriteriaGrid>
+        <CriteriaGrid></CriteriaGrid>
       </section>
 
       <section id="catalog" className="">

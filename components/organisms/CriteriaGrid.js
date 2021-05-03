@@ -9,39 +9,89 @@ export function CriteriaGrid(props) {
   const { t } = useTranslation("common");
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10 px-2  md:px-0">
-      {props.children}
-      <CriteriaBox criteriaTitle={t("location.title")}></CriteriaBox>
-
-      <CriteriaBox criteriaTitle={t("age.title")}>
-        <NumInput>placeholder={t("age.placeholder")}</NumInput>
+      {/* location picker */}
+      <CriteriaBox criteriaTitle={t("location.title")}>
+        <SelectPicker
+          id="location-select"
+          ariaLabel="location-select"
+          name="location"
+          dataCy="location-select-picker"
+          selects={[
+            {
+              criteriaSelect: t("location.on"),
+            },
+            {
+              criteriaSelect: t("location.ab"),
+            },
+            {
+              criteriaSelect: t("location.mb"),
+            },
+            {
+              criteriaSelect: t("location.nb"),
+            },
+            {
+              criteriaSelect: t("location.nl"),
+            },
+            {
+              criteriaSelect: t("location.ns"),
+            },
+            {
+              criteriaSelect: t("location.nu"),
+            },
+            {
+              criteriaSelect: t("location.pe"),
+            },
+            {
+              criteriaSelect: t("location.sk"),
+            },
+            {
+              criteriaSelect: t("location.bc"),
+            },
+            {
+              criteriaSelect: t("location.yt"),
+            },
+          ]}
+        ></SelectPicker>
       </CriteriaBox>
-      {/* flex inside */}
 
-      {/* <label className="block flex-1 my-1 mx-1 p-4 md:my-0 md:mx-0 rounded-lg shadow-lg border border-gray-200 ">
-        <h4 className="text-gray-700 md:text-s">{props.criteriaTitle}</h4>
+      {/* age input box */}
+      <CriteriaBox criteriaTitle={t("age.title")}>
+        <NumInput placeholder={t("age.placeholder")}></NumInput>
+      </CriteriaBox>
 
-        <select name="location" id="location-select" className="form-select my-2 px-1 block w-full rounded">
-        {props.selects.map((value, index) => {
-                return (
-                    <option key={index} >{value.criteriaSelect}</option>
-                );
-              })}
-        </select>
-
-        <h4 className="text-gray-700 ">{props.criteriaTitle}</h4>
-        <input type="number" min="1" step="1" max="120" 
-        className="form-input my-2  block w-full rounded"
-        placeholder={props.placeholder}>
-        {props.criteriaNumber}
-        </input>
-      </label> */}
-
-      {/*end  flex inside */}
+      {/* income picker */}
+      <CriteriaBox criteriaTitle={t("income.title")}>
+        <SelectPicker
+          id="income-select"
+          name="income"
+          ariaLabel="income-select"
+          dataCy="income-select-picker"
+          selects={[
+            {
+              criteriaSelect: t("income.option-1"),
+            },
+            {
+              criteriaSelect: t("income.option-2"),
+            },
+            {
+              criteriaSelect: t("income.option-3"),
+            },
+          ]}
+        ></SelectPicker>
+      </CriteriaBox>
     </div>
   );
 }
 
 CriteriaGrid.propTypes = {
+  /**
+   * Criteria box Title text
+   */
+  criteriaTitle: PropTypes.string,
+  /**
+   * the select picker
+   */
+  criteriaSelect: PropTypes.string,
   /**
    * array of objects containing the select item
    */
@@ -50,22 +100,15 @@ CriteriaGrid.propTypes = {
       criteriaSelect: PropTypes.string,
     })
   ),
+
   /**
-   * alpha banner text
-   */
-  criteriaTitle: PropTypes.string,
-  /**
-   * top banner description text
-   */
-  criteriaSelect: PropTypes.string,
-  /**
-   * top banner description text
-   */
-  placeholder: PropTypes.string,
-  /**
-   * top banner description text
+   * the number box
    */
   criteriaNumber: PropTypes.number,
+  /**
+   * placeholder text for inside the number box
+   */
+  placeholder: PropTypes.string,
   /**
    * child elements that will constitute the page
    */
