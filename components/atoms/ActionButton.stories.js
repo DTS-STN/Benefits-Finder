@@ -1,6 +1,5 @@
 import React from "react";
 import { ActionButton } from "./ActionButton";
-// import { FilteredBenefitsCounter } from "./FilteredBenefitsCounter";
 
 export default {
   title: "Components/Atoms/ActionButton",
@@ -23,12 +22,6 @@ Rounded.args = {
   text: "Example Rounded Action 🚀",
   rounded: true,
 };
-
-// WithCounter.args = {
-//   text: "Example With Counter",
-//   invert: true,
-//   children: <FilteredBenefitsCounter count={10} />,
-// };
 
 StartAgain.args = {
   notFullRound: true,
