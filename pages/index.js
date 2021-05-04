@@ -61,17 +61,7 @@ export default function Home({
       />
     );
   });
-  //function onLoad() {
-  fetch(`http://localhost:3000/api/situation`, {
-    method: "post",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      location: "default location",
-    }),
-  });
-  //}
+
   return (
     <Layout locale={locale} langUrl={asPath}>
       <Head>
@@ -81,13 +71,6 @@ export default function Home({
       <div className="">
         <h1 className="text-4xl text-bold">{t("findSupport")}</h1>
       </div>
-
-      <section>
-        <h2>Situation</h2>
-        <p>Location: {situation.location}</p>
-        <p>Age: {situation.age}</p>
-        <p>Income: {situation.income}</p>
-      </section>
 
       <section id="popular_catagories">
         <h2 className="text-2xl text-bold py-3">{t("popularCatagories")}</h2>
