@@ -1,11 +1,22 @@
 import cookie from "cookie";
 
 export default (req, res) => {
+  const existingSituation = JSON.parse(req.cookies?.situation ?? "{}");
+
+  // update the user situation cookie
   if (req.method === "POST") {
-    // update the user situation cookie
+    const updatedSituation = req.body.situation || {};
+    const situation = {
+      location: updatedSituation.location
+        ? updatedSituation.location
+        : existingSituation.location ?? "",
+      age: updatedSituation.age || (existingSituation.age ?? ""),
+      income: updatedSituation.income || (existingSituation.income ?? ""),
+    };
+
     res.setHeader(
       "Set-Cookie",
-      cookie.serialize("situation", req.body.situation, {
+      cookie.serialize("situation", JSON.stringify(situation), {
         httpOnly: true,
         secure: process.env.NODE_ENV !== "development",
         maxAge: 60 * 60,

@@ -19,13 +19,15 @@ export async function getServerSideProps(context) {
   const benefits = await getBenefits(locale);
   const popularCatagories = await getPopularCategories(locale);
 
+  const situation = JSON.parse(context.req.cookies?.situation ?? "{}");
+  //console.log(situation);
   return {
     props: {
       locale,
       ...(await serverSideTranslations(locale, ["common"])),
       benefits,
       popularCatagories,
-      situation: context.req.cookies.situation || "",
+      situation: situation,
     },
   };
 }
@@ -93,6 +95,21 @@ export default function Home({
               ariaLabel="location-select"
               name="location"
               dataCy="location-select-picker"
+              defaultValue={situation.location}
+              onChange={() => {
+                fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/situation`, {
+                  method: "post",
+                  headers: {
+                    "Content-Type": "application/json",
+                  },
+                  body: JSON.stringify({
+                    situation: {
+                      location: document.getElementById("location-select")
+                        .value,
+                    },
+                  }),
+                });
+              }}
               selects={[
                 {
                   criteriaSelect: t("location.on"),
@@ -134,8 +151,23 @@ export default function Home({
           {/* age input box */}
           <CriteriaBox>
             <NumInput
+              id="age"
               criteriaTitle={t("age.title")}
               placeholder={t("age.placeholder")}
+              defaultValue={situation.age}
+              onChange={() => {
+                fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/situation`, {
+                  method: "post",
+                  headers: {
+                    "Content-Type": "application/json",
+                  },
+                  body: JSON.stringify({
+                    situation: {
+                      age: document.getElementById("age").value,
+                    },
+                  }),
+                });
+              }}
             ></NumInput>
           </CriteriaBox>
 
@@ -147,6 +179,20 @@ export default function Home({
               name="income"
               ariaLabel="income-select"
               dataCy="income-select-picker"
+              defaultValue={situation.income}
+              onChange={() => {
+                fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/situation`, {
+                  method: "post",
+                  headers: {
+                    "Content-Type": "application/json",
+                  },
+                  body: JSON.stringify({
+                    situation: {
+                      income: document.getElementById("income-select").value,
+                    },
+                  }),
+                });
+              }}
               selects={[
                 {
                   criteriaSelect: t("income.option-1"),
