@@ -9,7 +9,3 @@ export default {
 const Template = (args) => <CriteriaBox {...args} />;
 
 export const Primary = Template.bind({});
-
-Primary.args = {
-  criteriaTitle: "Title Text",
-};

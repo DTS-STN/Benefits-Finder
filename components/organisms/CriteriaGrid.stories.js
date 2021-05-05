@@ -12,12 +12,16 @@ export default {
 };
 
 const criteriaBoxNum = [
-  <CriteriaBox criteriaTitle="criteriaTitle1">
-    <NumInput placeholder="placeholder"></NumInput>
+  <CriteriaBox>
+    <NumInput
+      criteriaTitle="criteriaTitle1"
+      placeholder="placeholder"
+    ></NumInput>
   </CriteriaBox>,
 
-  <CriteriaBox criteriaTitle="criteriaTitle2">
+  <CriteriaBox>
     <SelectPicker
+      criteriaTitle="criteriaTitle2"
       id="id"
       name="Name"
       selects={[

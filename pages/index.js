@@ -9,6 +9,9 @@ import { PopularCategoryCard } from "../components/molecules/PopularCategoryCard
 import { BenefitCard } from "../components/molecules/BenefitCard";
 import { CardGrid } from "../components/organisms/CardGrid";
 import { CriteriaGrid } from "../components/organisms/CriteriaGrid";
+import { CriteriaBox } from "../components/atoms/CriteriaBox";
+import { SelectPicker } from "../components/atoms/SelectPicker";
+import { NumInput } from "../components/atoms/NumInput";
 
 export async function getServerSideProps(context) {
   const locale = context.locale || context.defaultLocale;
@@ -81,7 +84,83 @@ export default function Home({
       {/* your situation section */}
       <section id="eligibility_criteria" className="">
         <h3 className="text-2xl text-bold py-3">{t("eligibilityCriteria")}</h3>
-        <CriteriaGrid></CriteriaGrid>
+        <CriteriaGrid>
+          {/* location picker */}
+          <CriteriaBox>
+            <SelectPicker
+              criteriaTitle={t("location.title")}
+              id="location-select"
+              ariaLabel="location-select"
+              name="location"
+              dataCy="location-select-picker"
+              selects={[
+                {
+                  criteriaSelect: t("location.on"),
+                },
+                {
+                  criteriaSelect: t("location.ab"),
+                },
+                {
+                  criteriaSelect: t("location.mb"),
+                },
+                {
+                  criteriaSelect: t("location.nb"),
+                },
+                {
+                  criteriaSelect: t("location.nl"),
+                },
+                {
+                  criteriaSelect: t("location.ns"),
+                },
+                {
+                  criteriaSelect: t("location.nu"),
+                },
+                {
+                  criteriaSelect: t("location.pe"),
+                },
+                {
+                  criteriaSelect: t("location.sk"),
+                },
+                {
+                  criteriaSelect: t("location.bc"),
+                },
+                {
+                  criteriaSelect: t("location.yt"),
+                },
+              ]}
+            ></SelectPicker>
+          </CriteriaBox>
+
+          {/* age input box */}
+          <CriteriaBox>
+            <NumInput
+              criteriaTitle={t("age.title")}
+              placeholder={t("age.placeholder")}
+            ></NumInput>
+          </CriteriaBox>
+
+          {/* income picker */}
+          <CriteriaBox>
+            <SelectPicker
+              criteriaTitle={t("income.title")}
+              id="income-select"
+              name="income"
+              ariaLabel="income-select"
+              dataCy="income-select-picker"
+              selects={[
+                {
+                  criteriaSelect: t("income.option-1"),
+                },
+                {
+                  criteriaSelect: t("income.option-2"),
+                },
+                {
+                  criteriaSelect: t("income.option-3"),
+                },
+              ]}
+            ></SelectPicker>
+          </CriteriaBox>
+        </CriteriaGrid>
       </section>
 
       <section id="catalog" className="">
