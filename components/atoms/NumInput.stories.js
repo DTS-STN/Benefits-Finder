@@ -11,5 +11,6 @@ const Template = (args) => <NumInput {...args} />;
 export const Primary = Template.bind({});
 
 Primary.args = {
+  criteriaTitle: "Title Text",
   placeholder: "Placeholder Text",
 };

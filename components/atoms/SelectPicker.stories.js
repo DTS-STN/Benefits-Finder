@@ -11,6 +11,7 @@ const Template = (args) => <SelectPicker {...args} />;
 export const Primary = Template.bind({});
 
 Primary.args = {
+  criteriaTitle: "Title Text",
   id: "id",
   name: "Name",
   selects: [

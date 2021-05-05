@@ -8,7 +8,7 @@ expect.extend(toHaveNoViolations);
 describe("NumInput tests", () => {
   it("renders NumInput in its primary state", () => {
     render(<Primary {...Primary.args} />);
-
+    expect(screen.getByText("Title Text")).toBeTruthy();
     expect(screen.findByPlaceholderText("Placeholder Text")).toBeTruthy();
   });
 

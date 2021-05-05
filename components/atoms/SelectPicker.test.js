@@ -10,6 +10,7 @@ describe("SelectPicker tests", () => {
     render(<Primary {...Primary.args} />);
 
     Primary.args.selects.forEach((value) => {
+      expect(screen.getByText("Title Text")).toBeTruthy();
       const item = screen.getByText(value.criteriaSelect);
       expect(item).toBeTruthy();
     });
