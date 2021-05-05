@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { axe, toHaveNoViolations } from "jest-axe";
 import { Primary } from "./PopularCategoryCard.stories";
+import { act } from "react-dom/test-utils";
 
 expect.extend(toHaveNoViolations);
 
@@ -18,8 +19,10 @@ describe("PopularCategoryCard tests", () => {
 
   it("has no a11y violations", async () => {
     const { container } = render(<Primary {...Primary.args} />);
-    const results = await axe(container);
-
+    let results;
+    await act(async () => {
+      results = await axe(container);
+    });
     expect(results).toHaveNoViolations();
   });
 });

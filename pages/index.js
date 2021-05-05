@@ -1,7 +1,7 @@
 import Head from "next/head";
 import { Layout } from "../components/organisms/Layout";
-import { getBenefits } from "../lib/benefits";
 import { getPopularCategories } from "../lib/categories";
+import { getBenefits } from "../lib/benefits";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useRouter } from "next/router";
@@ -10,23 +10,32 @@ import { BenefitCard } from "../components/molecules/BenefitCard";
 import { CardGrid } from "../components/organisms/CardGrid";
 import { CriteriaGrid } from "../components/organisms/CriteriaGrid";
 
-export async function getStaticProps(context) {
+export async function getServerSideProps(context) {
   const locale = context.locale || context.defaultLocale;
+
   const benefits = await getBenefits(locale);
   const popularCatagories = await getPopularCategories(locale);
+
   return {
     props: {
       locale,
       ...(await serverSideTranslations(locale, ["common"])),
       benefits,
       popularCatagories,
+      situation: context.req.cookies.situation || "",
     },
   };
 }
 
-export default function Home({ locale, benefits, popularCatagories }) {
+export default function Home({
+  locale,
+  benefits,
+  popularCatagories,
+  situation,
+}) {
   const { t } = useTranslation("common");
   const { asPath } = useRouter();
+
   const categories = popularCatagories.map((cat) => {
     return (
       <PopularCategoryCard
@@ -53,6 +62,7 @@ export default function Home({ locale, benefits, popularCatagories }) {
       />
     );
   });
+
   return (
     <Layout locale={locale} langUrl={asPath}>
       <Head>
