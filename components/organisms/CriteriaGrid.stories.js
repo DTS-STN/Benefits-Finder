@@ -12,14 +12,15 @@ export default {
 };
 
 const criteriaBoxNum = [
-  <CriteriaBox>
+  <CriteriaBox key="1">
     <NumInput
+      id="num-input-id"
       criteriaTitle="criteriaTitle1"
       placeholder="placeholder"
     ></NumInput>
   </CriteriaBox>,
 
-  <CriteriaBox>
+  <CriteriaBox key="2">
     <SelectPicker
       criteriaTitle="criteriaTitle2"
       id="id"
