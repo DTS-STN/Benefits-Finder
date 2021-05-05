@@ -3,6 +3,7 @@
   "findSupport": "(FR) Let's help you find support ...",
   "popularCatagories": "(FR) Popular catagories",
   "underConstruction": "(FR) 🔧 Under construction 🔧",
+  "eligibilityCriteria": "(FR) Your Situation",
   "catalog": "(FR) Catalog",
   "moreInfo": "(FR) More info",
   "applyNow": "(FR) Apply now!",
@@ -62,5 +63,31 @@
       "outcomes": "(FR) Benefit 6 outcomes",
       "provider": "(FR) Benefit 6 provider"
     }
+  },
+  "location": {
+    "title": "Votre province ou territoire",
+    "ab": "Alberta",
+    "bc": "Colombie-Britannique",
+    "mb": "Manitoba",
+    "nb": "Nouveau-Brunswick",
+    "nl": "Terre-Neuve-et-Labrador",
+    "ns": "Nouvelle-Écosse",
+    "nt": "Territoires du Nord-Ouest",
+    "nu": "Nunavut",
+    "on": "Ontario",
+    "pe": "Île-du-Prince-Édouard",
+    "qc": "Québec",
+    "sk": "Saskatchewan",
+    "yt": "Yukon"
+  },
+  "age": {
+    "title": "(FR) Age",
+    "placeholder": "(FR) Please enter your age"
+  },
+  "income": {
+    "title": "(FR)Your Income",
+    "option-1": "(FR)$0 to $30,000",
+    "option-2": "(FR)$30,001 to $60,000",
+    "option-3": "(FR)$60,001 and above"
   }
 }

@@ -3,6 +3,7 @@
   "findSupport": "Let's help you find support ...",
   "popularCatagories": "Popular catagories",
   "underConstruction": "🔧 Under construction 🔧",
+  "eligibilityCriteria": "Your Situation",
   "catalog": "Catalog",
   "moreInfo": "More info",
   "applyNow": "Apply now!",
@@ -13,6 +14,7 @@
   "bannerDesc": "This site will change as we test ideas",
   "provideFeedback": "Provide Feedback",
   "activeExperimentsList": "Back to list of Active Experiments",
+
   "benefits": {
     "benefit_1": {
       "title": "Benefit 1 Card",
@@ -62,5 +64,31 @@
       "outcomes": "Benefit 6 outcomes",
       "provider": "Benefit 6 provider"
     }
+  },
+  "location": {
+    "title": "Your province or territory",
+    "ab": "Alberta",
+    "bc": "British Columbia",
+    "mb": "Manitoba",
+    "nb": "New Brunswick",
+    "nl": "Newfoundland and Labrador",
+    "ns": "Nova Scotia",
+    "nt": "Northwest Territories",
+    "nu": "Nunavut",
+    "on": "Ontario",
+    "pe": "Prince Edward Island",
+    "qc": "Quebec",
+    "sk": "Saskatchewan",
+    "yt": "Yukon"
+  },
+  "age": {
+    "title": "Age",
+    "placeholder": "Please enter your age"
+  },
+  "income": {
+    "title": "Your Income",
+    "option-1": "$0 to $30,000",
+    "option-2": "$30,001 to $60,000",
+    "option-3": "$60,001 and above"
   }
 }
