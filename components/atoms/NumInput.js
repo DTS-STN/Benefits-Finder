@@ -8,11 +8,15 @@ export function NumInput(props) {
     >
       {props.criteriaTitle}
       <input
+        id={props.id}
+        name={props.name}
         type="number"
         min="1"
         step="1"
         max="120"
         className="form-input my-2  block w-full rounded"
+        onChange={props.onChange}
+        defaultValue={props.defaultValue}
         placeholder={props.placeholder}
         data-cy={props.dataCy}
       ></input>
@@ -21,6 +25,14 @@ export function NumInput(props) {
 }
 
 NumInput.propTypes = {
+  /**
+   * the id of the field
+   */
+  id: PropTypes.string.isRequired,
+  /**
+   * the name of the field
+   */
+  name: PropTypes.string,
   /**
    * Title for the box
    */
@@ -35,4 +47,14 @@ NumInput.propTypes = {
    * cypress selector
    */
   dataCy: PropTypes.string,
+
+  /**
+   * default value for the imput
+   */
+  defaultValue: PropTypes.string,
+
+  /**
+   * function to handle when the value changes
+   */
+  onChange: PropTypes.func,
 };

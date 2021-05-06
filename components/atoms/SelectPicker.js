@@ -11,8 +11,11 @@ export function SelectPicker(props) {
         id={props.id}
         name={props.name}
         data-cy={props.dataCy}
+        onChange={props.onChange}
+        defaultValue={props.defaultValue}
         className="form-select my-2 px-1 block w-full rounded"
       >
+        <option value=""></option>
         {props.selects.map((value, index) => {
           return <option key={index}>{value.criteriaSelect}</option>;
         })}
@@ -46,4 +49,14 @@ SelectPicker.propTypes = {
    * cypress selector
    */
   dataCy: PropTypes.string,
+
+  /**
+   * function to handle when the value changes
+   */
+  onChange: PropTypes.func,
+
+  /**
+   * default value for the imput
+   */
+  defaultValue: PropTypes.string,
 };

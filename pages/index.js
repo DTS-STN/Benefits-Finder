@@ -12,6 +12,7 @@ import { CriteriaGrid } from "../components/organisms/CriteriaGrid";
 import { CriteriaBox } from "../components/atoms/CriteriaBox";
 import { SelectPicker } from "../components/atoms/SelectPicker";
 import { NumInput } from "../components/atoms/NumInput";
+import { useState, useEffect } from "react";
 
 export async function getServerSideProps(context) {
   const locale = context.locale || context.defaultLocale;
@@ -19,13 +20,15 @@ export async function getServerSideProps(context) {
   const benefits = await getBenefits(locale);
   const popularCatagories = await getPopularCategories(locale);
 
+  const situation = JSON.parse(context.req.cookies?.situation ?? "{}");
+
   return {
     props: {
       locale,
       ...(await serverSideTranslations(locale, ["common"])),
       benefits,
       popularCatagories,
-      situation: context.req.cookies.situation || "",
+      situationCookie: situation,
     },
   };
 }
@@ -34,36 +37,33 @@ export default function Home({
   locale,
   benefits,
   popularCatagories,
-  situation,
+  situationCookie,
 }) {
   const { t } = useTranslation("common");
   const { asPath } = useRouter();
 
-  const categories = popularCatagories.map((cat) => {
-    return (
-      <PopularCategoryCard
-        key={cat.id}
-        id={`${cat.id}`}
-        title={cat.title}
-        description={cat.description}
-        imgSource={cat.imgSource}
-        imgAltText={cat.imgAltText}
-      />
-    );
+  const [situation, setSituation] = useState({
+    location: situationCookie.location,
+    age: situationCookie.age,
+    income: situationCookie.income,
   });
-  const benefitCards = benefits.map((benefitData) => {
-    return (
-      <BenefitCard
-        key={benefitData.id}
-        id={`${benefitData.id}`}
-        title={benefitData.title}
-        description={benefitData.description}
-        applyLink={benefitData.applyLink}
-        type={benefitData.type}
-        program={benefitData.program}
-        collections={benefitData.collections}
-      />
-    );
+
+  const handleSituationChange = (e) => {
+    const { name, value } = e.target;
+    setSituation((previousState) => ({
+      ...previousState,
+      [name]: value,
+    }));
+  };
+
+  useEffect(() => {
+    fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/situation`, {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ situation }),
+    });
   });
 
   return (
@@ -78,7 +78,20 @@ export default function Home({
 
       <section id="popular_catagories">
         <h2 className="text-2xl text-bold py-3">{t("popularCatagories")}</h2>
-        <CardGrid>{categories}</CardGrid>
+        <CardGrid>
+          {popularCatagories.map((cat) => {
+            return (
+              <PopularCategoryCard
+                key={cat.id}
+                id={`${cat.id}`}
+                title={cat.title}
+                description={cat.description}
+                imgSource={cat.imgSource}
+                imgAltText={cat.imgAltText}
+              />
+            );
+          })}
+        </CardGrid>
       </section>
 
       {/* your situation section */}
@@ -93,6 +106,8 @@ export default function Home({
               ariaLabel="location-select"
               name="location"
               dataCy="location-select-picker"
+              defaultValue={situation.location}
+              onChange={handleSituationChange}
               selects={[
                 {
                   criteriaSelect: t("location.on"),
@@ -134,8 +149,12 @@ export default function Home({
           {/* age input box */}
           <CriteriaBox>
             <NumInput
+              id="age"
+              name="age"
               criteriaTitle={t("age.title")}
               placeholder={t("age.placeholder")}
+              defaultValue={situation.age}
+              onChange={handleSituationChange}
             ></NumInput>
           </CriteriaBox>
 
@@ -147,6 +166,8 @@ export default function Home({
               name="income"
               ariaLabel="income-select"
               dataCy="income-select-picker"
+              defaultValue={situation.income}
+              onChange={handleSituationChange}
               selects={[
                 {
                   criteriaSelect: t("income.option-1"),
@@ -165,7 +186,22 @@ export default function Home({
 
       <section id="catalog" className="">
         <h3 className="text-2xl text-bold py-3">{t("catalog")}</h3>
-        <CardGrid>{benefitCards}</CardGrid>
+        <CardGrid>
+          {benefits.map((benefitData) => {
+            return (
+              <BenefitCard
+                key={benefitData.id}
+                id={`${benefitData.id}`}
+                title={benefitData.title}
+                description={benefitData.description}
+                applyLink={benefitData.applyLink}
+                type={benefitData.type}
+                program={benefitData.program}
+                collections={benefitData.collections}
+              />
+            );
+          })}
+        </CardGrid>
       </section>
     </Layout>
   );
