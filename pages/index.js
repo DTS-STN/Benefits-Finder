@@ -66,33 +66,6 @@ export default function Home({
     });
   });
 
-  const categories = popularCatagories.map((cat) => {
-    return (
-      <PopularCategoryCard
-        key={cat.id}
-        id={`${cat.id}`}
-        title={cat.title}
-        description={cat.description}
-        imgSource={cat.imgSource}
-        imgAltText={cat.imgAltText}
-      />
-    );
-  });
-  const benefitCards = benefits.map((benefitData) => {
-    return (
-      <BenefitCard
-        key={benefitData.id}
-        id={`${benefitData.id}`}
-        title={benefitData.title}
-        description={benefitData.description}
-        applyLink={benefitData.applyLink}
-        type={benefitData.type}
-        program={benefitData.program}
-        collections={benefitData.collections}
-      />
-    );
-  });
-
   return (
     <Layout locale={locale} langUrl={asPath}>
       <Head>
@@ -105,7 +78,20 @@ export default function Home({
 
       <section id="popular_catagories">
         <h2 className="text-2xl text-bold py-3">{t("popularCatagories")}</h2>
-        <CardGrid>{categories}</CardGrid>
+        <CardGrid>
+          {popularCatagories.map((cat) => {
+            return (
+              <PopularCategoryCard
+                key={cat.id}
+                id={`${cat.id}`}
+                title={cat.title}
+                description={cat.description}
+                imgSource={cat.imgSource}
+                imgAltText={cat.imgAltText}
+              />
+            );
+          })}
+        </CardGrid>
       </section>
 
       {/* your situation section */}
@@ -200,7 +186,22 @@ export default function Home({
 
       <section id="catalog" className="">
         <h3 className="text-2xl text-bold py-3">{t("catalog")}</h3>
-        <CardGrid>{benefitCards}</CardGrid>
+        <CardGrid>
+          {benefits.map((benefitData) => {
+            return (
+              <BenefitCard
+                key={benefitData.id}
+                id={`${benefitData.id}`}
+                title={benefitData.title}
+                description={benefitData.description}
+                applyLink={benefitData.applyLink}
+                type={benefitData.type}
+                program={benefitData.program}
+                collections={benefitData.collections}
+              />
+            );
+          })}
+        </CardGrid>
       </section>
     </Layout>
   );
