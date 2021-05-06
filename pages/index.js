@@ -12,6 +12,7 @@ import { CriteriaGrid } from "../components/organisms/CriteriaGrid";
 import { CriteriaBox } from "../components/atoms/CriteriaBox";
 import { SelectPicker } from "../components/atoms/SelectPicker";
 import { NumInput } from "../components/atoms/NumInput";
+import { useState, useEffect } from "react";
 
 export async function getServerSideProps(context) {
   const locale = context.locale || context.defaultLocale;
@@ -20,14 +21,14 @@ export async function getServerSideProps(context) {
   const popularCatagories = await getPopularCategories(locale);
 
   const situation = JSON.parse(context.req.cookies?.situation ?? "{}");
-  //console.log(situation);
+
   return {
     props: {
       locale,
       ...(await serverSideTranslations(locale, ["common"])),
       benefits,
       popularCatagories,
-      situation: situation,
+      situationCookie: situation,
     },
   };
 }
@@ -36,10 +37,34 @@ export default function Home({
   locale,
   benefits,
   popularCatagories,
-  situation,
+  situationCookie,
 }) {
   const { t } = useTranslation("common");
   const { asPath } = useRouter();
+
+  const [situation, setSituation] = useState({
+    location: situationCookie.location,
+    age: situationCookie.age,
+    income: situationCookie.income,
+  });
+
+  const handleSituationChange = (e) => {
+    const { name, value } = e.target;
+    setSituation((previousState) => ({
+      ...previousState,
+      [name]: value,
+    }));
+  };
+
+  useEffect(() => {
+    fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/situation`, {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ situation }),
+    });
+  });
 
   const categories = popularCatagories.map((cat) => {
     return (
@@ -96,20 +121,7 @@ export default function Home({
               name="location"
               dataCy="location-select-picker"
               defaultValue={situation.location}
-              onChange={() => {
-                fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/situation`, {
-                  method: "post",
-                  headers: {
-                    "Content-Type": "application/json",
-                  },
-                  body: JSON.stringify({
-                    situation: {
-                      location: document.getElementById("location-select")
-                        .value,
-                    },
-                  }),
-                });
-              }}
+              onChange={handleSituationChange}
               selects={[
                 {
                   criteriaSelect: t("location.on"),
@@ -152,22 +164,11 @@ export default function Home({
           <CriteriaBox>
             <NumInput
               id="age"
+              name="age"
               criteriaTitle={t("age.title")}
               placeholder={t("age.placeholder")}
               defaultValue={situation.age}
-              onChange={() => {
-                fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/situation`, {
-                  method: "post",
-                  headers: {
-                    "Content-Type": "application/json",
-                  },
-                  body: JSON.stringify({
-                    situation: {
-                      age: document.getElementById("age").value,
-                    },
-                  }),
-                });
-              }}
+              onChange={handleSituationChange}
             ></NumInput>
           </CriteriaBox>
 
@@ -180,19 +181,7 @@ export default function Home({
               ariaLabel="income-select"
               dataCy="income-select-picker"
               defaultValue={situation.income}
-              onChange={() => {
-                fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/situation`, {
-                  method: "post",
-                  headers: {
-                    "Content-Type": "application/json",
-                  },
-                  body: JSON.stringify({
-                    situation: {
-                      income: document.getElementById("income-select").value,
-                    },
-                  }),
-                });
-              }}
+              onChange={handleSituationChange}
               selects={[
                 {
                   criteriaSelect: t("income.option-1"),

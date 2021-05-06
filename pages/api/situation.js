@@ -1,18 +1,9 @@
 import cookie from "cookie";
 
 export default (req, res) => {
-  const existingSituation = JSON.parse(req.cookies?.situation ?? "{}");
-
   // update the user situation cookie
   if (req.method === "POST") {
-    const updatedSituation = req.body.situation || {};
-    const situation = {
-      location: updatedSituation.location
-        ? updatedSituation.location
-        : existingSituation.location ?? "",
-      age: updatedSituation.age || (existingSituation.age ?? ""),
-      income: updatedSituation.income || (existingSituation.income ?? ""),
-    };
+    const situation = req.body.situation || {};
 
     res.setHeader(
       "Set-Cookie",

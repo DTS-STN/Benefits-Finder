@@ -9,6 +9,7 @@ export function NumInput(props) {
       {props.criteriaTitle}
       <input
         id={props.id}
+        name={props.name}
         type="number"
         min="1"
         step="1"
@@ -28,6 +29,10 @@ NumInput.propTypes = {
    * the id of the field
    */
   id: PropTypes.string.isRequired,
+  /**
+   * the name of the field
+   */
+  name: PropTypes.string,
   /**
    * Title for the box
    */
