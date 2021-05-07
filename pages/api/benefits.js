@@ -2,6 +2,8 @@ import { getBenefits } from "../../lib/benefits";
 
 export default async (req, res) => {
   if (req.method === "GET") {
+    const language = req.headers["accept-language"] === "fr" ? "fr" : "en";
+
     //Get situation cookie
     let situation = {};
     if (req.cookies.situation) {
@@ -9,7 +11,7 @@ export default async (req, res) => {
     }
 
     //Create list of benefits and set eligibility
-    let benefits = await getBenefits("en");
+    let benefits = await getBenefits(language);
     let benefitsArray = [];
     for (const benefitIndex in benefits) {
       benefitsArray.push({
