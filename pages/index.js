@@ -51,7 +51,7 @@ export default function Home({ locale, popularCatagories, situationCookie }) {
   };
 
   useEffect(async () => {
-    fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/situation`, {
+    await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/situation`, {
       method: "post",
       headers: {
         "Content-Type": "application/json",
