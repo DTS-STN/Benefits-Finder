@@ -16,7 +16,7 @@ export default async (req, res) => {
         benefit: benefits[benefitIndex],
         eligibility: getBenefitEligibility(
           situation,
-          benefits[benefitIndex].id
+          benefits[benefitIndex].benefitKey
         ),
       });
     }
@@ -51,7 +51,7 @@ const getBenefitEligibility = (situation, benefitKey) => {
       eligibility = criteria[item](situation);
   }
 
-  return eligiblityStatus;
+  return eligibility;
 };
 
 const isOver60 = (situation) => {
@@ -67,6 +67,6 @@ const isUnder65 = (situation) => {
 };
 
 const eligibilityCriteria = {
-  3: [isOver60, isUnder65],
-  5: [isOver60],
+  alw: [isOver60, isUnder65],
+  cpp: [isOver60],
 };
