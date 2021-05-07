@@ -40,7 +40,7 @@ const eligiblityStatus = {
 };
 
 const getBenefitEligibility = (situation, benefitKey) => {
-  //Get eligibility criteria and if none exist default to potentially eligibile
+  //Get eligibility criteria and if none exist default to potentially eligible
   const criteria = eligibilityCriteria[benefitKey];
   if (!criteria) {
     return eligiblityStatus.POTENTIALLY_ELIGIBLE;

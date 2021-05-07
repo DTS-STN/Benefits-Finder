@@ -24,8 +24,8 @@ Primary.args = {
   eligibility: true,
 };
 
-export const NotEligibile = Template.bind({});
-NotEligibile.args = {
+export const NotEligible = Template.bind({});
+NotEligible.args = {
   id: "1",
   title: "Benefit Title",
   description: "Benefit description",

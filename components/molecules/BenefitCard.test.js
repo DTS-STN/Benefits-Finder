@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 import { axe, toHaveNoViolations } from "jest-axe";
-import { Primary, NotEligibile } from "./BenefitCard.stories";
+import { Primary, NotEligible } from "./BenefitCard.stories";
 
 expect.extend(toHaveNoViolations);
 
@@ -22,7 +22,7 @@ describe("BenefitCard tests", () => {
   });
 
   it("renders a Benefit Card in its not eligible state", () => {
-    const { container } = render(<NotEligibile {...NotEligibile.args} />);
+    const { container } = render(<NotEligible {...NotEligible.args} />);
     expect(container.firstChild.classList.contains("bg-gray-300")).toBe(true);
   });
 
