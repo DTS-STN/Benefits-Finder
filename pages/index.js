@@ -57,9 +57,7 @@ export default function Home({
   };
 
   const clearSituation = () => {
-    fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/situation`, {
-      method: "delete",
-    });
+    setSituation({});
     document.getElementById("location-select").value = "";
     document.getElementById("age").value = "";
     document.getElementById("income-select").value = "";
