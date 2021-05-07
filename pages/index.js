@@ -204,7 +204,7 @@ export default function Home({ locale, popularCatagories, situationCookie }) {
                 type={benefit.type}
                 program={benefit.program}
                 collections={benefit.collections}
-                benefitEligibility={benefitData.eligibility}
+                eligibility={benefitData.eligibility}
               />
             );
           })}
