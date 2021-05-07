@@ -17,7 +17,6 @@ import { useState, useEffect } from "react";
 export async function getServerSideProps(context) {
   const locale = context.locale || context.defaultLocale;
 
-  const benefits = await getBenefits(locale);
   const popularCatagories = await getPopularCategories(locale);
 
   const situation = JSON.parse(context.req.cookies?.situation ?? "{}");
@@ -26,19 +25,13 @@ export async function getServerSideProps(context) {
     props: {
       locale,
       ...(await serverSideTranslations(locale, ["common"])),
-      benefits,
       popularCatagories,
       situationCookie: situation,
     },
   };
 }
 
-export default function Home({
-  locale,
-  benefits,
-  popularCatagories,
-  situationCookie,
-}) {
+export default function Home({ locale, popularCatagories, situationCookie }) {
   const { t } = useTranslation("common");
   const { asPath } = useRouter();
 
@@ -47,6 +40,7 @@ export default function Home({
     age: situationCookie.age,
     income: situationCookie.income,
   });
+  const [benefits, setBenefits] = useState([]);
 
   const handleSituationChange = (e) => {
     const { name, value } = e.target;
@@ -56,7 +50,7 @@ export default function Home({
     }));
   };
 
-  useEffect(() => {
+  useEffect(async () => {
     fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/situation`, {
       method: "post",
       headers: {
@@ -64,7 +58,18 @@ export default function Home({
       },
       body: JSON.stringify({ situation }),
     });
-  });
+
+    const response = await fetch("/api/benefits", {
+      method: "get",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept-Language": locale,
+      },
+    });
+
+    const data = await response.json();
+    setBenefits(data);
+  }, [situation]);
 
   return (
     <Layout locale={locale} langUrl={asPath}>
@@ -188,16 +193,18 @@ export default function Home({
         <h3 className="text-2xl text-bold py-3">{t("catalog")}</h3>
         <CardGrid>
           {benefits.map((benefitData) => {
+            const benefit = benefitData.benefit;
             return (
               <BenefitCard
-                key={benefitData.id}
-                id={`${benefitData.id}`}
-                title={benefitData.title}
-                description={benefitData.description}
-                applyLink={benefitData.applyLink}
-                type={benefitData.type}
-                program={benefitData.program}
-                collections={benefitData.collections}
+                key={benefit.id}
+                id={`${benefit.id}`}
+                title={benefit.title}
+                description={benefit.description}
+                applyLink={benefit.applyLink}
+                type={benefit.type}
+                program={benefit.program}
+                collections={benefit.collections}
+                benefitEligibility={benefitData.eligibility}
               />
             );
           })}

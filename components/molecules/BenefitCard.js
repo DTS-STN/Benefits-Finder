@@ -56,4 +56,9 @@ BenefitCard.propTypes = {
    * which collections the benefit belongs to
    */
   collections: PropTypes.arrayOf(PropTypes.string),
+
+  /**
+   * eligible for benefit
+   */
+  benefitEligibility: PropTypes.bool,
 };
