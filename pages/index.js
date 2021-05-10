@@ -50,6 +50,13 @@ export default function Home({ locale, popularCatagories, situationCookie }) {
     }));
   };
 
+  const clearSituation = () => {
+    setSituation({});
+    document.getElementById("location-select").value = "";
+    document.getElementById("age").value = "";
+    document.getElementById("income-select").value = "";
+  };
+
   useEffect(async () => {
     await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/situation`, {
       method: "post",
@@ -187,6 +194,16 @@ export default function Home({ locale, popularCatagories, situationCookie }) {
             ></SelectPicker>
           </CriteriaBox>
         </CriteriaGrid>
+        <button
+          type="button"
+          onClick={clearSituation}
+          className={
+            "hover:bg-red-700 hover:text-white mt-2 py-2 px-4 border rounded"
+          }
+        >
+          <span className={"icon-cross pr-2"} />
+          {t("clearSituation")}
+        </button>
       </section>
 
       <section id="catalog" className="">
