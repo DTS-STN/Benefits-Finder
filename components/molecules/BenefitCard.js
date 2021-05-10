@@ -7,7 +7,7 @@ export function BenefitCard(props) {
   return (
     <div
       className={`md:shadow-md h-auto min-h-96 w-full rounded-md border pl-3 pr-3 
-      ${!props.eligibility ? "bg-gray-300" : undefined}`}
+      ${!props.eligibility ? "bg-gray-300" : ""}`}
     >
       <div className="py-2">
         <small className="text-gray-500 uppercase">{props.type}</small>
