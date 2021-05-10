@@ -40,7 +40,7 @@ const eligiblityStatus = {
 };
 
 const getBenefitEligibility = (situation, benefitKey) => {
-  //Get eligibility criteria and if none exist default to potentially eligibile
+  //Get eligibility criteria and if none exist default to potentially eligible
   const criteria = eligibilityCriteria[benefitKey];
   if (!criteria) {
     return eligiblityStatus.POTENTIALLY_ELIGIBLE;
@@ -62,6 +62,12 @@ const isOver60 = (situation) => {
   return eligiblityStatus.NOT_ELIGIBLE;
 };
 
+const isOver65 = (situation) => {
+  if (!situation["age"]) return eligiblityStatus.POTENTIALLY_ELIGIBLE;
+  else if (situation["age"] >= 65) return eligiblityStatus.ELIGIBLE;
+  return eligiblityStatus.NOT_ELIGIBLE;
+};
+
 const isUnder65 = (situation) => {
   if (!situation["age"]) return eligiblityStatus.POTENTIALLY_ELIGIBLE;
   else if (situation["age"] < 65) return eligiblityStatus.ELIGIBLE;
@@ -69,6 +75,9 @@ const isUnder65 = (situation) => {
 };
 
 const eligibilityCriteria = {
+  oas: [isOver65],
   alw: [isOver60, isUnder65],
+  alws: [isOver60, isUnder65],
   cpp: [isOver60],
+  "cpp-gis": [isOver65],
 };

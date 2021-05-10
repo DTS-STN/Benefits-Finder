@@ -5,7 +5,10 @@ import { useTranslation } from "next-i18next";
 export function BenefitCard(props) {
   const { t } = useTranslation("common");
   return (
-    <div className="md:shadow-md h-auto min-h-96 w-full rounded-md border pl-3 pr-3">
+    <div
+      className={`md:shadow-md h-auto min-h-96 w-full rounded-md border pl-3 pr-3 
+      ${!props.eligibility ? "bg-gray-300" : ""}`}
+    >
       <div className="py-2">
         <small className="text-gray-500 uppercase">{props.type}</small>
         <a href="#catalog">
@@ -56,4 +59,9 @@ BenefitCard.propTypes = {
    * which collections the benefit belongs to
    */
   collections: PropTypes.arrayOf(PropTypes.string),
+
+  /**
+   * eligible for benefit
+   */
+  eligibility: PropTypes.bool,
 };

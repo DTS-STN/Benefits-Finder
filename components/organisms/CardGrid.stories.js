@@ -17,6 +17,7 @@ const benefitCards = [
     applyLink="#"
     type="benefit type 1"
     program="program 1"
+    eligibility={true}
   />,
   <BenefitCard
     key="2"
@@ -26,6 +27,7 @@ const benefitCards = [
     applyLink="#"
     type="benefit type 2"
     program="program 2"
+    eligibility={true}
   />,
   <BenefitCard
     key="3"
@@ -35,6 +37,7 @@ const benefitCards = [
     applyLink="#"
     type="benefit type 3"
     program="program 3"
+    eligibility={false}
   />,
 ];
 

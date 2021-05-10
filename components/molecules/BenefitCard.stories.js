@@ -21,4 +21,15 @@ Primary.args = {
   description: "Benefit description",
   type: "Benefit type",
   applyLink: "#",
+  eligibility: true,
+};
+
+export const NotEligible = Template.bind({});
+NotEligible.args = {
+  id: "1",
+  title: "Benefit Title",
+  description: "Benefit description",
+  type: "Benefit type",
+  applyLink: "#",
+  eligibility: false,
 };
