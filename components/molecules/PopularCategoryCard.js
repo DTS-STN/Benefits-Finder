@@ -3,7 +3,10 @@ import Image from "next/image";
 
 export function PopularCategoryCard(props) {
   return (
-    <div className="md:shadow-md h-auto min-h-96 w-full rounded-md border pl-3 pr-3">
+    <div
+      className="md:shadow-md h-auto min-h-96 w-full rounded-md border pl-3 pr-3"
+      onClick={() => props.onClick(props.id)}
+    >
       {props.imgSource ? (
         <div className="py-5">
           <div style={{ position: "relative", width: "100%", height: "5rem" }}>
@@ -58,4 +61,9 @@ PopularCategoryCard.propTypes = {
    * category type
    */
   type: PropTypes.string,
+
+  /**
+   * Callback for a click event on the card
+   */
+  onClick: PropTypes.func,
 };
