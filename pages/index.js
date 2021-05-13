@@ -45,11 +45,9 @@ export default function Home({ locale, popularCategories, situationCookie }) {
   const [benefits, setBenefits] = useState([]);
 
   const clickPopularCategory = (id) => {
-    console.log(categories);
     if (!categories.includes(id)) {
       setCategories((previousState) => [...previousState, id]);
     }
-    console.log(categories);
   };
 
   const clearCategories = () => {
