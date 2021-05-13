@@ -117,6 +117,7 @@ export default function Home({ locale, popularCategories, situationCookie }) {
             );
           })}
         </CardGrid>
+        {/* Clear categories */}
         <button
           type="button"
           onClick={clearCategories}
@@ -217,6 +218,7 @@ export default function Home({ locale, popularCategories, situationCookie }) {
             ></SelectPicker>
           </CriteriaBox>
         </CriteriaGrid>
+        {/* Clear my situation */}
         <button
           type="button"
           onClick={clearSituation}
