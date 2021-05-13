@@ -45,9 +45,15 @@ export default function Home({ locale, popularCategories, situationCookie }) {
   const [benefits, setBenefits] = useState([]);
 
   const clickPopularCategory = (id) => {
+    console.log(categories);
     if (!categories.includes(id)) {
-      categories.push(id);
+      setCategories((previousState) => [...previousState, id]);
     }
+    console.log(categories);
+  };
+
+  const clearCategories = () => {
+    setCategories([]);
   };
 
   const handleSituationChange = (e) => {
@@ -113,6 +119,16 @@ export default function Home({ locale, popularCategories, situationCookie }) {
             );
           })}
         </CardGrid>
+        <button
+          type="button"
+          onClick={clearCategories}
+          className={
+            "hover:bg-red-700 hover:text-white mt-2 py-2 px-4 border rounded"
+          }
+        >
+          <span className={"icon-cross pr-2"} />
+          {t("clearCategories")}
+        </button>
       </section>
 
       {/* your situation section */}
