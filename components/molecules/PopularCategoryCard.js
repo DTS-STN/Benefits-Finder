@@ -4,7 +4,9 @@ import Image from "next/image";
 export function PopularCategoryCard(props) {
   return (
     <div
-      className="md:shadow-md h-auto min-h-96 w-full rounded-md border pl-3 pr-3"
+      className={`md:shadow-md h-auto min-h-96 w-full rounded-md border-2 pl-3 pr-3 ${
+        props.selected ? "border-blue-500" : ""
+      }`}
       onClick={() => props.onClick(props.id)}
     >
       {props.imgSource ? (
@@ -66,4 +68,16 @@ PopularCategoryCard.propTypes = {
    * Callback for a click event on the card
    */
   onClick: PropTypes.func,
+
+  /**
+   * Callback for a click event on the card
+   */
+  selected: PropTypes.bool.isRequired,
+};
+
+PopularCategoryCard.defaultProps = {
+  /**
+   * Default value of false for selected
+   */
+  selected: false,
 };

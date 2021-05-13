@@ -23,4 +23,5 @@ Primary.args = {
   type: "Category type",
   imgSource: "/landscape.png",
   imgAltText: "Category image alt text",
+  selected: false,
 };
