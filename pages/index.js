@@ -50,6 +50,10 @@ export default function Home({ locale, popularCategories, situationCookie }) {
     }
   };
 
+  const clearCategories = () => {
+    setCategories([]);
+  };
+
   const handleSituationChange = (e) => {
     const { name, value } = e.target;
     setSituation((previousState) => ({
@@ -114,6 +118,17 @@ export default function Home({ locale, popularCategories, situationCookie }) {
             );
           })}
         </CardGrid>
+        {/* Clear categories */}
+        <button
+          type="button"
+          onClick={clearCategories}
+          className={
+            "hover:bg-red-700 hover:text-white mt-2 py-2 px-4 border rounded"
+          }
+        >
+          <span className={"icon-cross pr-2"} />
+          {t("clearCategories")}
+        </button>
       </section>
 
       {/* your situation section */}
@@ -204,6 +219,7 @@ export default function Home({ locale, popularCategories, situationCookie }) {
             ></SelectPicker>
           </CriteriaBox>
         </CriteriaGrid>
+        {/* Clear my situation */}
         <button
           type="button"
           onClick={clearSituation}
