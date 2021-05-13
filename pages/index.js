@@ -17,7 +17,7 @@ import { useState, useEffect } from "react";
 export async function getServerSideProps(context) {
   const locale = context.locale || context.defaultLocale;
 
-  const popularCatagories = await getPopularCategories(locale);
+  const popularCategories = await getPopularCategories(locale);
 
   const situation = JSON.parse(context.req.cookies?.situation ?? "{}");
 
@@ -25,15 +25,17 @@ export async function getServerSideProps(context) {
     props: {
       locale,
       ...(await serverSideTranslations(locale, ["common"])),
-      popularCatagories,
+      popularCategories,
       situationCookie: situation,
     },
   };
 }
 
-export default function Home({ locale, popularCatagories, situationCookie }) {
+export default function Home({ locale, popularCategories, situationCookie }) {
   const { t } = useTranslation("common");
   const { asPath } = useRouter();
+
+  const [categories, setCategories] = useState([]);
 
   const [situation, setSituation] = useState({
     location: situationCookie.location,
@@ -41,6 +43,12 @@ export default function Home({ locale, popularCatagories, situationCookie }) {
     income: situationCookie.income,
   });
   const [benefits, setBenefits] = useState([]);
+
+  const clickPopularCategory = (id) => {
+    if (!categories.includes(id)) {
+      categories.push(id);
+    }
+  };
 
   const handleSituationChange = (e) => {
     const { name, value } = e.target;
@@ -88,10 +96,10 @@ export default function Home({ locale, popularCatagories, situationCookie }) {
         <h1 className="text-4xl text-bold">{t("findSupport")}</h1>
       </div>
 
-      <section id="popular_catagories">
-        <h2 className="text-2xl text-bold py-3">{t("popularCatagories")}</h2>
+      <section id="popular_categories">
+        <h2 className="text-2xl text-bold py-3">{t("popularCategories")}</h2>
         <CardGrid>
-          {popularCatagories.map((cat) => {
+          {popularCategories.map((cat) => {
             return (
               <PopularCategoryCard
                 key={cat.id}
@@ -100,6 +108,7 @@ export default function Home({ locale, popularCatagories, situationCookie }) {
                 description={cat.description}
                 imgSource={cat.imgSource}
                 imgAltText={cat.imgAltText}
+                onClick={clickPopularCategory}
               />
             );
           })}
