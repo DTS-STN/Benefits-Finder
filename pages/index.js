@@ -46,7 +46,7 @@ export default function Home({ locale, popularCategories, situationCookie }) {
 
   const clickPopularCategory = (id) => {
     if (!categories.includes(id)) {
-      categories.push(id);
+      setCategories((previousState) => [...previousState, id]);
     }
   };
 
