@@ -3,7 +3,9 @@ import PropTypes from "prop-types";
 export function CardGrid(props) {
   return (
     <div className="flex flex-wrap py-5">
-      <div className="sm:grid grid-cols-3 gap-10">{props.children}</div>
+      <div className="grid grid-cols-1 lg:grid-cols-2 xxl:grid-cols-3 gap-10 px-2  md:px-0 mx-auto">
+        {props.children}
+      </div>
     </div>
   );
 }
