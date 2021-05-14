@@ -66,7 +66,7 @@ export const Layout = ({
         ) : null}
       </header>
 
-      <div className="layout-container py-6">
+      <div>
         <main>
           <div>{children}</div>
         </main>

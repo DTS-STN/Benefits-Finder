@@ -13,6 +13,7 @@ import { CriteriaBox } from "../components/atoms/CriteriaBox";
 import { SelectPicker } from "../components/atoms/SelectPicker";
 import { NumInput } from "../components/atoms/NumInput";
 import { useState, useEffect } from "react";
+import { Drawer } from "../components/organisms/Drawer";
 
 export async function getServerSideProps(context) {
   const locale = context.locale || context.defaultLocale;
@@ -96,11 +97,13 @@ export default function Home({ locale, popularCategories, situationCookie }) {
         <title>{t("siteTitle")}</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="">
-        <h1 className="text-4xl text-bold">{t("findSupport")}</h1>
-      </div>
-
-      <section id="popular_categories">
+      <h1 className="text-4xl text-bold layout-container py-6">
+        {t("findSupport")}
+      </h1>
+      <Drawer>
+        <p>Drawer section</p>
+      </Drawer>
+      <section id="popular_categories" className="layout-container py-6">
         <h2 className="text-2xl text-bold py-3">{t("popularCategories")}</h2>
         <CardGrid>
           {popularCategories.map((cat) => {
@@ -131,7 +134,7 @@ export default function Home({ locale, popularCategories, situationCookie }) {
       </section>
 
       {/* your situation section */}
-      <section id="eligibility_criteria" className="">
+      <section id="eligibility_criteria" className="layout-container py-6">
         <h3 className="text-2xl text-bold py-3">{t("eligibilityCriteria")}</h3>
         <CriteriaGrid>
           {/* location picker */}
@@ -231,7 +234,7 @@ export default function Home({ locale, popularCategories, situationCookie }) {
         </button>
       </section>
 
-      <section id="catalog" className="">
+      <section id="catalog" className="layout-container py-6">
         <h3 className="text-2xl text-bold py-3">{t("catalog")}</h3>
         <CardGrid>
           {benefits.map((benefitData) => {
