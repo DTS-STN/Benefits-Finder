@@ -116,6 +116,7 @@ export default function Home({ locale, popularCategories, situationCookie }) {
                 imgSource={cat.imgSource}
                 imgAltText={cat.imgAltText}
                 onClick={clickPopularCategory}
+                selected={categories.includes(cat.id.toString())}
               />
             );
           })}
