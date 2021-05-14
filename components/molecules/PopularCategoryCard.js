@@ -72,12 +72,5 @@ PopularCategoryCard.propTypes = {
   /**
    * Callback for a click event on the card
    */
-  selected: PropTypes.bool.isRequired,
-};
-
-PopularCategoryCard.defaultProps = {
-  /**
-   * Default value of false for selected
-   */
-  selected: false,
+  selected: PropTypes.bool,
 };
