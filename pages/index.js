@@ -100,162 +100,175 @@ export default function Home({ locale, popularCategories, situationCookie }) {
       <h1 className="text-4xl text-bold layout-container py-6">
         {t("findSupport")}
       </h1>
-      <Drawer>
-        <p>Drawer section</p>
-      </Drawer>
-      <section id="popular_categories" className="layout-container py-6">
-        <h2 className="text-2xl text-bold py-3">{t("popularCategories")}</h2>
-        <CardGrid>
-          {popularCategories.map((cat) => {
-            return (
-              <PopularCategoryCard
-                key={cat.id}
-                id={`${cat.id}`}
-                title={cat.title}
-                description={cat.description}
-                imgSource={cat.imgSource}
-                imgAltText={cat.imgAltText}
-                onClick={clickPopularCategory}
-                selected={categories.includes(cat.id.toString())}
-              />
-            );
-          })}
-        </CardGrid>
-        {/* Clear categories */}
-        <button
-          type="button"
-          onClick={clearCategories}
-          className={
-            "hover:bg-red-700 hover:text-white mt-2 py-2 px-4 border rounded"
-          }
-        >
-          <span className={"icon-cross pr-2"} />
-          {t("clearCategories")}
-        </button>
-      </section>
+      <div className="lg:flex layout-container">
+        {/*Filter section*/}
 
-      {/* your situation section */}
-      <section id="eligibility_criteria" className="layout-container py-6">
-        <h3 className="text-2xl text-bold py-3">{t("eligibilityCriteria")}</h3>
-        <CriteriaGrid>
-          {/* location picker */}
-          <CriteriaBox>
-            <SelectPicker
-              criteriaTitle={t("location.title")}
-              id="location-select"
-              ariaLabel="location-select"
-              name="location"
-              dataCy="location-select-picker"
-              defaultValue={situation.location}
-              onChange={handleSituationChange}
-              selects={[
-                {
-                  criteriaSelect: t("location.on"),
-                },
-                {
-                  criteriaSelect: t("location.ab"),
-                },
-                {
-                  criteriaSelect: t("location.mb"),
-                },
-                {
-                  criteriaSelect: t("location.nb"),
-                },
-                {
-                  criteriaSelect: t("location.nl"),
-                },
-                {
-                  criteriaSelect: t("location.ns"),
-                },
-                {
-                  criteriaSelect: t("location.nu"),
-                },
-                {
-                  criteriaSelect: t("location.pe"),
-                },
-                {
-                  criteriaSelect: t("location.sk"),
-                },
-                {
-                  criteriaSelect: t("location.bc"),
-                },
-                {
-                  criteriaSelect: t("location.yt"),
-                },
-              ]}
-            ></SelectPicker>
-          </CriteriaBox>
+        <Drawer>
+          <h2>Your Situation</h2>
+        </Drawer>
 
-          {/* age input box */}
-          <CriteriaBox>
-            <NumInput
-              id="age"
-              name="age"
-              criteriaTitle={t("age.title")}
-              placeholder={t("age.placeholder")}
-              defaultValue={situation.age}
-              onChange={handleSituationChange}
-            ></NumInput>
-          </CriteriaBox>
+        <div className="lg:w-3/4">
+          {/*rest of page (content section)*/}
 
-          {/* income picker */}
-          <CriteriaBox>
-            <SelectPicker
-              criteriaTitle={t("income.title")}
-              id="income-select"
-              name="income"
-              ariaLabel="income-select"
-              dataCy="income-select-picker"
-              defaultValue={situation.income}
-              onChange={handleSituationChange}
-              selects={[
-                {
-                  criteriaSelect: t("income.option-1"),
-                },
-                {
-                  criteriaSelect: t("income.option-2"),
-                },
-                {
-                  criteriaSelect: t("income.option-3"),
-                },
-              ]}
-            ></SelectPicker>
-          </CriteriaBox>
-        </CriteriaGrid>
-        {/* Clear my situation */}
-        <button
-          type="button"
-          onClick={clearSituation}
-          className={
-            "hover:bg-red-700 hover:text-white mt-2 py-2 px-4 border rounded"
-          }
-        >
-          <span className={"icon-cross pr-2"} />
-          {t("clearSituation")}
-        </button>
-      </section>
+          <section id="popular_categories" className="layout-container py-6">
+            <h2 className="text-2xl text-bold py-3">
+              {t("popularCategories")}
+            </h2>
+            <CardGrid>
+              {popularCategories.map((cat) => {
+                return (
+                  <PopularCategoryCard
+                    key={cat.id}
+                    id={`${cat.id}`}
+                    title={cat.title}
+                    description={cat.description}
+                    imgSource={cat.imgSource}
+                    imgAltText={cat.imgAltText}
+                    onClick={clickPopularCategory}
+                    selected={categories.includes(cat.id.toString())}
+                  />
+                );
+              })}
+            </CardGrid>
+            {/* Clear categories */}
+            <button
+              type="button"
+              onClick={clearCategories}
+              className={
+                "hover:bg-red-700 hover:text-white mt-2 py-2 px-4 border rounded"
+              }
+            >
+              <span className={"icon-cross pr-2"} />
+              {t("clearCategories")}
+            </button>
+          </section>
 
-      <section id="catalog" className="layout-container py-6">
-        <h3 className="text-2xl text-bold py-3">{t("catalog")}</h3>
-        <CardGrid>
-          {benefits.map((benefitData) => {
-            const benefit = benefitData.benefit;
-            return (
-              <BenefitCard
-                key={benefit.id}
-                id={`${benefit.id}`}
-                title={benefit.title}
-                description={benefit.description}
-                applyLink={benefit.applyLink}
-                type={benefit.type}
-                program={benefit.program}
-                collections={benefit.collections}
-                eligibility={benefitData.eligibility === 0 ? false : true}
-              />
-            );
-          })}
-        </CardGrid>
-      </section>
+          {/* your situation section */}
+          <section id="eligibility_criteria" className="layout-container py-6">
+            <h3 className="text-2xl text-bold py-3">
+              {t("eligibilityCriteria")}
+            </h3>
+            <CriteriaGrid>
+              {/* location picker */}
+              <CriteriaBox>
+                <SelectPicker
+                  criteriaTitle={t("location.title")}
+                  id="location-select"
+                  ariaLabel="location-select"
+                  name="location"
+                  dataCy="location-select-picker"
+                  defaultValue={situation.location}
+                  onChange={handleSituationChange}
+                  selects={[
+                    {
+                      criteriaSelect: t("location.on"),
+                    },
+                    {
+                      criteriaSelect: t("location.ab"),
+                    },
+                    {
+                      criteriaSelect: t("location.mb"),
+                    },
+                    {
+                      criteriaSelect: t("location.nb"),
+                    },
+                    {
+                      criteriaSelect: t("location.nl"),
+                    },
+                    {
+                      criteriaSelect: t("location.ns"),
+                    },
+                    {
+                      criteriaSelect: t("location.nu"),
+                    },
+                    {
+                      criteriaSelect: t("location.pe"),
+                    },
+                    {
+                      criteriaSelect: t("location.sk"),
+                    },
+                    {
+                      criteriaSelect: t("location.bc"),
+                    },
+                    {
+                      criteriaSelect: t("location.yt"),
+                    },
+                  ]}
+                ></SelectPicker>
+              </CriteriaBox>
+
+              {/* age input box */}
+              <CriteriaBox>
+                <NumInput
+                  id="age"
+                  name="age"
+                  criteriaTitle={t("age.title")}
+                  placeholder={t("age.placeholder")}
+                  defaultValue={situation.age}
+                  onChange={handleSituationChange}
+                ></NumInput>
+              </CriteriaBox>
+
+              {/* income picker */}
+              <CriteriaBox>
+                <SelectPicker
+                  criteriaTitle={t("income.title")}
+                  id="income-select"
+                  name="income"
+                  ariaLabel="income-select"
+                  dataCy="income-select-picker"
+                  defaultValue={situation.income}
+                  onChange={handleSituationChange}
+                  selects={[
+                    {
+                      criteriaSelect: t("income.option-1"),
+                    },
+                    {
+                      criteriaSelect: t("income.option-2"),
+                    },
+                    {
+                      criteriaSelect: t("income.option-3"),
+                    },
+                  ]}
+                ></SelectPicker>
+              </CriteriaBox>
+            </CriteriaGrid>
+            {/* Clear my situation */}
+            <button
+              type="button"
+              onClick={clearSituation}
+              className={
+                "hover:bg-red-700 hover:text-white mt-2 py-2 px-4 border rounded"
+              }
+            >
+              <span className={"icon-cross pr-2"} />
+              {t("clearSituation")}
+            </button>
+          </section>
+
+          <section id="catalog" className="layout-container py-6">
+            <h3 className="text-2xl text-bold py-3">{t("catalog")}</h3>
+            <CardGrid>
+              {benefits.map((benefitData) => {
+                const benefit = benefitData.benefit;
+                return (
+                  <BenefitCard
+                    key={benefit.id}
+                    id={`${benefit.id}`}
+                    title={benefit.title}
+                    description={benefit.description}
+                    applyLink={benefit.applyLink}
+                    type={benefit.type}
+                    program={benefit.program}
+                    collections={benefit.collections}
+                    eligibility={benefitData.eligibility === 0 ? false : true}
+                  />
+                );
+              })}
+            </CardGrid>
+          </section>
+        </div>
+      </div>
     </Layout>
   );
 }
