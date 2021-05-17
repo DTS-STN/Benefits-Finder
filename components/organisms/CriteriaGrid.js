@@ -4,11 +4,7 @@ import { useTranslation } from "next-i18next";
 
 export function CriteriaGrid(props) {
   const { t } = useTranslation("common");
-  return (
-    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10 px-2  md:px-0">
-      {props.children}
-    </div>
-  );
+  return <div className="grid grid-cols-1  gap-0 px-2  ">{props.children}</div>;
 }
 
 CriteriaGrid.propTypes = {

@@ -13,6 +13,8 @@ import { CriteriaBox } from "../components/atoms/CriteriaBox";
 import { SelectPicker } from "../components/atoms/SelectPicker";
 import { NumInput } from "../components/atoms/NumInput";
 import { useState, useEffect } from "react";
+import { Disclosure } from "@headlessui/react";
+import Example from "../components/organisms/Example";
 
 export async function getServerSideProps(context) {
   const locale = context.locale || context.defaultLocale;
@@ -130,6 +132,12 @@ export default function Home({ locale, popularCategories, situationCookie }) {
           {t("clearCategories")}
         </button>
       </section>
+
+      {/* start here */}
+
+      <Example></Example>
+
+      {/* end here */}
 
       {/* your situation section */}
       <section id="eligibility_criteria" className="">
