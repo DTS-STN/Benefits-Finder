@@ -39,10 +39,10 @@ async function assumeLocation() {
   const apiKey = "c81cd9865ea747f580d359ee1758d5be";
 
   const res = await fetch(
-    `https://api.ipgeolocation.io/ipgeo?apiKey=${apiKey}`
-  ); //can append language settings with paid account;
-  const rawLocation = await res.json();
-  return rawLocation.country_code3 === "CAN" ? rawLocation.state_prov : "N/A";
+    `https://api.ipgeolocation.io/ipgeo?apiKey=${apiKey}` //can append language settings with paid account;
+  ).catch("{}");
+  const rawLocation = await res.json().catch({}); //return empty object if something fails
+  return rawLocation.country_code3 === "CAN" ? rawLocation.state_prov : "";
 }
 
 export default function Home({ locale, popularCategories, situationCookie }) {
@@ -110,18 +110,20 @@ export default function Home({ locale, popularCategories, situationCookie }) {
   //only make location assumptions if the situation cookie doesn't have anything set for location
   if (situation?.location === undefined) {
     locationAssumed = true;
-    console.log("Assuming location...");
-    assumeLocation().then((location) => {
-      setSituation((previousState) => ({
-        ...previousState,
-        ["location"]: location,
-      }));
-      document.getElementById("location-select").value = location;
-      document.getElementById("location-assumption").innerHTML =
-        "It seems like you are located in " +
-        (location === "N/A" ? "someplace outside of Canada" : location) +
-        " based on your IP address. Please confirm or modify this information."; // no apparent ways to modify dom through setting states atm
-    });
+    assumeLocation()
+      .then((location) => {
+        setSituation((previousState) => ({
+          ...previousState,
+          ["location"]: location,
+        }));
+        document.getElementById("location-select").value = location;
+        document.getElementById("location-assumption").innerHTML =
+          "It seems like you are located in " +
+          (location === "" ? "someplace outside of Canada" : location) +
+          " based on your IP address. Please confirm or modify this information.";
+        // no apparent ways to modify dom through setting states at the moment
+      })
+      .catch((situationCookie = { location: "non-null" })); //sets situation cookie to have a value so that the assumption message isn't displayed
   }
 
   return (
