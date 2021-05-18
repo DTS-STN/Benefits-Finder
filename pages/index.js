@@ -32,20 +32,24 @@ export async function getServerSideProps(context) {
   };
 }
 
+//will change the location value in the selector to be whatever the geolocation API returns
+//also returns the canadian province or "Other" the api acquires
+async function assumeLocation() {
+  //Geolocation API Key, should probably be moved to some sort of global thing
+  const apiKey = "c81cd9865ea747f580d359ee1758d5be";
+
+  const res = await fetch(
+    `https://api.ipgeolocation.io/ipgeo?apiKey=${apiKey}`
+  ); //can append language settings with paid account;
+  const rawLocation = await res.json();
+  return rawLocation.country_code3 === "CAN" ? rawLocation.state_prov : "N/A";
+}
+
 export default function Home({ locale, popularCategories, situationCookie }) {
   const { t } = useTranslation("common");
   const { asPath } = useRouter();
 
   const [categories, setCategories] = useState([]);
-
-  //only make location assumptions if the situation cookie doesn't have anything set for location
-  let locationAssumed;
-  if (situationCookie.location ?? true) {
-    locationAssumed = true;
-    assumeLocation(); //async function
-  } else {
-    locationAssumed = false;
-  }
 
   const [situation, setSituation] = useState({
     location: situationCookie.location,
@@ -79,27 +83,10 @@ export default function Home({ locale, popularCategories, situationCookie }) {
     document.getElementById("income-select").value = "";
   };
 
-  //will change the location value in the selector to be whatever the geolocation API returns
-  //also returns the canadian province or "Other" the api acquires
-  async function assumeLocation() {
-    //Geolocation API Key, should probably be moved to some sort of global thing
-    const apiKey = "c81cd9865ea747f580d359ee1758d5be";
-
-    const rawLocation = await (
-      await fetch(`https://api.ipgeolocation.io/ipgeo?apiKey=${apiKey}`)
-    ).json();
-    const location =
-      rawLocation.country_code3 === "CAN" ? rawLocation.state_prov : "N/A";
-    document.getElementById("location-select").value = location;
-    document.getElementById("location-assumption").innerHTML =
-      "It seems like you are located in " +
-      (location === "N/A" ? "someplace outside of Canada" : location) +
-      " based on your IP address. Please confirm or modify this information";
-    return location;
-  }
-
   useEffect(async () => {
-    await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/situation`, {
+    // await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/situation`, {
+    //process.env... wasn't working
+    await fetch(`/api/situation`, {
       method: "post",
       headers: {
         "Content-Type": "application/json",
@@ -118,6 +105,24 @@ export default function Home({ locale, popularCategories, situationCookie }) {
     const data = await response.json();
     setBenefits(data);
   }, [situation]);
+
+  let locationAssumed = false;
+  //only make location assumptions if the situation cookie doesn't have anything set for location
+  if (situation?.location === undefined) {
+    locationAssumed = true;
+    console.log("Assuming location...");
+    assumeLocation().then((location) => {
+      setSituation((previousState) => ({
+        ...previousState,
+        ["location"]: location,
+      }));
+      document.getElementById("location-select").value = location;
+      document.getElementById("location-assumption").innerHTML =
+        "It seems like you are located in " +
+        (location === "N/A" ? "someplace outside of Canada" : location) +
+        " based on your IP address. Please confirm or modify this information."; // no apparent ways to modify dom through setting states atm
+    });
+  }
 
   return (
     <Layout locale={locale} langUrl={asPath}>
@@ -163,7 +168,11 @@ export default function Home({ locale, popularCategories, situationCookie }) {
       {/* your situation section */}
       <section id="eligibility_criteria" className="">
         <h3 className="text-2xl text-bold py-3">{t("eligibilityCriteria")}</h3>
-        {locationAssumed ? <LocationAssumption id="location-assumption" /> : ""}
+        {situationCookie?.location === undefined ? (
+          <LocationAssumption id="location-assumption" />
+        ) : (
+          ""
+        )}
         <CriteriaGrid>
           {/* location picker */}
           <CriteriaBox>
