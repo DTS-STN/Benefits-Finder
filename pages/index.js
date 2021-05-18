@@ -13,6 +13,7 @@ import { CriteriaBox } from "../components/atoms/CriteriaBox";
 import { SelectPicker } from "../components/atoms/SelectPicker";
 import { NumInput } from "../components/atoms/NumInput";
 import { useState, useEffect } from "react";
+import LocationAssumption from "../components/atoms/LocationAssumption";
 
 export async function getServerSideProps(context) {
   const locale = context.locale || context.defaultLocale;
@@ -36,6 +37,15 @@ export default function Home({ locale, popularCategories, situationCookie }) {
   const { asPath } = useRouter();
 
   const [categories, setCategories] = useState([]);
+
+  //only make location assumptions if the situation cookie doesn't have anything set for location
+  let locationAssumed;
+  if (situationCookie.location ?? true) {
+    locationAssumed = true;
+    assumeLocation(); //async function
+  } else {
+    locationAssumed = false;
+  }
 
   const [situation, setSituation] = useState({
     location: situationCookie.location,
@@ -68,6 +78,25 @@ export default function Home({ locale, popularCategories, situationCookie }) {
     document.getElementById("age").value = "";
     document.getElementById("income-select").value = "";
   };
+
+  //will change the location value in the selector to be whatever the geolocation API returns
+  //also returns the canadian province or "Other" the api acquires
+  async function assumeLocation() {
+    //Geolocation API Key, should probably be moved to some sort of global thing
+    const apiKey = "c81cd9865ea747f580d359ee1758d5be";
+
+    const rawLocation = await (
+      await fetch(`https://api.ipgeolocation.io/ipgeo?apiKey=${apiKey}`)
+    ).json();
+    const location =
+      rawLocation.country_code3 === "CAN" ? rawLocation.state_prov : "N/A";
+    document.getElementById("location-select").value = location;
+    document.getElementById("location-assumption").innerHTML =
+      "It seems like you are located in " +
+      (location === "N/A" ? "someplace outside of Canada" : location) +
+      " based on your IP address. Please confirm or modify this information";
+    return location;
+  }
 
   useEffect(async () => {
     await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/situation`, {
@@ -134,6 +163,7 @@ export default function Home({ locale, popularCategories, situationCookie }) {
       {/* your situation section */}
       <section id="eligibility_criteria" className="">
         <h3 className="text-2xl text-bold py-3">{t("eligibilityCriteria")}</h3>
+        {locationAssumed ? <LocationAssumption id="location-assumption" /> : ""}
         <CriteriaGrid>
           {/* location picker */}
           <CriteriaBox>
