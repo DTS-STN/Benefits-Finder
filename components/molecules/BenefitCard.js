@@ -1,12 +1,15 @@
 import { ButtonLink } from "../atoms/ButtonLink";
 import PropTypes from "prop-types";
 import { useTranslation } from "next-i18next";
+import { EntitlementInfo } from "../atoms/EntitlementInfo";
+import { EntitlementBox } from "../atoms/EntitlementBox";
+import { CurrencyDollarIcon, CurrencyPoundIcon } from "@heroicons/react/solid";
 
 export function BenefitCard(props) {
   const { t } = useTranslation("common");
   return (
     <div
-      className={` flex flex-col  h-50 max-w-lg mx-full shadow-cards border-b-4 border-custom-blue-blue pl-3 pr-3
+      className={` flex flex-col  h-50 max-w-lg mx-full hover:shadow-cards border border-b-4 border-custom-blue-blue pl-3 pr-3
       ${!props.eligibility ? "bg-gray-300" : ""}`}
     >
       <div className="flex justify-between py-2 ">
@@ -22,7 +25,8 @@ export function BenefitCard(props) {
             fill="currentColor"
           >
             <path d="M15 8a3 3 0 10-2.977-2.63l-4.94 2.47a3 3 0 100 4.319l4.94 2.47a3 3 0 10.895-1.789l-4.94-2.47a3.027 3.027 0 000-.74l4.94-2.47C13.456 7.68 14.19 8 15 8z" />
-          </svg>
+          </svg>{" "}
+          share
         </span>
       </div>
       <div className="my-1">
@@ -30,7 +34,30 @@ export function BenefitCard(props) {
           {props.type}
         </small>
       </div>
+      {/* snipinfo */}
+      <EntitlementBox>
+        <EntitlementInfo
+          //  icon={CurrencyPoundIcon}
+          bgColor="bg-green-100"
+          textColor="text-green-900"
+          title={t("howMuch")}
+          body={t("perMonth")}
+        />
+        <EntitlementInfo
+          bgColor="bg-blue-100"
+          textColor="text-blue-900"
+          title={t("howMuch")}
+          body={t("perMonth")}
+        />
+        <EntitlementInfo
+          bgColor="bg-red-100"
+          textColor="text-red-900"
+          title={t("howMuch")}
+          body={t("perMonth")}
+        />
+      </EntitlementBox>
 
+      {/* snip info end */}
       <div className="flex-1">
         <span>
           {" "}

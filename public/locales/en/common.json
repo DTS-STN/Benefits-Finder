@@ -15,6 +15,8 @@
   "provideFeedback": "Provide Feedback",
   "activeExperimentsList": "Back to list of Active Experiments",
   "clearSituation": "Clear my situation",
+  "howMuch": "How much",
+  "perMonth": "$500 per month",
   "benefits": {
     "benefit_1": {
       "title": "Benefit 1 Card",
