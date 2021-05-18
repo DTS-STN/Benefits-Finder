@@ -2,10 +2,12 @@ import PropTypes from "prop-types";
 import React, { useState } from "react";
 import { useTranslation } from "next-i18next";
 import FocusTrap from "focus-trap-react";
+import { ActionButton } from "../atoms/ActionButton";
 
 export const Drawer = ({ children }) => {
   const [isOpen, setisOpen] = useState(false);
   const { t } = useTranslation("common");
+
   const toggleDrawer = () => {
     setisOpen(!isOpen);
     const drawerEl = document.getElementById("drawer");
@@ -21,25 +23,25 @@ export const Drawer = ({ children }) => {
     }
   };
 
+  const clearFilters = () => {
+    //clear filters
+  };
+
   return (
     <div className="lg:w-1/4">
       {/* 768px and smaller (mobile)*/}
       <div className="lg:hidden">
-        <div className="bg-gray-200 py-8">
-          <div className="flex justify-around">
-            <p>
-              <span className="font-bold text-green-500">23</span>{" "}
-              {` ${t("filterMatches")}`}
-            </p>
-            <button
-              type="button"
-              role="button"
-              className="bg-white border border-blue-700 rounded font-medium text-blue-700 px-2 py-1 focus:border-black"
-              onClick={toggleDrawer}
-            >
-              {t("filterButton")}
-            </button>
-          </div>
+        <div className="flex justify-around">
+          <ActionButton
+            className="content-center h-auto p-1 rounded-sm py-2 px-4 focus:ring-1 focus:ring-black focus:ring-offset-2 bg-white text-custom-blue-blue border border-custom-blue-blue active:bg-gray-400 hover:bg-gray-200"
+            onClick={toggleDrawer}
+            text={t("filterButton")}
+          ></ActionButton>
+          <ActionButton
+            className="content-center h-auto p-1 rounded-sm py-2 px-4 focus:ring-1 focus:ring-black focus:ring-offset-2 bg-white text-custom-blue-blue border border-custom-blue-blue active:bg-gray-400 hover:bg-gray-200"
+            onClick={clearFilters}
+            text={t("clearFilters")}
+          ></ActionButton>
         </div>
         <FocusTrap active={isOpen}>
           <div

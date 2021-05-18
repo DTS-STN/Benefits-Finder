@@ -16,7 +16,7 @@
   "activeExperimentsList": "Back to list of Active Experiments",
   "filtersTitle": "Filters",
   "filterButton": "Edit filters",
-  "filterMatches": "matches",
+  "clearFilters": "Clear filters",
   "clearCategories": "Clear categories",
   "clearSituation": "Clear my situation",
   "benefits": {
