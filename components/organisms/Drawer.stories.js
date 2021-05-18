@@ -6,12 +6,10 @@ export default {
   component: Drawer,
 };
 
-const childrenProps = "Children Content";
-
 const Template = (args) => <Drawer {...args}></Drawer>;
 
 export const Primary = Template.bind({});
 
 Primary.args = {
-  children: childrenProps,
+  children: "Children Content",
 };

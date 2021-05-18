@@ -8,8 +8,11 @@ describe("Drawer tests", () => {
   it("renders a Drawer in its primary state", () => {
     render(<Primary {...Primary.args} />);
 
-    let childrenContent = screen.getByText(`Children Content`);
-    expect(childrenContent).toBeTruthy();
+    let childrenContent = screen.getAllByText("Children Content");
+    // for each loop for mobile and desktop display
+    childrenContent.forEach((text) => {
+      expect(text).toBeTruthy();
+    });
   });
 
   it("has no a11y violations", async () => {

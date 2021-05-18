@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { React, useState } from "react";
+import React, { useState } from "react";
 import { useTranslation } from "next-i18next";
 import FocusTrap from "focus-trap-react";
 
