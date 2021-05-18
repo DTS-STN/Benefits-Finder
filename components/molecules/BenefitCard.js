@@ -37,7 +37,7 @@ export function BenefitCard(props) {
       {/* snipinfo */}
       <EntitlementBox>
         <EntitlementInfo
-          icon={CurrencyPoundIcon}
+          icon={<CurrencyPoundIcon />}
           bgColor="bg-green-100"
           textColor="text-green-900"
           title={t("howMuch")}
