@@ -16,11 +16,16 @@ export const Layout = ({
   children,
   locale,
   langUrl,
+  noScroll,
 }) => {
   const { t } = useTranslation("common");
   const language = locale === "en" ? "fr" : "en";
   return (
-    <div className="overflow-x-hidden">
+    <div
+      className={`${
+        noScroll ? "overflow-hidden h-full" : "overflow-auto h-auto"
+      } overflow-x-hidden`}
+    >
       <header>
         {/* layout for the Early Access Alpha banner start */}
         <div className="bg-gray-100">
@@ -172,4 +177,8 @@ Layout.propTypes = {
    * URL to use for navigation when changing locales
    */
   langUrl: PropTypes.string,
+  /**
+   * Disables body scroll when filter is open.
+   */
+  noScroll: PropTypes.bool,
 };

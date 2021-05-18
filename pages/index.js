@@ -45,6 +45,8 @@ export default function Home({ locale, popularCategories, situationCookie }) {
   });
   const [benefits, setBenefits] = useState([]);
 
+  const [filterOpen, setFilterOpen] = useState(false);
+
   const clickPopularCategory = (id) => {
     if (!categories.includes(id)) {
       setCategories((previousState) => [...previousState, id]);
@@ -92,7 +94,7 @@ export default function Home({ locale, popularCategories, situationCookie }) {
   }, [situation]);
 
   return (
-    <Layout locale={locale} langUrl={asPath}>
+    <Layout locale={locale} langUrl={asPath} noScroll={filterOpen}>
       <Head>
         <title>{t("siteTitle")}</title>
         <link rel="icon" href="/favicon.ico" />
@@ -103,8 +105,8 @@ export default function Home({ locale, popularCategories, situationCookie }) {
       <div className="lg:flex layout-container">
         {/*Filter section*/}
 
-        <Drawer>
-          <h2>Your Situation</h2>
+        <Drawer isOpen={filterOpen} onClick={() => setFilterOpen(!filterOpen)}>
+          <h2>{t("eligibilityCriteria")}</h2>
         </Drawer>
 
         <div className="lg:w-3/4">
