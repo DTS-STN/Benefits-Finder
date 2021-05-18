@@ -9,7 +9,7 @@ export function BenefitCard(props) {
   const { t } = useTranslation("common");
   return (
     <div
-      className={` flex flex-col  h-50 max-w-lg mx-full hover:shadow-cards border border-b-4 border-custom-blue-blue pl-3 pr-3
+      className={` flex flex-col  h-50 max-w-lg mx-full hover:shadow-cards border border-b-4 border-green-600 pl-3 pr-3
       ${!props.eligibility ? "bg-gray-300" : ""}`}
     >
       <div className="flex justify-between py-2 ">

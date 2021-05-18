@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 export function EntitlementInfo(props) {
   return (
     <div
-      className={`flex flex-col items-center rounded-b-lg shadow-lg border relative w-full ${props.bgColor}`}
+      className={`flex flex-col items-center rounded-b-lg shadow-sm border relative w-full ${props.bgColor}`}
       data-cy={props.dataCy}
     >
       <span className=" absolute -top-3  bg-white rounded-full ">
