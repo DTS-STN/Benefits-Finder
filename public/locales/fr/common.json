@@ -15,6 +15,13 @@
   "provideFeedback": "(FR) Provide Feedback",
   "activeExperimentsList": "(FR) Back to list of Active Experiments",
   "clearSituation": "(FR) Clear my situation",
+  "share": "(FR)Share",
+  "howMuchTitle": "(FR)How much",
+  "howMuchBody": "(FR)$500 per month",
+  "howLongTitle": "(FR)How long",
+  "howLongBody": "(FR)up to 2 months",
+  "howSoonTitle": "(FR)How soon",
+  "howSoonBody": "(FR)within 15 days of applying",
   "benefits": {
     "benefit_1": {
       "title": "(FR) Benefit 1 Card",

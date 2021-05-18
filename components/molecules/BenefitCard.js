@@ -3,7 +3,13 @@ import PropTypes from "prop-types";
 import { useTranslation } from "next-i18next";
 import { EntitlementInfo } from "../atoms/EntitlementInfo";
 import { EntitlementBox } from "../atoms/EntitlementBox";
-import { CurrencyDollarIcon, CurrencyPoundIcon } from "@heroicons/react/solid";
+import {
+  CalendarIcon,
+  ChartPieIcon,
+  ClockIcon,
+  CurrencyDollarIcon,
+} from "@heroicons/react/solid";
+import { Share } from "../atoms/Share";
 
 export function BenefitCard(props) {
   const { t } = useTranslation("common");
@@ -16,18 +22,8 @@ export function BenefitCard(props) {
         <a href="#catalog">
           <h2 className="text-h3">{props.title}</h2>
         </a>
-        <span className="flex ">
-          {" "}
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-5 w-5"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-          >
-            <path d="M15 8a3 3 0 10-2.977-2.63l-4.94 2.47a3 3 0 100 4.319l4.94 2.47a3 3 0 10.895-1.789l-4.94-2.47a3.027 3.027 0 000-.74l4.94-2.47C13.456 7.68 14.19 8 15 8z" />
-          </svg>{" "}
-          share
-        </span>
+        {/* share link href still to be determined */}
+        <Share href="#" text={t("share")}></Share>
       </div>
       <div className="my-1">
         <small className="bg-gray-800 text-white uppercase px-1 py-1 rounded-sm">
@@ -37,23 +33,25 @@ export function BenefitCard(props) {
       {/* snipinfo */}
       <EntitlementBox>
         <EntitlementInfo
-          icon={<CurrencyPoundIcon />}
+          icon={<CurrencyDollarIcon className=" text-green-800" />}
           bgColor="bg-green-100"
           textColor="text-green-900"
-          title={t("howMuch")}
-          body={t("perMonth")}
+          title={t("howMuchTitle")}
+          body={t("howMuchBody")}
         />
         <EntitlementInfo
+          icon={<ChartPieIcon className=" text-blue-800" />}
           bgColor="bg-blue-100"
           textColor="text-blue-900"
-          title={t("howMuch")}
-          body={t("perMonth")}
+          title={t("howLongTitle")}
+          body={t("howLongBody")}
         />
         <EntitlementInfo
+          icon={<ClockIcon className=" text-red-800" />}
           bgColor="bg-red-100"
           textColor="text-red-900"
-          title={t("howMuch")}
-          body={t("perMonth")}
+          title={t("howSoonTitle")}
+          body={t("howSoonBody")}
         />
       </EntitlementBox>
 

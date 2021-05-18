@@ -3,10 +3,10 @@ import PropTypes from "prop-types";
 export function EntitlementInfo(props) {
   return (
     <div
-      className={`flex flex-col items-center rounded-b-lg shadow-sm border relative w-full ${props.bgColor}`}
+      className={`flex flex-col items-center rounded-b-lg shadow-sm border relative w-full align-top ${props.bgColor}`}
       data-cy={props.dataCy}
     >
-      <span className=" absolute -top-3  bg-white rounded-full ">
+      <span className=" absolute -top-3  bg-white rounded-full h-5 w-5 ">
         {props.icon}
       </span>
 
@@ -15,7 +15,11 @@ export function EntitlementInfo(props) {
       >
         {props.title}
       </div>
-      <div className={`py-3 font-body ${props.textColor}`}>{props.body}</div>
+      <div
+        className={`flex-grow py-3 font-body text-center align-middle ${props.textColor}`}
+      >
+        {props.body}
+      </div>
     </div>
   );
 }
