@@ -7,7 +7,6 @@ export function EntitlementInfo(props) {
       data-cy={props.dataCy}
     >
       <span className=" absolute -top-3  bg-white rounded-full ">
-        {" "}
         {props.icon}
         <svg
           xmlns="http://www.w3.org/2000/svg"
