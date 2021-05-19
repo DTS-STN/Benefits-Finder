@@ -2,13 +2,7 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 
-import {
-  Primary,
-  Rounded,
-  WithCounter,
-  StartAgain,
-  Disabled,
-} from "./ActionButton.stories";
+import { Primary, Rounded, StartAgain, Disabled } from "./ActionButton.stories";
 
 it("renders ActionButton in its primary state", () => {
   render(<Primary {...Primary.args} />);
