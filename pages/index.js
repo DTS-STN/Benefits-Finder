@@ -130,7 +130,53 @@ export default function Home({ locale, popularCategories, situationCookie }) {
           {t("clearCategories")}
         </button>
       </section>
-
+      <details>
+        <summary>Location</summary>
+        <SelectPicker
+          criteriaTitle={t("location.title")}
+          id="location-select"
+          ariaLabel="location-select"
+          name="location"
+          dataCy="location-select-picker"
+          defaultValue={situation.location}
+          onChange={handleSituationChange}
+          selects={[
+            {
+              criteriaSelect: t("location.on"),
+            },
+            {
+              criteriaSelect: t("location.ab"),
+            },
+            {
+              criteriaSelect: t("location.mb"),
+            },
+            {
+              criteriaSelect: t("location.nb"),
+            },
+            {
+              criteriaSelect: t("location.nl"),
+            },
+            {
+              criteriaSelect: t("location.ns"),
+            },
+            {
+              criteriaSelect: t("location.nu"),
+            },
+            {
+              criteriaSelect: t("location.pe"),
+            },
+            {
+              criteriaSelect: t("location.sk"),
+            },
+            {
+              criteriaSelect: t("location.bc"),
+            },
+            {
+              criteriaSelect: t("location.yt"),
+            },
+          ]}
+        ></SelectPicker>
+      </details>
       {/* your situation section */}
       <section id="eligibility_criteria" className="">
         <h3 className="text-2xl text-bold py-3">{t("eligibilityCriteria")}</h3>
