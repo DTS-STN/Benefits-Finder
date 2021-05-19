@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import React, { useState } from "react";
+import React from "react";
 import { useTranslation } from "next-i18next";
 import FocusTrap from "focus-trap-react";
 import { ActionButton } from "../atoms/ActionButton";
@@ -27,12 +27,18 @@ export const Drawer = ({ children, onClick, isOpen }) => {
             text={t("clearFilters")}
           ></ActionButton>
         </div>
-        <FocusTrap active={isOpen}>
+        <FocusTrap
+          active={isOpen}
+          focusTrapOptions={{
+            fallbackFocus: "#drawer",
+          }}
+        >
           <div
             className={`w-full fixed ${
               isOpen ? "bottom-0 h-full" : "-bottom-8 h-0"
             } left-0 z-10 bg-white px-6 py-4 drawer-transition overflow-y-scroll`}
             id="drawer"
+            tabIndex="-1"
           >
             <div className="flex justify-between">
               <h1>{t("filtersTitle")}</h1>
@@ -40,6 +46,7 @@ export const Drawer = ({ children, onClick, isOpen }) => {
                 className="text-h1 cursor-pointer"
                 onClick={onClick}
                 role="button"
+                id="closeButton"
               >
                 &times;
               </button>
