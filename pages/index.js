@@ -220,12 +220,14 @@ export default function Home({ locale, popularCategories, situationCookie }) {
         <CardGrid>
           {benefits.map((benefitData) => {
             const benefit = benefitData.benefit;
+
             return (
               <BenefitCard
                 key={benefit.id}
                 id={`${benefit.id}`}
                 title={benefit.title}
                 description={benefit.description}
+                eligibilityCriteria={benefit.eligibilityCriteria}
                 applyLink={benefit.applyLink}
                 type={benefit.type}
                 program={benefit.program}

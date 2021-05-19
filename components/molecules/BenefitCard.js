@@ -21,7 +21,7 @@ export function BenefitCard(props) {
         <a href="#catalog">
           <h2 className="text-h3">{props.title}</h2>
         </a>
-        {/* share link href still to be determined */}
+        {/* share link href and funtionality still to be determined */}
         <Share href="#" text={t("share")}></Share>
       </div>
       <div className="my-2 pb-1">
@@ -60,8 +60,24 @@ export function BenefitCard(props) {
       {/* benefit description start */}
       <div className="flex-1 p-4">
         <span>
-          {" "}
+          <p className="text-xl font-extrabold py-3">{t("overview")}</p>
           <p className="prose md:max-w-none">{props.description}</p>
+          {/* don't show the criteria section if there isn't anything in strapi for EligibilityCriteria */}
+          {props.eligibilityCriteria ? (
+            <span>
+              <p className="text-xl font-body font-extrabold py-3">
+                {t("amIEligible")}
+              </p>
+              <span className="text-sm font-semibold pl-1">
+                {t("youMayBe")}
+              </span>
+              <p className="prose md:max-w-none mt-1">
+                {props.eligibilityCriteria}
+              </p>
+            </span>
+          ) : (
+            ""
+          )}
         </span>
       </div>
       {/* benefit desctiption end */}
@@ -110,7 +126,10 @@ BenefitCard.propTypes = {
    * which collections the benefit belongs to
    */
   collections: PropTypes.arrayOf(PropTypes.string),
-
+  /**
+   * eligibility criteria that belongs to a benefit
+   */
+  eligibilityCriteria: PropTypes.string,
   /**
    * eligible for benefit
    */

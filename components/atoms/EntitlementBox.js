@@ -12,7 +12,11 @@ EntitlementBox.propTypes = {
   /**
    * child elements that will constitute the page
    */
-  children: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
+  children: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.element,
+    PropTypes.arrayOf(PropTypes.element),
+  ]),
   /**
    * cypress selector
    */

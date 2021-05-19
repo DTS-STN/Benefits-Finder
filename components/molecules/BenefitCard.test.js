@@ -10,12 +10,16 @@ describe("BenefitCard tests", () => {
     render(<Primary {...Primary.args} />);
     const title = screen.getByText("Benefit Title");
     const description = screen.getByText("Benefit description");
+    const eligibilityCriteria = screen.getByText(
+      "Benefit eligibility criteria"
+    );
     const type = screen.getByText("Benefit type");
     const benefitLink = screen.getByText("moreInfo");
     const applyLink = screen.getByText("applyNow");
 
     expect(title).toBeInTheDocument();
     expect(description).toBeInTheDocument();
+    expect(eligibilityCriteria).toBeInTheDocument();
     expect(type).toBeInTheDocument();
     expect(benefitLink).toBeInTheDocument();
     expect(applyLink).toBeInTheDocument();

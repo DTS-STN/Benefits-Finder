@@ -26,10 +26,6 @@ export function EntitlementInfo(props) {
 
 EntitlementInfo.propTypes = {
   /**
-   * child elements that will constitute the page
-   */
-  children: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
-  /**
    * The element info title
    */
   title: PropTypes.string.isRequired,
