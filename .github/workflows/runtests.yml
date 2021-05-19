@@ -22,7 +22,7 @@ jobs:
           NEXT_PUBLIC_STRAPI_API_URL: ${{ secrets.NEXT_PUBLIC_STRAPI_API_URL }}
 
       - name: Linting test
-        run: npm run lint:test
+        run: npm run lint:formatting
         run: npm run lint:rules
         env:
           CI: true
