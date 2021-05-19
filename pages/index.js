@@ -1,7 +1,6 @@
 import Head from "next/head";
 import { Layout } from "../components/organisms/Layout";
 import { getPopularCategories } from "../lib/categories";
-import { getBenefits } from "../lib/benefits";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useRouter } from "next/router";

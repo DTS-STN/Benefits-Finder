@@ -1,5 +1,4 @@
 import { PopularCategoryCard } from "./PopularCategoryCard";
-import logo from "../../public/wmms-blk.svg";
 
 export default {
   title: "Components/Molecules/PopularCategoryCard",
