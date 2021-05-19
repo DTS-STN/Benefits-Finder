@@ -1,7 +1,11 @@
 import PropTypes from "prop-types";
 
 export function EntitlementBox(props) {
-  return <div className="flex space-x-4 mt-3">{props.children}</div>;
+  return (
+    <div className="flex space-x-4 mt-3" data-cy={props.dataCy}>
+      {props.children}
+    </div>
+  );
 }
 
 EntitlementBox.propTypes = {
