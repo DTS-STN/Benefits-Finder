@@ -13,6 +13,8 @@ import { CriteriaBox } from "../components/atoms/CriteriaBox";
 import { SelectPicker } from "../components/atoms/SelectPicker";
 import { NumInput } from "../components/atoms/NumInput";
 import { useState, useEffect } from "react";
+import { Disclosure } from "@headlessui/react";
+import Example from "../components/organisms/Example";
 
 export async function getServerSideProps(context) {
   const locale = context.locale || context.defaultLocale;
@@ -46,8 +48,12 @@ export default function Home({ locale, popularCategories, situationCookie }) {
 
   const clickPopularCategory = (id) => {
     if (!categories.includes(id)) {
-      categories.push(id);
+      setCategories((previousState) => [...previousState, id]);
     }
+  };
+
+  const clearCategories = () => {
+    setCategories([]);
   };
 
   const handleSituationChange = (e) => {
@@ -109,11 +115,29 @@ export default function Home({ locale, popularCategories, situationCookie }) {
                 imgSource={cat.imgSource}
                 imgAltText={cat.imgAltText}
                 onClick={clickPopularCategory}
+                selected={categories.includes(cat.id.toString())}
               />
             );
           })}
         </CardGrid>
+        {/* Clear categories */}
+        <button
+          type="button"
+          onClick={clearCategories}
+          className={
+            "hover:bg-red-700 hover:text-white mt-2 py-2 px-4 border rounded"
+          }
+        >
+          <span className={"icon-cross pr-2"} />
+          {t("clearCategories")}
+        </button>
       </section>
+
+      {/* start here */}
+
+      <Example></Example>
+
+      {/* end here */}
 
       {/* your situation section */}
       <section id="eligibility_criteria" className="">
@@ -203,6 +227,7 @@ export default function Home({ locale, popularCategories, situationCookie }) {
             ></SelectPicker>
           </CriteriaBox>
         </CriteriaGrid>
+        {/* Clear my situation */}
         <button
           type="button"
           onClick={clearSituation}
