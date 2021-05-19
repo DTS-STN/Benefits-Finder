@@ -59,26 +59,37 @@ export function BenefitCard(props) {
       {/* entitlement info end */}
       {/* benefit description start */}
       <div className="flex-1 p-4">
-        <span>
-          <p className="text-xl font-extrabold py-3">{t("overview")}</p>
-          <p className="prose md:max-w-none">{props.description}</p>
-          {/* don't show the criteria section if there isn't anything in strapi for EligibilityCriteria */}
-          {props.eligibilityCriteria ? (
-            <span>
-              <p className="text-xl font-body font-extrabold py-3">
-                {t("amIEligible")}
-              </p>
-              <span className="text-sm font-semibold pl-1">
-                {t("youMayBe")}
-              </span>
-              <p className="prose md:max-w-none mt-1">
-                {props.eligibilityCriteria}
-              </p>
-            </span>
-          ) : (
-            ""
-          )}
-        </span>
+        <p className="text-xl font-extrabold py-3">{t("overview")}</p>
+        {props.description ? (
+          <span>
+            <p
+              className="prose md:max-w-none"
+              dangerouslySetInnerHTML={{
+                __html: props.description,
+              }}
+            ></p>
+          </span>
+        ) : (
+          "Content coming soon!"
+        )}
+
+        {/* don't show the criteria section if there isn't anything in strapi for EligibilityCriteria */}
+        {props.eligibilityCriteria ? (
+          <div>
+            <p className="text-xl font-body font-extrabold py-3">
+              {t("amIEligible")}
+            </p>
+            <span className="text-sm font-semibold pl-1">{t("youMayBe")}</span>
+            <p
+              dangerouslySetInnerHTML={{
+                __html: props.eligibilityCriteria,
+              }}
+              className="prose md:max-w-none mt-1"
+            ></p>
+          </div>
+        ) : (
+          ""
+        )}
       </div>
       {/* benefit desctiption end */}
 
