@@ -21,7 +21,7 @@ describe("home page", () => {
     cy.url().should("contains", "/");
   });
 
-  it("Checkes a11y violations", () => {
+  it("Checks a11y violations", () => {
     cy.checkA11y('', {
         runonly: {
           type: "tag",

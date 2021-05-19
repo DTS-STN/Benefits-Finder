@@ -2,6 +2,7 @@ import Head from "next/head";
 import { Layout } from "../components/organisms/Layout";
 import { getPopularCategories } from "../lib/categories";
 import { getBenefits } from "../lib/benefits";
+import { getUserLocationAssumption } from "../lib/assumptions";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useRouter } from "next/router";
@@ -13,6 +14,7 @@ import { CriteriaBox } from "../components/atoms/CriteriaBox";
 import { SelectPicker } from "../components/atoms/SelectPicker";
 import { NumInput } from "../components/atoms/NumInput";
 import { useState, useEffect } from "react";
+import { LocationAssumption } from "../components/atoms/LocationAssumption";
 
 export async function getServerSideProps(context) {
   const locale = context.locale || context.defaultLocale;
@@ -29,19 +31,6 @@ export async function getServerSideProps(context) {
       situationCookie: situation,
     },
   };
-}
-
-//will change the location value in the selector to be whatever the geolocation API returns
-//also returns the canadian province or "Other" the api acquires
-async function assumeLocation() {
-  //Geolocation API Key, should probably be moved to some sort of global thing
-  const apiKey = "c81cd9865ea747f580d359ee1758d5be";
-
-  const res = await fetch(
-    `https://api.ipgeolocation.io/ipgeo?apiKey=${apiKey}` //can append language settings with paid account;
-  ).catch("{}");
-  const rawLocation = await res.json().catch({}); //return empty object if something fails
-  return rawLocation.country_code3 === "CAN" ? rawLocation.state_prov : "";
 }
 
 export default function Home({ locale, popularCategories, situationCookie }) {
@@ -83,9 +72,7 @@ export default function Home({ locale, popularCategories, situationCookie }) {
   };
 
   useEffect(async () => {
-    // await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/situation`, {
-    //process.env... wasn't working
-    await fetch(`/api/situation`, {
+    await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/situation`, {
       method: "post",
       headers: {
         "Content-Type": "application/json",
@@ -105,22 +92,15 @@ export default function Home({ locale, popularCategories, situationCookie }) {
     setBenefits(data);
   }, [situation]);
 
-  let locationAssumed = false;
   //only make location assumptions if the situation cookie doesn't have anything set for location
   if (situation?.location === undefined) {
-    locationAssumed = true;
-    assumeLocation()
+    getUserLocationAssumption()
       .then((location) => {
         setSituation((previousState) => ({
           ...previousState,
           ["location"]: location,
         }));
         document.getElementById("location-select").value = location;
-        document.getElementById("location-assumption").innerHTML =
-          "It seems like you are located in " +
-          (location === "" ? "someplace outside of Canada" : location) +
-          " based on your IP address. Please confirm or modify this information.";
-        // no apparent ways to modify dom through setting states at the moment
       })
       .catch((situationCookie = { location: "non-null" })); //sets situation cookie to have a value so that the assumption message isn't displayed
   }
@@ -169,11 +149,11 @@ export default function Home({ locale, popularCategories, situationCookie }) {
       {/* your situation section */}
       <section id="eligibility_criteria" className="">
         <h3 className="text-2xl text-bold py-3">{t("eligibilityCriteria")}</h3>
-        {situationCookie?.location === undefined ? (
-          <h4 id={"location-assumption"} />
-        ) : (
-          ""
-        )}
+        <LocationAssumption
+          id={"location-assumption"}
+          location={situation.location}
+          isActive={situationCookie?.location === undefined}
+        />
         <CriteriaGrid>
           {/* location picker */}
           <CriteriaBox>
