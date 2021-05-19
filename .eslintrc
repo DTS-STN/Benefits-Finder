@@ -11,7 +11,7 @@
     "node": true,
     "jest/globals": true
   },
-  "parser": "babel-eslint",
+  "parser": "@babel/eslint-parser",
   "plugins": ["react", "react-hooks", "jest"],
   "extends": ["eslint:recommended", "plugin:react/recommended", "prettier"],
   "rules": {
