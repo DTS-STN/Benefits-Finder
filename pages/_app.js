@@ -1,6 +1,7 @@
 import { appWithTranslation } from "next-i18next";
 import "../styles/globals.css";
 import "../icomoon/style.css";
+import "../styles/drawer.css";
 
 function MyApp({ Component, pageProps }) {
   return <Component {...pageProps} />;

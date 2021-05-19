@@ -1,6 +1,8 @@
 import "@testing-library/jest-dom/extend-expect";
 import i18n from 'i18next'
 import { initReactI18next } from 'react-i18next'
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useTranslation } from "next-i18next";
 
 // need to mock next/link because it throws an error when using the real one
 // and I don't really know why

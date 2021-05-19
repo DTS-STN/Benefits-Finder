@@ -24,7 +24,7 @@ module.exports = {
       xxl: "1200px",
     },
     extend: {
-      backgroundImage: () => ({
+      backgroundImage: (theme) => ({
         "footer-parliament-image": "url(../public/landscape.png)",
       }),
       fontFamily: {
