@@ -13,7 +13,6 @@ import { CriteriaBox } from "../components/atoms/CriteriaBox";
 import { SelectPicker } from "../components/atoms/SelectPicker";
 import { NumInput } from "../components/atoms/NumInput";
 import { useState, useEffect } from "react";
-import LocationAssumption from "../components/atoms/LocationAssumption";
 
 export async function getServerSideProps(context) {
   const locale = context.locale || context.defaultLocale;
@@ -171,7 +170,7 @@ export default function Home({ locale, popularCategories, situationCookie }) {
       <section id="eligibility_criteria" className="">
         <h3 className="text-2xl text-bold py-3">{t("eligibilityCriteria")}</h3>
         {situationCookie?.location === undefined ? (
-          <LocationAssumption id="location-assumption" />
+          <h4 id={"location-assumption"} />
         ) : (
           ""
         )}
