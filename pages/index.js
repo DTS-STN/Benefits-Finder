@@ -94,13 +94,16 @@ export default function Home({ locale, popularCategories, situationCookie }) {
 
   //only make location assumptions if the situation cookie doesn't have anything set for location
   if (situation?.location === undefined) {
+    console.log("Making the assumption");
     getUserLocationAssumption()
       .then((location) => {
+        console.log("Location on index: " + location);
         setSituation((previousState) => ({
           ...previousState,
           ["location"]: location,
         }));
         document.getElementById("location-select").value = location;
+        console.log("After the assumption");
       })
       .catch((situationCookie = { location: "non-null" })); //sets situation cookie to have a value so that the assumption message isn't displayed
   }
