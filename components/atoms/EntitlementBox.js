@@ -10,7 +10,7 @@ export function EntitlementBox(props) {
 
 EntitlementBox.propTypes = {
   /**
-   * child elements that will constitute the page
+   * child elements that will constitute the page for the entitlement box.
    */
   children: PropTypes.oneOfType([
     PropTypes.string,
