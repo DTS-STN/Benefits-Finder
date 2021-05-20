@@ -24,12 +24,12 @@ module.exports = {
       xxl: "1200px",
     },
     extend: {
-      backgroundImage: (theme) => ({
+      backgroundImage: () => ({
         "footer-parliament-image": "url(../public/landscape.png)",
       }),
       fontFamily: {
-        display: ['Lato', 'sans-serif'],
-        body: ['Noto sans', 'sans-serif'],
+        display: ["Lato", "sans-serif"],
+        body: ["Noto sans", "sans-serif"],
       },
       colors: {
         "custom-blue": {
@@ -54,7 +54,6 @@ module.exports = {
         "link-unvisited": "#284162",
         "link-hover": "#0000EE",
         "link-visited": "#29156B",
-        
       },
       boxShadow: {
         cards: '0px 2px 8px rgba(0,0,0,0.25)',
@@ -70,7 +69,7 @@ module.exports = {
   },
   plugins: [
     require("@tailwindcss/typography"),
-    require('@tailwindcss/forms'),
+    require("@tailwindcss/forms"),
     // ...
   ],
 };
