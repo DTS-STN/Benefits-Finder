@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { AlphaBanner } from "./AlphaBanner";
 
 export default {
