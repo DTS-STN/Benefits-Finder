@@ -7,8 +7,6 @@ import { useRouter } from "next/router";
 import { PopularCategoryCard } from "../components/molecules/PopularCategoryCard";
 import { BenefitCard } from "../components/molecules/BenefitCard";
 import { CardGrid } from "../components/organisms/CardGrid";
-import { CriteriaGrid } from "../components/organisms/CriteriaGrid";
-import { CriteriaBox } from "../components/atoms/CriteriaBox";
 import { SelectPicker } from "../components/atoms/SelectPicker";
 import { NumInput } from "../components/atoms/NumInput";
 import { useState, useEffect } from "react";
