@@ -18,7 +18,6 @@
     "lint": "prettier --write \"pages/**/*.{js,jsx,ts,tsx,json,md}\" --write \"lib/**/*.{js,jsx,ts,tsx,json,md}\" --write \"components/**/*.{js,jsx,ts,tsx,json,md}\" --write \"public/locales/**/*.{js,jsx,ts,tsx,json,md}\"",
     "lint:formatting": "prettier --check \"pages/**/*.{js,jsx,ts,tsx,json,md}\" --check \"lib/**/*.{js,jsx,ts,tsx,json,md}\" --check \"components/**/*.{js,jsx,ts,tsx,json,md}\" --check \"public/locales/**/*.{js,jsx,ts,tsx,json,md}\"",
     "lint:rules": "eslint ./",
-    "lint:test": "prettier --check \"pages/**/*.{js,jsx,ts,tsx,json,md}\" --check \"lib/**/*.{js,jsx,ts,tsx,json,md}\" --check \"components/**/*.{js,jsx,ts,tsx,json,md}\" --check \"public/locales/**/*.{js,jsx,ts,tsx,json,md}\"",
     "storybook": "start-storybook -s ./public -p 6006",
     "build-storybook": "build-storybook"
   },
