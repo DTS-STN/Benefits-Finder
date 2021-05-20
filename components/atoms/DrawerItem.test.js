@@ -1,18 +1,16 @@
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 import { axe, toHaveNoViolations } from "jest-axe";
-import { Primary } from "./SelectPicker.stories";
+import { Primary } from "./DrawerItem.stories";
 
 expect.extend(toHaveNoViolations);
 
-describe("SelectPicker tests", () => {
-  it.only("renders SelectPicker in its primary state", () => {
+describe("DrawerItem tests", () => {
+  it.only("renders DrawerItem in its primary state", () => {
     render(<Primary {...Primary.args} />);
 
-    Primary.args.selects.forEach((value) => {
-      const item = screen.getByText(value.criteriaSelect);
-      expect(item).toBeTruthy();
-    });
+    expect(screen.getByText("Summary Text")).toBeTruthy();
+    expect(screen.getByText("Children Text")).toBeTruthy();
   });
 
   it("has no a11y violations", async () => {

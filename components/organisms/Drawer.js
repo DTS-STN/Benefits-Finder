@@ -4,12 +4,8 @@ import { useTranslation } from "next-i18next";
 import FocusTrap from "focus-trap-react";
 import { ActionButton } from "../atoms/ActionButton";
 
-export const Drawer = ({ children, onClick, isOpen }) => {
+export const Drawer = ({ children, onClick, isOpen, clearSituation }) => {
   const { t } = useTranslation("common");
-
-  const clearFilters = () => {
-    //clear filters
-  };
 
   return (
     <div className="lg:w-1/4">
@@ -23,7 +19,7 @@ export const Drawer = ({ children, onClick, isOpen }) => {
           ></ActionButton>
           <ActionButton
             className="content-center h-auto p-1 rounded-sm py-2 px-4 focus:ring-1 focus:ring-black focus:ring-offset-2 bg-white text-custom-blue-blue border border-custom-blue-blue active:bg-gray-400 hover:bg-gray-200"
-            onClick={clearFilters}
+            onClick={clearSituation}
             text={t("clearFilters")}
           ></ActionButton>
         </div>
@@ -78,4 +74,8 @@ Drawer.propTypes = {
    * Disables body scroll when filter is open.
    */
   isOpen: PropTypes.bool,
+  /**
+   * Callback for a click to erase the filter
+   */
+  clearSituation: PropTypes.func,
 };
