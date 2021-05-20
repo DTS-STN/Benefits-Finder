@@ -11,12 +11,12 @@ export function EntitlementInfo(props) {
       </span>
 
       <div
-        className={`flex-1 static items-center mt-3 xl:mt-4 text-xs font-semibold ${props.textColor}`}
+        className={`flex-1 static text-center items-center mt-3 xl:mt-4 text-xs font-semibold ${props.textColor}`}
       >
         {props.title}
       </div>
       <div
-        className={`flex-grow py-3 text-center align-middle ${props.textColor}`}
+        className={`flex-grow py-3 px-1 text-center align-middle ${props.textColor}`}
       >
         {props.body}
       </div>

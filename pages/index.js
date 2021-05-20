@@ -252,7 +252,7 @@ export default function Home({ locale, popularCategories, situationCookie }) {
             <h3 className="text-2xl text-bold py-3">{t("catalog")}</h3>
             {/* benefit card section start */}
 
-            <CardGrid>
+            <CriteriaGrid>
               {benefits.map((benefitData) => {
                 const benefit = benefitData.benefit;
 
@@ -271,7 +271,7 @@ export default function Home({ locale, popularCategories, situationCookie }) {
                   />
                 );
               })}
-            </CardGrid>
+            </CriteriaGrid>
 
             {/* benefit card section end */}
           </section>

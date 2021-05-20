@@ -1,6 +1,7 @@
 import { ButtonLink } from "../atoms/ButtonLink";
 import PropTypes from "prop-types";
 import { useTranslation } from "next-i18next";
+import ReactMarkdown from "react-markdown";
 import { EntitlementInfo } from "../atoms/EntitlementInfo";
 import { EntitlementBox } from "../atoms/EntitlementBox";
 import {
@@ -62,12 +63,7 @@ export function BenefitCard(props) {
         <p className="text-xl font-extrabold py-3">{t("overview")}</p>
         {props.description ? (
           <span>
-            <p
-              className="prose md:max-w-none"
-              dangerouslySetInnerHTML={{
-                __html: props.description,
-              }}
-            ></p>
+            <p className="prose md:max-w-none">{props.description}</p>
           </span>
         ) : (
           "Content coming soon!"
@@ -80,12 +76,9 @@ export function BenefitCard(props) {
               {t("amIEligible")}
             </p>
             <span className="text-sm font-semibold pl-1">{t("youMayBe")}</span>
-            <p
-              dangerouslySetInnerHTML={{
-                __html: props.eligibilityCriteria,
-              }}
-              className="prose md:max-w-none mt-1"
-            ></p>
+            <p className="prose md:max-w-none mt-1">
+              <ReactMarkdown>{props.eligibilityCriteria}</ReactMarkdown>
+            </p>
           </div>
         ) : (
           ""
