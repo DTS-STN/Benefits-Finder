@@ -10,6 +10,7 @@ export function Header(props) {
   //Handler for search input
   function handleInputChange(e) {
     setSearchText(e.target.value);
+    console.log(searchText);
   }
 
   return (
