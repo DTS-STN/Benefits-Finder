@@ -19,6 +19,16 @@
   "clearFilters": "Clear filters",
   "clearCategories": "Clear categories",
   "clearSituation": "Clear my situation",
+  "share": "Share",
+  "howMuchTitle": "How much",
+  "howMuchBody": "$500 per month",
+  "howLongTitle": "How long",
+  "howLongBody": "up to 2 months",
+  "howSoonTitle": "How soon",
+  "howSoonBody": "within 15 days of applying",
+  "overview": "Overview",
+  "amIEligible": "Am I eligible to apply?",
+  "youMayBe": "You may be eligible if...",
   "benefits": {
     "benefit_1": {
       "title": "Benefit 1 Card",

@@ -2,9 +2,7 @@ import PropTypes from "prop-types";
 
 export function CriteriaGrid(props) {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10 px-2  md:px-0">
-      {props.children}
-    </div>
+    <div className="grid grid-cols-1 gap-10 mx-auto">{props.children}</div>
   );
 }
 

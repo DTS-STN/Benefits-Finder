@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 import { PopularCategoryCard } from "../components/molecules/PopularCategoryCard";
 import { BenefitCard } from "../components/molecules/BenefitCard";
 import { CardGrid } from "../components/organisms/CardGrid";
+import { CriteriaGrid } from "../components/organisms/CriteriaGrid";
 import { SelectPicker } from "../components/atoms/SelectPicker";
 import { NumInput } from "../components/atoms/NumInput";
 import { useState, useEffect } from "react";
@@ -222,10 +223,11 @@ export default function Home({ locale, popularCategories, situationCookie }) {
               {t("clearCategories")}
             </button>
           </section>
-
+          {/* benefit card section start */}
           <section id="catalog" className="layout-container py-6">
             <h3 className="text-2xl text-bold py-3">{t("catalog")}</h3>
-            <CardGrid>
+
+            <CriteriaGrid>
               {benefits.map((benefitData) => {
                 const benefit = benefitData.benefit;
                 return (
@@ -234,6 +236,7 @@ export default function Home({ locale, popularCategories, situationCookie }) {
                     id={`${benefit.id}`}
                     title={benefit.title}
                     description={benefit.description}
+                    eligibilityCriteria={benefit.eligibilityCriteria}
                     applyLink={benefit.applyLink}
                     type={benefit.type}
                     program={benefit.program}
@@ -242,8 +245,9 @@ export default function Home({ locale, popularCategories, situationCookie }) {
                   />
                 );
               })}
-            </CardGrid>
+            </CriteriaGrid>
           </section>
+          {/* benefit card section end */}
         </div>
       </div>
     </Layout>

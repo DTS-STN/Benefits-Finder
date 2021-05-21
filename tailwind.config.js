@@ -55,6 +55,10 @@ module.exports = {
         "link-hover": "#0000EE",
         "link-visited": "#29156B",
       },
+      boxShadow: {
+        cards: '0px 2px 8px rgba(0,0,0,0.25)',
+
+      }
     },
   },
   variants: {
