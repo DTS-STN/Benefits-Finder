@@ -10,16 +10,16 @@ export function EntitlementInfo(props) {
         {props.icon}
       </span>
 
-      <div
+      <p
         className={`flex-1 static text-center items-center mt-3 xl:mt-4 text-xs font-semibold ${props.textColor}`}
       >
         {props.title}
-      </div>
-      <div
+      </p>
+      <p
         className={`flex-grow py-3 px-1 text-center align-middle ${props.textColor}`}
       >
         {props.body}
-      </div>
+      </p>
     </div>
   );
 }

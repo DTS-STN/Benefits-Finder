@@ -33,7 +33,9 @@ export function BenefitCard(props) {
       {/* Entitlement info */}
       <EntitlementBox>
         <EntitlementInfo
-          icon={<CurrencyDollarIcon className=" text-green-800" />}
+          icon={
+            <CurrencyDollarIcon className=" text-green-800" alt="dollar-sign" />
+          }
           bgColor="bg-green-100"
           textColor="text-green-900"
           title={t("howMuchTitle")}
@@ -41,7 +43,7 @@ export function BenefitCard(props) {
           dataCy="how-much"
         />
         <EntitlementInfo
-          icon={<ChartPieIcon className=" text-blue-800" />}
+          icon={<ChartPieIcon className=" text-blue-800" alt="piechart-icon" />}
           bgColor="bg-blue-100"
           textColor="text-blue-900"
           title={t("howLongTitle")}
@@ -49,7 +51,7 @@ export function BenefitCard(props) {
           dataCy="how-long"
         />
         <EntitlementInfo
-          icon={<ClockIcon className=" text-red-800" />}
+          icon={<ClockIcon className=" text-red-800" alt="clock-icon" />}
           bgColor="bg-red-100"
           textColor="text-red-900"
           title={t("howSoonTitle")}
@@ -62,11 +64,9 @@ export function BenefitCard(props) {
       <div className="flex-1 p-4">
         <p className="text-xl font-extrabold py-3">{t("overview")}</p>
         {props.description ? (
-          <span>
-            <p className="prose md:max-w-none">{props.description}</p>
-          </span>
+          <p className="prose md:max-w-none">{props.description}</p>
         ) : (
-          "Content coming soon!"
+          t("contentMissing")
         )}
 
         {/* don't show the criteria section if there isn't anything in strapi for EligibilityCriteria */}
@@ -76,9 +76,10 @@ export function BenefitCard(props) {
               {t("amIEligible")}
             </p>
             <span className="text-sm font-semibold pl-1">{t("youMayBe")}</span>
-            <p className="prose md:max-w-none mt-1">
-              <ReactMarkdown>{props.eligibilityCriteria}</ReactMarkdown>
-            </p>
+
+            <ReactMarkdown className="prose md:max-w-none mt-1">
+              {props.eligibilityCriteria}
+            </ReactMarkdown>
           </div>
         ) : (
           ""
