@@ -7,12 +7,11 @@ import { useRouter } from "next/router";
 import { PopularCategoryCard } from "../components/molecules/PopularCategoryCard";
 import { BenefitCard } from "../components/molecules/BenefitCard";
 import { CardGrid } from "../components/organisms/CardGrid";
-import { CriteriaGrid } from "../components/organisms/CriteriaGrid";
-import { CriteriaBox } from "../components/atoms/CriteriaBox";
 import { SelectPicker } from "../components/atoms/SelectPicker";
 import { NumInput } from "../components/atoms/NumInput";
 import { useState, useEffect } from "react";
 import { Drawer } from "../components/organisms/Drawer";
+import { DrawerItem } from "../components/atoms/DrawerItem";
 
 export async function getServerSideProps(context) {
   const locale = context.locale || context.defaultLocale;
@@ -104,8 +103,88 @@ export default function Home({ locale, popularCategories, situationCookie }) {
       <div className="lg:flex layout-container">
         {/*Filter section*/}
 
-        <Drawer isOpen={filterOpen} onClick={() => setFilterOpen(!filterOpen)}>
-          <h2>{t("eligibilityCriteria")}</h2>
+        <Drawer
+          isOpen={filterOpen}
+          onClick={() => setFilterOpen(!filterOpen)}
+          clearSituation={clearSituation}
+        >
+          {/* your situation section */}
+          <h2 className="mb-7">{t("eligibilityCriteria")}</h2>
+          <DrawerItem summary={t("location.title")}>
+            <SelectPicker
+              id="location-select"
+              ariaLabel="location-select"
+              name="location"
+              dataCy="location-select-picker"
+              defaultValue={situation.location}
+              onChange={handleSituationChange}
+              selects={[
+                {
+                  criteriaSelect: t("location.on"),
+                },
+                {
+                  criteriaSelect: t("location.ab"),
+                },
+                {
+                  criteriaSelect: t("location.mb"),
+                },
+                {
+                  criteriaSelect: t("location.nb"),
+                },
+                {
+                  criteriaSelect: t("location.nl"),
+                },
+                {
+                  criteriaSelect: t("location.ns"),
+                },
+                {
+                  criteriaSelect: t("location.nu"),
+                },
+                {
+                  criteriaSelect: t("location.pe"),
+                },
+                {
+                  criteriaSelect: t("location.sk"),
+                },
+                {
+                  criteriaSelect: t("location.bc"),
+                },
+                {
+                  criteriaSelect: t("location.yt"),
+                },
+              ]}
+            ></SelectPicker>
+          </DrawerItem>
+          <DrawerItem summary={t("age.title")}>
+            <NumInput
+              id="age"
+              name="age"
+              placeholder={t("age.placeholder")}
+              defaultValue={situation.age}
+              onChange={handleSituationChange}
+            ></NumInput>
+          </DrawerItem>
+          <DrawerItem summary={t("income.title")}>
+            <SelectPicker
+              id="income-select"
+              name="income"
+              ariaLabel="income-select"
+              dataCy="income-select-picker"
+              defaultValue={situation.income}
+              onChange={handleSituationChange}
+              selects={[
+                {
+                  criteriaSelect: t("income.option-1"),
+                },
+                {
+                  criteriaSelect: t("income.option-2"),
+                },
+                {
+                  criteriaSelect: t("income.option-3"),
+                },
+              ]}
+            ></SelectPicker>
+          </DrawerItem>
         </Drawer>
 
         <div className="lg:w-3/4">
@@ -141,109 +220,6 @@ export default function Home({ locale, popularCategories, situationCookie }) {
             >
               <span className={"icon-cross pr-2"} />
               {t("clearCategories")}
-            </button>
-          </section>
-
-          {/* your situation section */}
-          <section id="eligibility_criteria" className="layout-container py-6">
-            <h3 className="text-2xl text-bold py-3">
-              {t("eligibilityCriteria")}
-            </h3>
-            <CriteriaGrid>
-              {/* location picker */}
-              <CriteriaBox>
-                <SelectPicker
-                  criteriaTitle={t("location.title")}
-                  id="location-select"
-                  ariaLabel="location-select"
-                  name="location"
-                  dataCy="location-select-picker"
-                  defaultValue={situation.location}
-                  onChange={handleSituationChange}
-                  selects={[
-                    {
-                      criteriaSelect: t("location.on"),
-                    },
-                    {
-                      criteriaSelect: t("location.ab"),
-                    },
-                    {
-                      criteriaSelect: t("location.mb"),
-                    },
-                    {
-                      criteriaSelect: t("location.nb"),
-                    },
-                    {
-                      criteriaSelect: t("location.nl"),
-                    },
-                    {
-                      criteriaSelect: t("location.ns"),
-                    },
-                    {
-                      criteriaSelect: t("location.nu"),
-                    },
-                    {
-                      criteriaSelect: t("location.pe"),
-                    },
-                    {
-                      criteriaSelect: t("location.sk"),
-                    },
-                    {
-                      criteriaSelect: t("location.bc"),
-                    },
-                    {
-                      criteriaSelect: t("location.yt"),
-                    },
-                  ]}
-                ></SelectPicker>
-              </CriteriaBox>
-
-              {/* age input box */}
-              <CriteriaBox>
-                <NumInput
-                  id="age"
-                  name="age"
-                  criteriaTitle={t("age.title")}
-                  placeholder={t("age.placeholder")}
-                  defaultValue={situation.age}
-                  onChange={handleSituationChange}
-                ></NumInput>
-              </CriteriaBox>
-
-              {/* income picker */}
-              <CriteriaBox>
-                <SelectPicker
-                  criteriaTitle={t("income.title")}
-                  id="income-select"
-                  name="income"
-                  ariaLabel="income-select"
-                  dataCy="income-select-picker"
-                  defaultValue={situation.income}
-                  onChange={handleSituationChange}
-                  selects={[
-                    {
-                      criteriaSelect: t("income.option-1"),
-                    },
-                    {
-                      criteriaSelect: t("income.option-2"),
-                    },
-                    {
-                      criteriaSelect: t("income.option-3"),
-                    },
-                  ]}
-                ></SelectPicker>
-              </CriteriaBox>
-            </CriteriaGrid>
-            {/* Clear my situation */}
-            <button
-              type="button"
-              onClick={clearSituation}
-              className={
-                "hover:bg-red-700 hover:text-white mt-2 py-2 px-4 border rounded"
-              }
-            >
-              <span className={"icon-cross pr-2"} />
-              {t("clearSituation")}
             </button>
           </section>
 

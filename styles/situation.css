@@ -1,0 +1,42 @@
+/* Details under the summary fade-in animation (when opening the summary) */
+/* Start */
+details[open] summary ~ * {
+  animation: open 0.3s ease-in-out;
+}
+  
+@keyframes open {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+details summary::-webkit-details-marker {
+  display: none;
+}
+/* End */
+
+/* Closed drawer item */
+/* Start */
+details summary:after {
+  content: "+";
+  position: absolute;
+  font-size: 1.75rem;
+  line-height: 0;
+  margin-top: 0.75rem;
+  right: 0;
+  font-weight: 200;
+  transition: 200ms linear;
+}
+/* End */
+
+/* Opened drawer item */
+/* Start */
+details[open] summary:after {
+  transform: rotate(45deg);
+  font-size: 2rem;
+  right: -4px
+}
+/* End */
+

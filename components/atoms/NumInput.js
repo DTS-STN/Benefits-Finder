@@ -2,25 +2,19 @@ import PropTypes from "prop-types";
 
 export function NumInput(props) {
   return (
-    <label
-      className="text-gray-700 font-display font-bold"
+    <input
+      id={props.id}
+      name={props.name}
+      type="number"
+      min="1"
+      step="1"
+      max="120"
+      className="form-input my-2  block w-full rounded"
+      onChange={props.onChange}
+      defaultValue={props.defaultValue}
+      placeholder={props.placeholder}
       data-cy={props.dataCy}
-    >
-      {props.criteriaTitle}
-      <input
-        id={props.id}
-        name={props.name}
-        type="number"
-        min="1"
-        step="1"
-        max="120"
-        className="form-input my-2  block w-full rounded"
-        onChange={props.onChange}
-        defaultValue={props.defaultValue}
-        placeholder={props.placeholder}
-        data-cy={props.dataCy}
-      ></input>
-    </label>
+    ></input>
   );
 }
 
@@ -33,11 +27,6 @@ NumInput.propTypes = {
    * the name of the field
    */
   name: PropTypes.string,
-  /**
-   * Title for the box
-   */
-  criteriaTitle: PropTypes.string,
-
   /**
    * Placeholder text for the field
    */
