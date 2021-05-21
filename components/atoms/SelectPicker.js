@@ -2,33 +2,24 @@ import PropTypes from "prop-types";
 
 export function SelectPicker(props) {
   return (
-    <label
-      className="text-gray-700 font-display font-bold"
+    <select
+      id={props.id}
+      name={props.name}
       data-cy={props.dataCy}
+      onChange={props.onChange}
+      defaultValue={props.defaultValue}
+      className="form-select my-2 px-1 block w-full rounded"
+      aria-label={props.ariaLabel}
     >
-      {props.criteriaTitle}
-      <select
-        id={props.id}
-        name={props.name}
-        data-cy={props.dataCy}
-        onChange={props.onChange}
-        defaultValue={props.defaultValue}
-        className="form-select my-2 px-1 block w-full rounded"
-      >
-        <option value=""></option>
-        {props.selects.map((value, index) => {
-          return <option key={index}>{value.criteriaSelect}</option>;
-        })}
-      </select>
-    </label>
+      <option value=""></option>
+      {props.selects.map((value, index) => {
+        return <option key={index}>{value.criteriaSelect}</option>;
+      })}
+    </select>
   );
 }
 
 SelectPicker.propTypes = {
-  /**
-   * Title for the box
-   */
-  criteriaTitle: PropTypes.string,
   /**
    * the id of the field
    */
@@ -56,7 +47,11 @@ SelectPicker.propTypes = {
   onChange: PropTypes.func,
 
   /**
-   * default value for the imput
+   * default value for the input
    */
   defaultValue: PropTypes.string,
+  /**
+   * Accessibility label value
+   */
+  ariaLabel: PropTypes.string.isRequired,
 };

@@ -25,6 +25,7 @@ const criteriaBoxNum = [
       criteriaTitle="criteriaTitle2"
       id="id"
       name="Name"
+      ariaLabel="arialLabel"
       selects={[
         {
           criteriaSelect: "Ontario",
