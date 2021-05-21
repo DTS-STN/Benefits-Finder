@@ -2,8 +2,8 @@ import PropTypes from "prop-types";
 
 export function DrawerItem(props) {
   return (
-    <details>
-      <summary className="w-full relative cursor-pointer list-none pt-7 px-0 mt-7 text-base font-semibold border-t border-gray-300">
+    <details className="pt-7 mt-7 border-t border-gray-300">
+      <summary className="w-full relative cursor-pointer list-none px-0 text-base font-semibold ">
         {props.summary}
       </summary>
       {props.children}
