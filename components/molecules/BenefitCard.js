@@ -2,17 +2,20 @@ import { ButtonLink } from "../atoms/ButtonLink";
 import PropTypes from "prop-types";
 import { useTranslation } from "next-i18next";
 import ReactMarkdown from "react-markdown";
+import { ActionButton } from "../atoms/ActionButton";
 import { EntitlementInfo } from "../atoms/EntitlementInfo";
 import { EntitlementBox } from "../atoms/EntitlementBox";
 import {
   ChartPieIcon,
   ClockIcon,
   CurrencyDollarIcon,
+  ChevronDownIcon,
 } from "@heroicons/react/solid";
 import { Share } from "../atoms/Share";
 
 export function BenefitCard(props) {
   const { t } = useTranslation("common");
+
   return (
     <div
       className={` flex flex-col  h-50 w-full hover:shadow-cards border border-b-4 border-green-600 pl-3 pr-3
@@ -77,9 +80,22 @@ export function BenefitCard(props) {
             </p>
             <span className="text-sm font-semibold pl-1">{t("youMayBe")}</span>
 
-            <ReactMarkdown className="prose md:max-w-none mt-1">
+            <ReactMarkdown className="prose md:max-w-none mt-1 line-clamp-4">
               {props.eligibilityCriteria}
             </ReactMarkdown>
+
+            <ActionButton
+              className="flex flex-row-reverse items-center"
+              invert
+              linklook={true}
+              text={t("expand")}
+              // onClick={showHideMore}
+            >
+              <ChevronDownIcon
+                className="h-7 w-7 pt-1 text-custom-blue-link"
+                alt="show-more"
+              />
+            </ActionButton>
           </div>
         ) : null}
       </div>

@@ -21,7 +21,12 @@ export function ActionButton(props) {
         props.disabled
           ? "bg-gray-400 text-gray-700 border border-gray-500 "
           : props.className
-      } text-md focus:outline-none tracking-wide`}
+      } ${
+        props.linklook
+          ? "shadow-none underline bg-white text-custom-blue-link focus:text-custom-blue-dark hover:text-red-600 hover:bg-white"
+          : props.className
+      }
+      text-md focus:outline-none tracking-wide`}
       onClick={props.onClick}
       onMouseEnter={props.onHover}
       onMouseLeave={props.onMouseLeave}
@@ -112,6 +117,10 @@ ActionButton.propTypes = {
    * Enabled or disabled the button
    */
   disabled: PropTypes.bool,
+  /**
+   * Enabled or disabled the button
+   */
+  linklook: PropTypes.bool,
 };
 
 // some possible uses
