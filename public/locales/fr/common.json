@@ -19,6 +19,17 @@
   "clearFilters": "Effacer les filtres",
   "clearCategories": "(FR) Clear categories",
   "clearSituation": "(FR) Clear my situation",
+  "share": "(FR)Share",
+  "howMuchTitle": "(FR)How much",
+  "howMuchBody": "(FR)$500 per month",
+  "howLongTitle": "(FR)How long",
+  "howLongBody": "(FR)up to 2 months",
+  "howSoonTitle": "(FR)How soon",
+  "howSoonBody": "(FR)within 15 days of applying",
+  "overview": "(FR)Overview",
+  "amIEligible": "(FR)Am I eligible to apply?",
+  "youMayBe": "(FR)You may be eligible if...",
+  "contentMissing": "(FR)Content coming soon!",
   "benefits": {
     "benefit_1": {
       "title": "(FR) Benefit 1 Card",
