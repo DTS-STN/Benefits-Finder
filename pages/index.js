@@ -1,6 +1,7 @@
 import Head from "next/head";
 import { Layout } from "../components/organisms/Layout";
 import { getPopularCategories } from "../lib/categories";
+import { getUserLocationAssumption } from "../lib/assumptions";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useRouter } from "next/router";
@@ -10,9 +11,10 @@ import { CardGrid } from "../components/organisms/CardGrid";
 import { CriteriaGrid } from "../components/organisms/CriteriaGrid";
 import { SelectPicker } from "../components/atoms/SelectPicker";
 import { NumInput } from "../components/atoms/NumInput";
-import { useState, useEffect } from "react";
 import { Drawer } from "../components/organisms/Drawer";
 import { DrawerItem } from "../components/atoms/DrawerItem";
+import { LocationAssumption } from "../components/atoms/LocationAssumption";
+import { useState, useEffect } from "react";
 
 export async function getServerSideProps(context) {
   const locale = context.locale || context.defaultLocale;
@@ -92,6 +94,19 @@ export default function Home({ locale, popularCategories, situationCookie }) {
     setBenefits(data);
   }, [situation]);
 
+  //only make location assumptions if the situation cookie doesn't have anything set for location
+  if (situation?.location === undefined) {
+    getUserLocationAssumption()
+      .then((location) => {
+        setSituation((previousState) => ({
+          ...previousState,
+          ["location"]: location,
+        }));
+        document.getElementById("location-select").value = location;
+      })
+      .catch((situationCookie = { location: "non-null" })); //sets situation cookie to have a value so that the assumption message isn't displayed
+  }
+
   return (
     <Layout locale={locale} langUrl={asPath} noScroll={filterOpen}>
       <Head>
@@ -112,6 +127,11 @@ export default function Home({ locale, popularCategories, situationCookie }) {
           {/* your situation section */}
           <h2 className="mb-7">{t("eligibilityCriteria")}</h2>
           <DrawerItem summary={t("location.title")}>
+            <LocationAssumption
+              id={"location-assumption"}
+              location={situation.location}
+              isActive={situationCookie?.location === undefined}
+            />
             <SelectPicker
               id="location-select"
               ariaLabel="location-select"

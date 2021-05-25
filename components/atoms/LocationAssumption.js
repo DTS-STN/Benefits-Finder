@@ -5,13 +5,14 @@ export function LocationAssumption(props) {
   return !props.isActive ? (
     ""
   ) : (
-    <h4 id={props.id}>
+    <p id={props.id}>
       It seems like you are located in
       {" " +
         (!props?.location ? "someplace outside of Canada" : props.location) +
         " "}
-      based on your IP address. Please confirm or modify this information.
-    </h4>
+      based on your IP address. <br />
+      Please confirm or modify this information.
+    </p>
   );
 }
 
