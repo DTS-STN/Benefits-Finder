@@ -66,7 +66,7 @@ export function BenefitCard(props) {
         {props.description ? (
           <p className="prose md:max-w-none">{props.description}</p>
         ) : (
-          t("contentMissing")
+          <p className="prose">{t("contentMissing")}</p>
         )}
 
         {/* don't show the criteria section if there isn't anything in strapi for EligibilityCriteria */}
@@ -81,9 +81,7 @@ export function BenefitCard(props) {
               {props.eligibilityCriteria}
             </ReactMarkdown>
           </div>
-        ) : (
-          ""
-        )}
+        ) : null}
       </div>
       {/* benefit desctiption end */}
 
