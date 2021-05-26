@@ -1,6 +1,6 @@
 /* Details under the summary fade-in animation (when opening the summary) */
 /* Start */
-details[open] summary ~ * {
+details[open] .drawerSummary ~ * {
   animation: open 0.3s ease-in-out;
 }
   
@@ -12,14 +12,14 @@ details[open] summary ~ * {
     opacity: 1;
   }
 }
-details summary::-webkit-details-marker {
+details .drawerSummary::-webkit-details-marker {
   display: none;
 }
 /* End */
 
 /* Closed drawer item */
 /* Start */
-details summary:after {
+details .drawerSummary:after {
   content: "+";
   position: absolute;
   font-size: 1.75rem;
@@ -33,7 +33,7 @@ details summary:after {
 
 /* Opened drawer item */
 /* Start */
-details[open] summary:after {
+details[open] .drawerSummary:after {
   transform: rotate(45deg);
   font-size: 2rem;
   right: -4px
