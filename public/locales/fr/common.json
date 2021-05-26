@@ -30,6 +30,8 @@
   "amIEligible": "(FR)Am I eligible to apply?",
   "youMayBe": "(FR)You may be eligible if...",
   "contentMissing": "(FR)Content coming soon!",
+  "collapse": "(FR)Collapse",
+  "expand": "(FR)Expand",
   "benefits": {
     "benefit_1": {
       "title": "(FR) Benefit 1 Card",

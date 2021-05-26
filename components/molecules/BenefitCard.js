@@ -11,6 +11,7 @@ import {
   ClockIcon,
   CurrencyDollarIcon,
   ChevronDownIcon,
+  ChevronUpIcon,
 } from "@heroicons/react/solid";
 import { Share } from "../atoms/Share";
 
@@ -84,28 +85,34 @@ export function BenefitCard(props) {
 
             <ReactMarkdown
               className={`prose md:max-w-none mt-1 ${
-                expanded === true ? "line-clamp-none" : "line-clamp-4"
+                expanded === true ? "line-clamp-3" : "line-clamp-none"
               }`}
             >
               {props.eligibilityCriteria}
             </ReactMarkdown>
 
             <ActionButton
-              className={`flex flex-row-reverse items-center border-2 ${
-                expanded === true ? "border-green-500" : "border-red-500"
-              }`}
+              className="flex  items-center relative group font-body group-hover:text-red-300 group-focus:text-link-visited"
               invert
               linklook={true}
-              text={t("expand")}
+              text={`${expanded === true ? t("expand") : t("collapse")}`}
+              iconObject={
+                expanded === true ? (
+                  <ChevronDownIcon
+                    className="h-6 w-6  text-link-unvisited group-focus:text-link-visited group-hover:text-link-hover"
+                    alt="show-more"
+                  />
+                ) : (
+                  <ChevronUpIcon
+                    className=" h-6 w-6 text-link-unvisited absolute inset-y-2 -left-2 group-focus:text-link-visited group-hover:text-link-hover"
+                    alt="show-more"
+                  />
+                )
+              }
               onClick={() => {
                 expanded === true ? setExpanded(false) : setExpanded(true);
               }}
-            >
-              <ChevronDownIcon
-                className="h-7 w-7 pt-1 text-custom-blue-link"
-                alt="show-more"
-              />
-            </ActionButton>
+            ></ActionButton>
           </div>
         ) : null}
       </div>

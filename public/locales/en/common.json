@@ -30,6 +30,8 @@
   "amIEligible": "Am I eligible to apply?",
   "youMayBe": "You may be eligible if...",
   "contentMissing": "Content coming soon!",
+  "collapse": "Collapse",
+  "expand": "Expand",
 
   "benefits": {
     "benefit_1": {

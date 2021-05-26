@@ -13,6 +13,7 @@ export const Rounded = Template.bind({});
 export const WithCounter = Template.bind({});
 export const StartAgain = Template.bind({});
 export const Disabled = Template.bind({});
+export const Linklook = Template.bind({});
 
 Primary.args = {
   text: "Example Action 🚀",
@@ -21,6 +22,12 @@ Primary.args = {
 Rounded.args = {
   text: "Example Rounded Action 🚀",
   rounded: true,
+};
+
+Linklook.args = {
+  text: "Example Link Look 🚀",
+  linklook: true,
+  className: "shadow-none underline bg-white",
 };
 
 StartAgain.args = {

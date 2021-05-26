@@ -7,7 +7,7 @@ import PropTypes from "prop-types";
 export function ActionButton(props) {
   return (
     <button
-      className={`flex mx-auto ${
+      className={`flex flex-row-reverse mx-auto ${
         props.rounded
           ? "rounded-full py-2 px-4"
           : props.notFullRound
@@ -23,7 +23,7 @@ export function ActionButton(props) {
           : props.className
       } ${
         props.linklook
-          ? "shadow-none underline bg-white text-custom-blue-link focus:text-custom-blue-dark hover:text-red-600 hover:bg-white"
+          ? " shadow-none underline bg-white text-link-unvisited focus:text-link-visited hover:text-link-hover hover:bg-white"
           : props.className
       }
       text-md focus:outline-none tracking-wide`}
@@ -38,6 +38,7 @@ export function ActionButton(props) {
       {props.icon ? (
         <span className={props.icon} data-testid={props.dataTestId} />
       ) : undefined}
+      {props.iconObject}
       {props.text}
       {props.children}
     </button>
@@ -53,6 +54,10 @@ ActionButton.propTypes = {
    * This will add a img inside the button when needed
    */
   icon: PropTypes.string,
+  /**
+   * This will add a img inside the button when needed
+   */
+  iconObject: PropTypes.object,
   /**
    * The text that the button will display
    */

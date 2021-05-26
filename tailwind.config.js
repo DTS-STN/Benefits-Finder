@@ -53,7 +53,7 @@ module.exports = {
         "footer-background-color": "#f8f8f8",
         "link-unvisited": "#284162",
         "link-hover": "#0000EE",
-        "link-visited": "#29156B",
+        "link-visited": "#7834BC",
       },
       boxShadow: {
         cards: '0px 2px 8px rgba(0,0,0,0.25)',
@@ -63,8 +63,8 @@ module.exports = {
   },
   variants: {
     extend: {
-      backgroundColor: ["active"],
-      textColor: ["visited"],
+      backgroundColor: ["active", "group-focus"],
+      textColor: ["visited", "group-focus"],
     },
   },
   plugins: [
