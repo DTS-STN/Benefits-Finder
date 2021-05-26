@@ -5,6 +5,7 @@ import ReactMarkdown from "react-markdown";
 import { ActionButton } from "../atoms/ActionButton";
 import { EntitlementInfo } from "../atoms/EntitlementInfo";
 import { EntitlementBox } from "../atoms/EntitlementBox";
+import { useState } from "react";
 import {
   ChartPieIcon,
   ClockIcon,
@@ -15,6 +16,7 @@ import { Share } from "../atoms/Share";
 
 export function BenefitCard(props) {
   const { t } = useTranslation("common");
+  const [expanded, setExpanded] = useState([]);
 
   return (
     <div
@@ -85,11 +87,11 @@ export function BenefitCard(props) {
             </ReactMarkdown>
 
             <ActionButton
-              className="flex flex-row-reverse items-center"
+              className={`flex flex-row-reverse items-center border-2 ${expanded.includes(props.id)?"border-green-500":"border-red-500"}`}
               invert
               linklook={true}
               text={t("expand")}
-              // onClick={showHideMore}
+              onClick={() => {expanded.includes(props.id)?console.log("Remove id from list"):setExpanded(...expanded, [props.id])}}
             >
               <ChevronDownIcon
                 className="h-7 w-7 pt-1 text-custom-blue-link"
