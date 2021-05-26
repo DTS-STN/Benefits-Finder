@@ -16,7 +16,7 @@ import { Share } from "../atoms/Share";
 
 export function BenefitCard(props) {
   const { t } = useTranslation("common");
-  const [expanded, setExpanded] = useState([]);
+  const [expanded, setExpanded] = useState(true);
 
   return (
     <div
@@ -82,16 +82,24 @@ export function BenefitCard(props) {
             </p>
             <span className="text-sm font-semibold pl-1">{t("youMayBe")}</span>
 
-            <ReactMarkdown className="prose md:max-w-none mt-1 line-clamp-4">
+            <ReactMarkdown
+              className={`prose md:max-w-none mt-1 ${
+                expanded === true ? "line-clamp-none" : "line-clamp-4"
+              }`}
+            >
               {props.eligibilityCriteria}
             </ReactMarkdown>
 
             <ActionButton
-              className={`flex flex-row-reverse items-center border-2 ${expanded.includes(props.id)?"border-green-500":"border-red-500"}`}
+              className={`flex flex-row-reverse items-center border-2 ${
+                expanded === true ? "border-green-500" : "border-red-500"
+              }`}
               invert
               linklook={true}
               text={t("expand")}
-              onClick={() => {expanded.includes(props.id)?console.log("Remove id from list"):setExpanded(...expanded, [props.id])}}
+              onClick={() => {
+                expanded === true ? setExpanded(false) : setExpanded(true);
+              }}
             >
               <ChevronDownIcon
                 className="h-7 w-7 pt-1 text-custom-blue-link"
