@@ -9,7 +9,3 @@ export default {
 const Template = (args) => <EntitlementBox {...args} />;
 
 export const Primary = Template.bind({});
-
-Primary.args = {
-  children: "Children Text",
-};
