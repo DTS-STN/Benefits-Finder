@@ -2,6 +2,7 @@ import Head from "next/head";
 import { Layout } from "../components/organisms/Layout";
 import { getPopularCategories } from "../lib/categories";
 import { getUserLocationAssumption } from "../lib/assumptions";
+import { getBundles } from "../lib/bundles";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useRouter } from "next/router";
@@ -19,7 +20,7 @@ import { useState, useEffect } from "react";
 export async function getServerSideProps(context) {
   const locale = context.locale || context.defaultLocale;
 
-  const popularCategories = await getPopularCategories(locale);
+  const lifeBundles = await getBundles(locale);
 
   const situation = JSON.parse(context.req.cookies?.situation ?? "{}");
 
@@ -27,17 +28,17 @@ export async function getServerSideProps(context) {
     props: {
       locale,
       ...(await serverSideTranslations(locale, ["common"])),
-      popularCategories,
+      lifeBundles,
       situationCookie: situation,
     },
   };
 }
 
-export default function Home({ locale, popularCategories, situationCookie }) {
+export default function Home({ locale, lifeBundles, situationCookie }) {
   const { t } = useTranslation("common");
   const { asPath } = useRouter();
 
-  const [categories, setCategories] = useState([]);
+  const [bundles, setBundles] = useState([]);
 
   const [situation, setSituation] = useState({
     location: situationCookie.location,
@@ -48,14 +49,18 @@ export default function Home({ locale, popularCategories, situationCookie }) {
 
   const [filterOpen, setFilterOpen] = useState(false);
 
-  const clickPopularCategory = (id) => {
-    if (!categories.includes(id)) {
-      setCategories((previousState) => [...previousState, id]);
+  const clickBundle = (id) => {
+    if (!bundles.includes(id)) {
+      setBundles((previousState) => [...previousState, id]);
+    } else {
+      setBundles((previousState) => {
+        return previousState.filter((i) => i !== id);
+      });
     }
   };
 
-  const clearCategories = () => {
-    setCategories([]);
+  const clearBundles = () => {
+    setBundles([]);
   };
 
   const handleSituationChange = (e) => {
@@ -91,8 +96,36 @@ export default function Home({ locale, popularCategories, situationCookie }) {
     });
 
     const data = await response.json();
-    setBenefits(data);
-  }, [situation]);
+    let filteredData = [];
+    // if bundles have been selected
+    if (bundles.length > 0) {
+      // iterate through all our benefits
+      for (let i = 0; i < data.length; i++) {
+        const benefit = data[i].benefit;
+        // if the benefit is part of a bundle
+        if (benefit.bundles && benefit.bundles.length > 0) {
+          // iterate over the bundles related to the benefit
+          for (let j = 0; j < benefit.bundles.length; j++) {
+            // if the benefits are included in the list of selected bundles
+            if (bundles.includes(benefit.bundles[j].toString())) {
+              // check to see if this benefit has aleady been pushed into the filtered data
+              if (
+                filteredData
+                  .map((fd) => {
+                    return fd.benefit.id;
+                  })
+                  .indexOf(benefit.id) < 0
+              ) {
+                // if it hasn't, add it to the list
+                filteredData.push({ benefit: benefit });
+              }
+            }
+          }
+        }
+      }
+    }
+    setBenefits(filteredData.length > 0 ? filteredData : data);
+  }, [situation, bundles]);
 
   //only make location assumptions if the situation cookie doesn't have anything set for location
   if (situation?.location === undefined) {
@@ -215,36 +248,35 @@ export default function Home({ locale, popularCategories, situationCookie }) {
         <div className="lg:w-3/4">
           {/*rest of page (content section)*/}
 
-          <section id="popular_categories" className="layout-container py-6">
-            <h2 className="text-2xl text-bold py-3">
-              {t("popularCategories")}
-            </h2>
+          <section id="life_bundles" className="layout-container py-6">
+            <h2 className="text-2xl text-bold py-3">{t("lifeBundles")}</h2>
             <CardGrid>
-              {popularCategories.map((cat) => {
+              {/* TODO: Replace PopularCategoryCard component with a bundle component */}
+              {lifeBundles.map((bundle) => {
                 return (
                   <PopularCategoryCard
-                    key={cat.id}
-                    id={`${cat.id}`}
-                    title={cat.title}
-                    description={cat.description}
-                    imgSource={cat.imgSource}
-                    imgAltText={cat.imgAltText}
-                    onClick={clickPopularCategory}
-                    selected={categories.includes(cat.id.toString())}
+                    key={bundle.id}
+                    id={`${bundle.id}`}
+                    title={bundle.title}
+                    description={bundle.description}
+                    imgSource={bundle.imgSource}
+                    imgAltText={bundle.imgAltText}
+                    onClick={clickBundle}
+                    selected={bundles.includes(bundle.id.toString())}
                   />
                 );
               })}
             </CardGrid>
-            {/* Clear categories */}
+            {/* Clear bundles */}
             <button
               type="button"
-              onClick={clearCategories}
+              onClick={clearBundles}
               className={
                 "hover:bg-red-700 hover:text-white mt-2 py-2 px-4 border rounded"
               }
             >
               <span className={"icon-cross pr-2"} />
-              {t("clearCategories")}
+              {t("clearBundles")}
             </button>
           </section>
           {/* benefit card section start */}
@@ -264,7 +296,7 @@ export default function Home({ locale, popularCategories, situationCookie }) {
                     applyLink={benefit.applyLink}
                     type={benefit.type}
                     program={benefit.program}
-                    collections={benefit.collections}
+                    bundles={benefit.bundles}
                     eligibility={benefitData.eligibility === 0 ? false : true}
                   />
                 );

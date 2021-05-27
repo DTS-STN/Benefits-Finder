@@ -34,7 +34,8 @@
   "outsideCanada": "someplace outside of Canada",
   "basedOnIP": "based on your IP address",
   "confirmModify": "Please confirm or modify this information",
-
+  "lifeBundles": "Life bundles",
+  "clearBundles": "Clear bundles",
   "benefits": {
     "benefit_1": {
       "title": "Benefit 1 Card",

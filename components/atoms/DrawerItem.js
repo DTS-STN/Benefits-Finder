@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 export function DrawerItem(props) {
   return (
     <details className="pt-7 mt-7 border-t border-gray-300">
-      <summary className="w-full relative cursor-pointer list-none px-0 text-base font-semibold ">
+      <summary className="drawerSummary w-full relative cursor-pointer list-none px-0 text-base font-semibold ">
         {props.summary}
       </summary>
       {props.children}
