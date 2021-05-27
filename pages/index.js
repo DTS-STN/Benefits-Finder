@@ -131,6 +131,10 @@ export default function Home({ locale, popularCategories, situationCookie }) {
               id={"location-assumption"}
               location={situation.location}
               isActive={situationCookie?.location === undefined}
+              locationAssumption={t("locationAssumption")}
+              basedOnIP={t("basedOnIP")}
+              outsideCanada={t("outsideCanada")}
+              confirmModify={t("confirmModify")}
             />
             <SelectPicker
               id="location-select"
