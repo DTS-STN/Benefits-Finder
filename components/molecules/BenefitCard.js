@@ -40,26 +40,34 @@ export function BenefitCard(props) {
       <EntitlementBox>
         <EntitlementInfo
           icon={
-            <CurrencyDollarIcon className=" text-green-800" alt="dollar-sign" />
+            <CurrencyDollarIcon
+              className=" text-green-dark"
+              alt="dollar-sign"
+            />
           }
-          bgColor="bg-green-100"
-          textColor="text-green-900"
+          bgColor="bg-green-light"
+          textColor="text-green-dark"
           title={t("howMuchTitle")}
           body={t("howMuchBody")}
           dataCy="how-much"
         />
         <EntitlementInfo
-          icon={<ChartPieIcon className=" text-blue-800" alt="piechart-icon" />}
-          bgColor="bg-blue-100"
-          textColor="text-blue-900"
+          icon={
+            <ChartPieIcon
+              className=" text-custom-blue-bright"
+              alt="piechart-icon"
+            />
+          }
+          bgColor="bg-custom-blue-pale"
+          textColor="text-custom-blue-bright"
           title={t("howLongTitle")}
           body={t("howLongBody")}
           dataCy="how-long"
         />
         <EntitlementInfo
-          icon={<ClockIcon className=" text-red-800" alt="clock-icon" />}
-          bgColor="bg-red-100"
-          textColor="text-red-900"
+          icon={<ClockIcon className=" text-brown-dark" alt="clock-icon" />}
+          bgColor="bg-brown-lighter"
+          textColor="text-brown-dark"
           title={t("howSoonTitle")}
           body={t("howSoonBody")}
           dataCy="how-soon"
@@ -92,7 +100,7 @@ export function BenefitCard(props) {
             </ReactMarkdown>
 
             <ActionButton
-              className="flex  items-center relative group font-body group-hover:text-red-300 group-focus:text-link-visited"
+              className="flex  items-center group font-body group-hover:text-red-300 group-focus:text-link-visited"
               invert
               linklook={true}
               text={`${expanded === true ? t("expand") : t("collapse")}`}
@@ -104,7 +112,7 @@ export function BenefitCard(props) {
                   />
                 ) : (
                   <ChevronUpIcon
-                    className=" h-6 w-6 text-link-unvisited absolute inset-y-2 -left-2 group-focus:text-link-visited group-hover:text-link-hover"
+                    className=" h-6 w-6 text-link-unvisited group-focus:text-link-visited group-hover:text-link-hover"
                     alt="show-more"
                   />
                 )
