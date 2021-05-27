@@ -32,7 +32,8 @@
   "contentMissing": "Content coming soon!",
   "collapse": "Collapse",
   "expand": "Expand",
-
+  "lifeBundles": "Life bundles",
+  "clearBundles": "Clear bundles",
   "benefits": {
     "benefit_1": {
       "title": "Benefit 1 Card",

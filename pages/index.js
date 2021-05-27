@@ -1,6 +1,6 @@
 import Head from "next/head";
 import { Layout } from "../components/organisms/Layout";
-import { getPopularCategories } from "../lib/categories";
+import { getBundles } from "../lib/bundles";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useRouter } from "next/router";
@@ -17,7 +17,7 @@ import { DrawerItem } from "../components/atoms/DrawerItem";
 export async function getServerSideProps(context) {
   const locale = context.locale || context.defaultLocale;
 
-  const popularCategories = await getPopularCategories(locale);
+  const lifeBundles = await getBundles(locale);
 
   const situation = JSON.parse(context.req.cookies?.situation ?? "{}");
 
@@ -25,17 +25,17 @@ export async function getServerSideProps(context) {
     props: {
       locale,
       ...(await serverSideTranslations(locale, ["common"])),
-      popularCategories,
+      lifeBundles,
       situationCookie: situation,
     },
   };
 }
 
-export default function Home({ locale, popularCategories, situationCookie }) {
+export default function Home({ locale, lifeBundles, situationCookie }) {
   const { t } = useTranslation("common");
   const { asPath } = useRouter();
 
-  const [categories, setCategories] = useState([]);
+  const [bundles, setBundles] = useState([]);
 
   const [situation, setSituation] = useState({
     location: situationCookie.location,
@@ -46,14 +46,14 @@ export default function Home({ locale, popularCategories, situationCookie }) {
 
   const [filterOpen, setFilterOpen] = useState(false);
 
-  const clickPopularCategory = (id) => {
-    if (!categories.includes(id)) {
-      setCategories((previousState) => [...previousState, id]);
+  const clickBundle = (id) => {
+    if (!bundles.includes(id)) {
+      setBundles((previousState) => [...previousState, id]);
     }
   };
 
-  const clearCategories = () => {
-    setCategories([]);
+  const clearBundles = () => {
+    setBundles([]);
   };
 
   const handleSituationChange = (e) => {
@@ -191,12 +191,11 @@ export default function Home({ locale, popularCategories, situationCookie }) {
         <div className="lg:w-3/4">
           {/*rest of page (content section)*/}
 
-          <section id="popular_categories" className="layout-container py-6">
-            <h2 className="text-2xl text-bold py-3">
-              {t("popularCategories")}
-            </h2>
+          <section id="life_bundles" className="layout-container py-6">
+            <h2 className="text-2xl text-bold py-3">{t("lifeBundles")}</h2>
             <CardGrid>
-              {popularCategories.map((cat) => {
+              {/* TODO: Replace PopularCategoryCard component with a bundle component */}
+              {lifeBundles.map((cat) => {
                 return (
                   <PopularCategoryCard
                     key={cat.id}
@@ -205,22 +204,22 @@ export default function Home({ locale, popularCategories, situationCookie }) {
                     description={cat.description}
                     imgSource={cat.imgSource}
                     imgAltText={cat.imgAltText}
-                    onClick={clickPopularCategory}
-                    selected={categories.includes(cat.id.toString())}
+                    onClick={clickBundle}
+                    selected={bundles.includes(cat.id.toString())}
                   />
                 );
               })}
             </CardGrid>
-            {/* Clear categories */}
+            {/* Clear bundles */}
             <button
               type="button"
-              onClick={clearCategories}
+              onClick={clearBundles}
               className={
                 "hover:bg-red-700 hover:text-white mt-2 py-2 px-4 border rounded"
               }
             >
               <span className={"icon-cross pr-2"} />
-              {t("clearCategories")}
+              {t("clearBundles")}
             </button>
           </section>
           {/* benefit card section start */}
