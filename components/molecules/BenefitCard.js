@@ -2,17 +2,23 @@ import { ButtonLink } from "../atoms/ButtonLink";
 import PropTypes from "prop-types";
 import { useTranslation } from "next-i18next";
 import ReactMarkdown from "react-markdown";
+import { ActionButton } from "../atoms/ActionButton";
 import { EntitlementInfo } from "../atoms/EntitlementInfo";
 import { EntitlementBox } from "../atoms/EntitlementBox";
+import { useState } from "react";
 import {
   ChartPieIcon,
   ClockIcon,
   CurrencyDollarIcon,
+  ChevronDownIcon,
+  ChevronUpIcon,
 } from "@heroicons/react/solid";
 import { Share } from "../atoms/Share";
 
 export function BenefitCard(props) {
   const { t } = useTranslation("common");
+  const [expanded, setExpanded] = useState(true);
+
   return (
     <div
       className={` flex flex-col  h-50 w-full hover:shadow-cards border border-b-4 border-green-600 pl-3 pr-3
@@ -27,33 +33,45 @@ export function BenefitCard(props) {
       </div>
       <div className="my-2 pb-1">
         <small className="bg-gray-800 text-white uppercase px-1 py-1 rounded-sm">
-          {props.type}
+          {props.type ? (
+            <span>{props.type}</span>
+          ) : (
+            <span>{t("contentMissing")}</span>
+          )}
         </small>
       </div>
       {/* Entitlement info */}
       <EntitlementBox>
         <EntitlementInfo
           icon={
-            <CurrencyDollarIcon className=" text-green-800" alt="dollar-sign" />
+            <CurrencyDollarIcon
+              className=" text-green-dark"
+              alt="dollar-sign"
+            />
           }
-          bgColor="bg-green-100"
-          textColor="text-green-900"
+          bgColor="bg-green-light"
+          textColor="text-green-dark"
           title={t("howMuchTitle")}
           body={t("howMuchBody")}
           dataCy="how-much"
         />
         <EntitlementInfo
-          icon={<ChartPieIcon className=" text-blue-800" alt="piechart-icon" />}
-          bgColor="bg-blue-100"
-          textColor="text-blue-900"
+          icon={
+            <ChartPieIcon
+              className=" text-custom-blue-bright"
+              alt="piechart-icon"
+            />
+          }
+          bgColor="bg-custom-blue-pale"
+          textColor="text-custom-blue-bright"
           title={t("howLongTitle")}
           body={t("howLongBody")}
           dataCy="how-long"
         />
         <EntitlementInfo
-          icon={<ClockIcon className=" text-red-800" alt="clock-icon" />}
-          bgColor="bg-red-100"
-          textColor="text-red-900"
+          icon={<ClockIcon className=" text-brown-dark" alt="clock-icon" />}
+          bgColor="bg-brown-lighter"
+          textColor="text-brown-dark"
           title={t("howSoonTitle")}
           body={t("howSoonBody")}
           dataCy="how-soon"
@@ -77,9 +95,36 @@ export function BenefitCard(props) {
             </p>
             <span className="text-sm font-semibold pl-1">{t("youMayBe")}</span>
 
-            <ReactMarkdown className="prose md:max-w-none mt-1">
+            <ReactMarkdown
+              className={`prose md:max-w-none mt-1 ${
+                expanded === true ? "line-clamp-3" : "line-clamp-none"
+              }`}
+            >
               {props.eligibilityCriteria}
             </ReactMarkdown>
+
+            <ActionButton
+              className="flex  items-center group font-body group-hover:text-red-300 group-focus:text-link-visited"
+              invert
+              linklook={true}
+              text={`${expanded === true ? t("expand") : t("collapse")}`}
+              iconObject={
+                expanded === true ? (
+                  <ChevronDownIcon
+                    className="h-6 w-6  text-link-unvisited group-focus:text-link-visited group-hover:text-link-hover"
+                    alt="show-more"
+                  />
+                ) : (
+                  <ChevronUpIcon
+                    className=" h-6 w-6 text-link-unvisited group-focus:text-link-visited group-hover:text-link-hover"
+                    alt="show-more"
+                  />
+                )
+              }
+              onClick={() => {
+                expanded === true ? setExpanded(false) : setExpanded(true);
+              }}
+            ></ActionButton>
           </div>
         ) : null}
       </div>
