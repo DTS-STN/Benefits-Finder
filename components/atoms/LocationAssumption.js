@@ -7,9 +7,7 @@ export function LocationAssumption(props) {
   ) : (
     <p id={props.id}>
       {props.locationAssumption}
-      {" " +
-        (!props?.location ? props.outsideCanada : props.location) +
-        " "}
+      {" " + (!props?.location ? props.outsideCanada : props.location) + " "}
       {props.basedOnIP} <br />
       {props.confirmModify}
     </p>
@@ -31,7 +29,7 @@ LocationAssumption.propTypes = {
    * The assumed location of the user
    */
   location: PropTypes.string,
-  
+
   /*
    * Initial part of the location assumption message "It seems like you are located in"
    */
