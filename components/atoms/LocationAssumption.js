@@ -6,12 +6,12 @@ export function LocationAssumption(props) {
     ""
   ) : (
     <p id={props.id}>
-      It seems like you are located in
+      {props.locationAssumption}
       {" " +
-        (!props?.location ? "someplace outside of Canada" : props.location) +
+        (!props?.location ? props.outsideCanada : props.location) +
         " "}
-      based on your IP address. <br />
-      Please confirm or modify this information.
+      {props.basedOnIP} <br />
+      {props.confirmModify}
     </p>
   );
 }
@@ -31,4 +31,24 @@ LocationAssumption.propTypes = {
    * The assumed location of the user
    */
   location: PropTypes.string,
+  
+  /*
+   * Initial part of the location assumption message "It seems like you are located in"
+   */
+  locationAssumption: PropTypes.string.isRequired,
+
+  /*
+   * The message to display when the user is outside canada "someplace outside of canada"
+   */
+  outsideCanada: PropTypes.string.isRequired,
+
+  /*
+   * Notifies the user that the information is collected from their IP address "based on your IP address"
+   */
+  basedOnIP: PropTypes.string.isRequired,
+
+  /*
+   * Prompts user to confirm/modify info "Please confirm or modify this information."
+   */
+  confirmModify: PropTypes.string.isRequired,
 };
