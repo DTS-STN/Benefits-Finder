@@ -237,7 +237,7 @@ export default function Home({ locale, lifeBundles, situationCookie }) {
                     imgSource={bundle.imgSource}
                     imgAltText={bundle.imgAltText}
                     onClick={clickBundle}
-                    selected={bundles.includes(bundle.id)}
+                    selected={bundles.includes(bundle.id.toString())}
                   />
                 );
               })}
