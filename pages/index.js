@@ -49,6 +49,10 @@ export default function Home({ locale, lifeBundles, situationCookie }) {
   const clickBundle = (id) => {
     if (!bundles.includes(id)) {
       setBundles((previousState) => [...previousState, id]);
+    } else {
+      setBundles((previousState) => {
+        return previousState.filter((i) => i !== id);
+      });
     }
   };
 
@@ -89,8 +93,36 @@ export default function Home({ locale, lifeBundles, situationCookie }) {
     });
 
     const data = await response.json();
-    setBenefits(data);
-  }, [situation]);
+    let filteredData = [];
+    // if bundles have been selected
+    if (bundles.length > 0) {
+      // iterate through all our benefits
+      for (let i = 0; i < data.length; i++) {
+        const benefit = data[i].benefit;
+        // if the benefit is part of a bundle
+        if (benefit.bundles && benefit.bundles.length > 0) {
+          // iterate over the bundles related to the benefit
+          for (let j = 0; j < benefit.bundles.length; j++) {
+            // if the benefits are included in the list of selected bundles
+            if (bundles.includes(benefit.bundles[j].toString())) {
+              // check to see if this benefit has aleady been pushed into the filtered data
+              if (
+                filteredData
+                  .map((fd) => {
+                    return fd.benefit.id;
+                  })
+                  .indexOf(benefit.id) < 0
+              ) {
+                // if it hasn't, add it to the list
+                filteredData.push({ benefit: benefit });
+              }
+            }
+          }
+        }
+      }
+    }
+    setBenefits(filteredData.length > 0 ? filteredData : data);
+  }, [situation, bundles]);
 
   return (
     <Layout locale={locale} langUrl={asPath} noScroll={filterOpen}>
@@ -195,17 +227,17 @@ export default function Home({ locale, lifeBundles, situationCookie }) {
             <h2 className="text-2xl text-bold py-3">{t("lifeBundles")}</h2>
             <CardGrid>
               {/* TODO: Replace PopularCategoryCard component with a bundle component */}
-              {lifeBundles.map((cat) => {
+              {lifeBundles.map((bundle) => {
                 return (
                   <PopularCategoryCard
-                    key={cat.id}
-                    id={`${cat.id}`}
-                    title={cat.title}
-                    description={cat.description}
-                    imgSource={cat.imgSource}
-                    imgAltText={cat.imgAltText}
+                    key={bundle.id}
+                    id={`${bundle.id}`}
+                    title={bundle.title}
+                    description={bundle.description}
+                    imgSource={bundle.imgSource}
+                    imgAltText={bundle.imgAltText}
                     onClick={clickBundle}
-                    selected={bundles.includes(cat.id.toString())}
+                    selected={bundles.includes(bundle.id.toString())}
                   />
                 );
               })}
@@ -239,7 +271,7 @@ export default function Home({ locale, lifeBundles, situationCookie }) {
                     applyLink={benefit.applyLink}
                     type={benefit.type}
                     program={benefit.program}
-                    collections={benefit.collections}
+                    bundles={benefit.bundles}
                     eligibility={benefitData.eligibility === 0 ? false : true}
                   />
                 );

@@ -126,9 +126,9 @@ BenefitCard.propTypes = {
   program: PropTypes.string,
 
   /**
-   * which collections the benefit belongs to
+   * which bundles the benefit belongs to
    */
-  collections: PropTypes.arrayOf(PropTypes.string),
+  bundles: PropTypes.arrayOf(PropTypes.number),
   /**
    * eligibility criteria that belongs to a benefit
    */
