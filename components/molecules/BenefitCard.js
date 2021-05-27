@@ -33,7 +33,11 @@ export function BenefitCard(props) {
       </div>
       <div className="my-2 pb-1">
         <small className="bg-gray-800 text-white uppercase px-1 py-1 rounded-sm">
-          {props.type}
+          {props.type ? (
+            <span>{props.type}</span>
+          ) : (
+            <span>{t("contentMissing")}</span>
+          )}
         </small>
       </div>
       {/* Entitlement info */}
