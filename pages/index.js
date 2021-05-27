@@ -1,6 +1,5 @@
 import Head from "next/head";
 import { Layout } from "../components/organisms/Layout";
-import { getPopularCategories } from "../lib/categories";
 import { getUserLocationAssumption } from "../lib/assumptions";
 import { getBundles } from "../lib/bundles";
 import { useTranslation } from "next-i18next";
