@@ -37,6 +37,8 @@ module.exports = {
           light: "#1492B4",
           dark: "#26374a",
           link: "#0535d2",
+          pale: "#E1F0F8",
+          bright: "#194D7B"
         },
         "gray-light-200": "#f5f5f5",
         "gray-light-100": "#e0e0e0",
@@ -53,7 +55,13 @@ module.exports = {
         "footer-background-color": "#f8f8f8",
         "link-unvisited": "#284162",
         "link-hover": "#0000EE",
-        "link-visited": "#29156B",
+        "link-visited": "#7834BC",
+        "brown-light": "#FCD8B3",
+        "brown-lighter": "#FCE8D9",
+        "brown-dark": "#803500",
+        "green-light": "#DFF0D8",
+        "green-dark": "#333333",
+
       },
       boxShadow: {
         cards: '0px 2px 8px rgba(0,0,0,0.25)',
@@ -63,13 +71,14 @@ module.exports = {
   },
   variants: {
     extend: {
-      backgroundColor: ["active"],
-      textColor: ["visited"],
+      backgroundColor: ["active", "group-focus"],
+      textColor: ["visited", "group-focus"],
     },
   },
   plugins: [
     require("@tailwindcss/typography"),
     require("@tailwindcss/forms"),
+    require("@tailwindcss/line-clamp")
     // ...
   ],
 };

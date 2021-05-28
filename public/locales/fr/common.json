@@ -34,6 +34,8 @@
   "outsideCanada": "(FR) someplace outside of Canada",
   "basedOnIP": "(FR) based on your IP address",
   "confirmModify": "(FR) Please confirm or modify this information",
+  "collapse": "(FR)Collapse",
+  "expand": "(FR)Expand",
   "lifeBundles": "(FR) Life bundles",
   "clearBundles": "(FR) Clear bundles",
   "benefits": {

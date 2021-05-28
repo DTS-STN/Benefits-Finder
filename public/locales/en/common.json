@@ -34,6 +34,8 @@
   "outsideCanada": "someplace outside of Canada",
   "basedOnIP": "based on your IP address",
   "confirmModify": "Please confirm or modify this information",
+  "collapse": "Collapse",
+  "expand": "Expand",
   "lifeBundles": "Life bundles",
   "clearBundles": "Clear bundles",
   "benefits": {
