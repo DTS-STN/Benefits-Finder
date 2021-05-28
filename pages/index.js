@@ -147,20 +147,6 @@ export default function Home({ locale, lifeBundles, situationCookie, assume }) {
     setBenefits(filteredData.length > 0 ? filteredData : data);
   }, [situation, bundles]);
 
-  /*
-  //only make location assumptions if the situation cookie doesn't have anything set for location
-  if (situation?.location === undefined) {
-    getUserLocationAssumption()
-      .then((location) => {
-        setSituation((previousState) => ({
-          ...previousState,
-          ["location"]: location,
-        }));
-        document.getElementById("location-select").value = location;
-      })
-      .catch((situationCookie = { location: "non-null" })); //sets situation cookie to have a value so that the assumption message isn't displayed
-  }  */
-
   return (
     <Layout locale={locale} langUrl={asPath} noScroll={filterOpen}>
       <Head>
@@ -182,13 +168,8 @@ export default function Home({ locale, lifeBundles, situationCookie, assume }) {
           <h2 className="mb-7">{t("eligibilityCriteria")}</h2>
           <DrawerItem summary={t("location.title")}>
             <LocationAssumption
-              id={"location-assumption"}
               location={situation.location}
               isActive={assume}
-              locationAssumption={t("locationAssumption")}
-              basedOnIP={t("basedOnIP")}
-              outsideCanada={t("outsideCanada")}
-              confirmModify={t("confirmModify")}
             />
             <SelectPicker
               id="location-select"
