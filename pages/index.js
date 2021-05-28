@@ -1,3 +1,4 @@
+import cookie from "cookie";
 import Head from "next/head";
 import { Layout } from "../components/organisms/Layout";
 import { getUserLocationAssumption } from "../lib/assumptions";
@@ -21,7 +22,26 @@ export async function getServerSideProps(context) {
 
   const lifeBundles = await getBundles(locale);
 
-  const situation = JSON.parse(context.req.cookies?.situation ?? "{}");
+  let situation;
+  const assume = context.req.cookies?.situation === undefined; //if the cookie doesn't exist, we'll assume the location based on ip
+
+  if (assume) {
+    const rep = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/situation`,
+      {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json",
+          "Location-Assumption": "true",
+        },
+      }
+    );
+    situation = JSON.parse(
+      cookie.parse(rep.headers.get("set-cookie")).situation
+    ); //parse the situation portion of the cookie returned by the header
+  } else {
+    situation = JSON.parse(context.req.cookies?.situation);
+  } //parse existing cookie if it exists
 
   return {
     props: {
@@ -29,11 +49,12 @@ export async function getServerSideProps(context) {
       ...(await serverSideTranslations(locale, ["common"])),
       lifeBundles,
       situationCookie: situation,
+      assume: assume,
     },
   };
 }
 
-export default function Home({ locale, lifeBundles, situationCookie }) {
+export default function Home({ locale, lifeBundles, situationCookie, assume }) {
   const { t } = useTranslation("common");
   const { asPath } = useRouter();
 
@@ -126,6 +147,7 @@ export default function Home({ locale, lifeBundles, situationCookie }) {
     setBenefits(filteredData.length > 0 ? filteredData : data);
   }, [situation, bundles]);
 
+  /*
   //only make location assumptions if the situation cookie doesn't have anything set for location
   if (situation?.location === undefined) {
     getUserLocationAssumption()
@@ -137,7 +159,7 @@ export default function Home({ locale, lifeBundles, situationCookie }) {
         document.getElementById("location-select").value = location;
       })
       .catch((situationCookie = { location: "non-null" })); //sets situation cookie to have a value so that the assumption message isn't displayed
-  }
+  }  */
 
   return (
     <Layout locale={locale} langUrl={asPath} noScroll={filterOpen}>
@@ -162,7 +184,7 @@ export default function Home({ locale, lifeBundles, situationCookie }) {
             <LocationAssumption
               id={"location-assumption"}
               location={situation.location}
-              isActive={situationCookie?.location === undefined}
+              isActive={assume}
               locationAssumption={t("locationAssumption")}
               basedOnIP={t("basedOnIP")}
               outsideCanada={t("outsideCanada")}
@@ -178,6 +200,9 @@ export default function Home({ locale, lifeBundles, situationCookie }) {
               selects={[
                 {
                   criteriaSelect: t("location.on"),
+                },
+                {
+                  criteriaSelect: t("location.qc"),
                 },
                 {
                   criteriaSelect: t("location.ab"),
