@@ -223,7 +223,10 @@ export default function Home({ locale, lifeBundles, situationCookie }) {
         <div className="lg:w-3/4">
           {/*rest of page (content section)*/}
 
-          <section id="life_bundles" className="layout-container py-6">
+          <section
+            id="life_bundles"
+            className="layout-container py-6 bg-gray-100"
+          >
             <h2 className="text-2xl text-bold py-3">{t("lifeBundles")}</h2>
             <CardGrid>
               {/* TODO: Replace PopularCategoryCard component with a bundle component */}
