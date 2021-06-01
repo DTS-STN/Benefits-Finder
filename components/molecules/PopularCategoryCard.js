@@ -1,10 +1,11 @@
 import PropTypes from "prop-types";
 import Image from "next/image";
+import { LibraryIcon } from "@heroicons/react/solid";
 
 export function PopularCategoryCard(props) {
   return (
     <div
-      className={`flex flex-col items-center md:shadow-md w-40 h-40 rounded-full border-2 hover:shadow-cards ${
+      className={`flex flex-col items-center md:shadow-md w-40 h-40 rounded-full border-2 hover:shadow-cards bg-white overflow-clip overflow-hidden${
         props.selected ? "border-blue-500" : ""
       }`}
       onClick={() => props.onClick(props.id)}
@@ -21,12 +22,21 @@ export function PopularCategoryCard(props) {
           </div>
         </div>
       ) : (
-        ""
+        <div className=" mt-4 mb-2 p-1 bg-gray-100  rounded-md">
+          <div className="aspect-w-1 aspect-h-1 w-8 rounded-md  ">
+            <LibraryIcon
+              className=" text-gray-500"
+              alt="support-icon"
+            ></LibraryIcon>
+          </div>
+        </div>
       )}
       <div className="mb-5">
         <small className="text-gray-500 uppercase">{props.type}</small>
         <a href="#catalog">
-          <h2 className="font-display text-base">{props.title}</h2>
+          <h2 className="px-2 font-display text-base text-center overflow-ellipsis line-clamp-2">
+            {props.title}
+          </h2>
         </a>
       </div>
       {/* <p className="pb-4">{props.description}</p> */}

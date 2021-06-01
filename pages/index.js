@@ -225,9 +225,9 @@ export default function Home({ locale, lifeBundles, situationCookie }) {
 
           <section
             id="life_bundles"
-            className="layout-container py-6 bg-gray-100"
+            className="layout-container py-4 bg-gray-100 m-3"
           >
-            <h2 className="text-2xl text-bold py-3">{t("lifeBundles")}</h2>
+            <h2 className="text-2xl text-bold p-2">{t("lifeBundles")}</h2>
             <CardGrid>
               {/* TODO: Replace PopularCategoryCard component with a bundle component */}
               {lifeBundles.map((bundle) => {
@@ -250,7 +250,7 @@ export default function Home({ locale, lifeBundles, situationCookie }) {
               type="button"
               onClick={clearBundles}
               className={
-                "hover:bg-red-700 hover:text-white mt-2 py-2 px-4 border rounded"
+                "hover:bg-red-700 hover:text-white mt-2 py-2 px-4 border rounded border-gray-300"
               }
             >
               <span className={"icon-cross pr-2"} />
