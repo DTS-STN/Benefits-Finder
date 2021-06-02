@@ -10,38 +10,16 @@ import { CardGrid } from "../components/organisms/CardGrid";
 import { CriteriaGrid } from "../components/organisms/CriteriaGrid";
 import { SelectPicker } from "../components/atoms/SelectPicker";
 import { NumInput } from "../components/atoms/NumInput";
+import { useState, useEffect } from "react";
 import { Drawer } from "../components/organisms/Drawer";
 import { DrawerItem } from "../components/atoms/DrawerItem";
-import { LocationAssumption } from "../components/atoms/LocationAssumption";
-import { useState, useEffect } from "react";
 
 export async function getServerSideProps(context) {
   const locale = context.locale || context.defaultLocale;
 
   const lifeBundles = await getBundles(locale);
 
-  let situation = {};
-  const assume = context.req.cookies?.situation === undefined;
-
-  if (assume) {
-    if (
-      context.req.cookies.situation === undefined &&
-      context.req.connection.remoteAddress != "127.0.0.1"
-    ) {
-      //check if the request requirements are valid to get the location
-      const apiResponse = await fetch(
-        process.env.IP_LOCATION_API_URL +
-          "?ip=" +
-          context.req.connection.remoteAddress //use the secret api call to get the user location
-      );
-      const rawLocation = await apiResponse.json();
-      const location =
-        rawLocation?.country_code3 === "CAN" ? rawLocation.state_prov : ""; //if in canada, return the prov, otherwise return an empty string,
-      situation = { location: location };
-    }
-  } else {
-    situation = JSON.parse(context.req.cookies?.situation ?? "{}");
-  }
+  const situation = JSON.parse(context.req.cookies?.situation ?? "{}");
 
   return {
     props: {
@@ -49,12 +27,11 @@ export async function getServerSideProps(context) {
       ...(await serverSideTranslations(locale, ["common"])),
       lifeBundles,
       situationCookie: situation,
-      assume: assume,
     },
   };
 }
 
-export default function Home({ locale, lifeBundles, situationCookie, assume }) {
+export default function Home({ locale, lifeBundles, situationCookie }) {
   const { t } = useTranslation("common");
   const { asPath } = useRouter();
 
@@ -64,7 +41,6 @@ export default function Home({ locale, lifeBundles, situationCookie, assume }) {
     location: situationCookie.location,
     age: situationCookie.age,
     income: situationCookie.income,
-    assume: assume,
   });
   const [benefits, setBenefits] = useState([]);
 
@@ -88,7 +64,6 @@ export default function Home({ locale, lifeBundles, situationCookie, assume }) {
     const { name, value } = e.target;
     setSituation((previousState) => ({
       ...previousState,
-      assume: false,
       [name]: value,
     }));
   };
@@ -169,10 +144,6 @@ export default function Home({ locale, lifeBundles, situationCookie, assume }) {
           {/* your situation section */}
           <h2 className="mb-7">{t("eligibilityCriteria")}</h2>
           <DrawerItem summary={t("location.title")}>
-            <LocationAssumption
-              location={situation.location}
-              isActive={situation.assume}
-            />
             <SelectPicker
               id="location-select"
               ariaLabel="location-select"
@@ -183,9 +154,6 @@ export default function Home({ locale, lifeBundles, situationCookie, assume }) {
               selects={[
                 {
                   criteriaSelect: t("location.on"),
-                },
-                {
-                  criteriaSelect: t("location.qc"),
                 },
                 {
                   criteriaSelect: t("location.ab"),

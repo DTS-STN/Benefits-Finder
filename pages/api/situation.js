@@ -1,9 +1,9 @@
 import cookie from "cookie";
 
-export default async (req, res) => {
+export default (req, res) => {
   // update the user situation cookie
   if (req.method === "POST") {
-    let situation = req.body.situation || {};
+    const situation = req.body.situation || {};
 
     res.setHeader(
       "Set-Cookie",

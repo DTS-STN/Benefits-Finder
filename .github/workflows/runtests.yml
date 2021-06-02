@@ -20,7 +20,6 @@ jobs:
         run: npm run build
         env:
           NEXT_PUBLIC_STRAPI_API_URL: ${{ secrets.NEXT_PUBLIC_STRAPI_API_URL }}
-          IP_LOCATION_API_URL: ${{ secrets.IP_LOCATION_API_URL}}
 
       - name: Linting formatting
         run: npm run lint:formatting
@@ -40,7 +39,6 @@ jobs:
         env:
           CI: true
           NODE_ENV: production
-          IP_LOCATION_API_URL: ${{ secrets.IP_LOCATION_API_URL}}
         with:
           install: false
           start: npm run start
