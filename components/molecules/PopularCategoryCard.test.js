@@ -9,10 +9,8 @@ describe("PopularCategoryCard tests", () => {
   it("renders a Popular Category Card in its primary state", async () => {
     render(<Primary {...Primary.args} />);
     const title = screen.getByText("Category Title");
-    const type = screen.getByText("Category type");
 
     expect(title).toBeInTheDocument();
-    expect(type).toBeInTheDocument();
   });
 
   it("has no a11y violations", async () => {

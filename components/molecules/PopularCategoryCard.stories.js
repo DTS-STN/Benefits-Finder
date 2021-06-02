@@ -18,7 +18,6 @@ export const Primary = Template.bind({});
 Primary.args = {
   id: "category-id",
   title: "Category Title",
-  type: "Category type",
   imgSource: "/landscape.png",
   imgAltText: "Category image alt text",
   selected: false,

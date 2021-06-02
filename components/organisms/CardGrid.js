@@ -2,8 +2,8 @@ import PropTypes from "prop-types";
 
 export function CardGrid(props) {
   return (
-    <div className="flex flex-wrap pt-5 mx-auto mr-2">
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 mx-auto">
+    <div className="flex flex-wrap mx-auto">
+      <div className="grid sm:grid-cols-2 xl:grid-cols-4 gap-3 sm:gap-8 mx-auto">
         {props.children}
       </div>
     </div>

@@ -5,14 +5,14 @@ import { LibraryIcon } from "@heroicons/react/solid";
 export function PopularCategoryCard(props) {
   return (
     <div
-      className={`flex flex-col items-center md:shadow-md w-40 h-40 rounded-full border-2 hover:shadow-cards bg-white overflow-clip overflow-hidden${
+      className={`flex flex-col items-center md:shadow-md w-32 h-32 xs:w-40 xs:h-40 rounded-full border-2 hover:shadow-cards bg-white overflow-clip overflow-hidden ${
         props.selected ? "border-blue-500" : ""
       }`}
       onClick={() => props.onClick(props.id)}
     >
       {props.imgSource ? (
-        <div className=" mt-4 mb-2 p-1 bg-gray-100  rounded-md">
-          <div className="aspect-w-1 aspect-h-1 w-16 rounded-md  ">
+        <div className=" mt-4 mb-2 border bg-gray-100  rounded-md">
+          <div className="aspect-w-1 aspect-h-1 w-8 xs:w-10 rounded-md  ">
             <Image
               src={props.imgSource}
               alt={props.imgAltText}
@@ -23,7 +23,7 @@ export function PopularCategoryCard(props) {
         </div>
       ) : (
         <div className=" mt-4 mb-2 p-1 bg-gray-100  rounded-md">
-          <div className="aspect-w-1 aspect-h-1 w-8 rounded-md  ">
+          <div className="aspect-w-1 aspect-h-1 w-6 xs:w-8 rounded-md  ">
             <LibraryIcon
               className=" text-gray-500"
               alt="support-icon"
@@ -31,15 +31,10 @@ export function PopularCategoryCard(props) {
           </div>
         </div>
       )}
-      <div className="mb-5">
-        <small className="text-gray-500 uppercase">{props.type}</small>
-        <a href="#catalog">
-          <h2 className="px-2 font-display text-base text-center overflow-ellipsis line-clamp-2">
-            {props.title}
-          </h2>
-        </a>
-      </div>
-      {/* <p className="pb-4">{props.description}</p> */}
+
+      <p className="px-2 text-xs xs:text-base text-center font-semibold overflow-ellipsis line-clamp-2">
+        {props.title}
+      </p>
     </div>
   );
 }
