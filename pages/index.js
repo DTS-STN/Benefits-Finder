@@ -21,26 +21,24 @@ export async function getServerSideProps(context) {
 
   const lifeBundles = await getBundles(locale);
 
-  let situation;
-  const assume = context.req.cookies?.situation === undefined; //if the cookie doesn't exist, we'll assume the location based on ip
+  let situation = {};
+  const noAssumption = context.req.cookies?.situation === undefined;
 
-  if (assume) {
-    const rep = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/api/situation`,
-      {
-        method: "post",
-        headers: {
-          "Content-Type": "application/json",
-          "Location-Assumption": "true",
-        },
-      }
-    );
-    situation = JSON.parse(
-      cookie.parse(rep.headers.get("set-cookie")).situation
-    ); //parse the situation portion of the cookie returned by the header
-  } else {
-    situation = JSON.parse(context.req.cookies?.situation);
-  } //parse existing cookie if it exists
+  if (noAssumption) {
+    if (
+      req.cookies.situation === undefined &&
+      req.connection.remoteAddress != "127.0.0.1"
+    ) {
+      //check if the request requirements are valid to get the location
+      const apiResponse = await fetch(
+        process.env.IP_LOCATION_API_URL + "?ip=" + req.connection.remoteAddress //use the secret api call to get the user location
+      );
+      const rawLocation = await apiResponse.json();
+      const location =
+        rawLocation?.country_code3 === "CAN" ? rawLocation.state_prov : ""; //if in canada, return the prov, otherwise return an empty string,
+      situation = { location: location };
+    }
+  }
 
   return {
     props: {
