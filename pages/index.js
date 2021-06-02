@@ -22,16 +22,18 @@ export async function getServerSideProps(context) {
   const lifeBundles = await getBundles(locale);
 
   let situation = {};
-  const noAssumption = context.req.cookies?.situation === undefined;
+  const assume = context.req.cookies?.situation === undefined;
 
-  if (noAssumption) {
+  if (assume) {
     if (
-      req.cookies.situation === undefined &&
-      req.connection.remoteAddress != "127.0.0.1"
+      context.req.cookies.situation === undefined &&
+      context.req.connection.remoteAddress != "127.0.0.1"
     ) {
       //check if the request requirements are valid to get the location
       const apiResponse = await fetch(
-        process.env.IP_LOCATION_API_URL + "?ip=" + req.connection.remoteAddress //use the secret api call to get the user location
+        process.env.IP_LOCATION_API_URL +
+          "?ip=" +
+          context.req.connection.remoteAddress //use the secret api call to get the user location
       );
       const rawLocation = await apiResponse.json();
       const location =
