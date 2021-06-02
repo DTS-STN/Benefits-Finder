@@ -15,8 +15,11 @@ DrawerItem.propTypes = {
   /**
    * child elements that will constitute the drawer
    */
-  children: PropTypes.oneOfType([PropTypes.string, PropTypes.element])
-    .isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.element,
+    PropTypes.arrayOf(PropTypes.element),
+  ]).isRequired,
   /**
    * cypress selector
    */
