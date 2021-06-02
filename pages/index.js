@@ -1,4 +1,3 @@
-import cookie from "cookie";
 import Head from "next/head";
 import { Layout } from "../components/organisms/Layout";
 import { getBundles } from "../lib/bundles";
@@ -40,6 +39,8 @@ export async function getServerSideProps(context) {
         rawLocation?.country_code3 === "CAN" ? rawLocation.state_prov : ""; //if in canada, return the prov, otherwise return an empty string,
       situation = { location: location };
     }
+  } else {
+    situation = JSON.parse(context.req.cookies?.situation ?? "{}");
   }
 
   return {
