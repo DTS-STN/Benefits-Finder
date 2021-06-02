@@ -58,12 +58,12 @@ PopularCategoryCard.propTypes = {
   /**
    * category image source
    */
-  imgSource: PropTypes.string.isRequired,
+  imgSource: PropTypes.string,
 
   /**
    * category image alt text
    */
-  imgAltText: PropTypes.string.isRequired,
+  imgAltText: PropTypes.string,
 
   /**
    * category description
