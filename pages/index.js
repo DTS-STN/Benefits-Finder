@@ -64,6 +64,7 @@ export default function Home({ locale, lifeBundles, situationCookie, assume }) {
     location: situationCookie.location,
     age: situationCookie.age,
     income: situationCookie.income,
+    assume: assume,
   });
   const [benefits, setBenefits] = useState([]);
 
@@ -87,6 +88,7 @@ export default function Home({ locale, lifeBundles, situationCookie, assume }) {
     const { name, value } = e.target;
     setSituation((previousState) => ({
       ...previousState,
+      assume: false,
       [name]: value,
     }));
   };
@@ -169,7 +171,7 @@ export default function Home({ locale, lifeBundles, situationCookie, assume }) {
           <DrawerItem summary={t("location.title")}>
             <LocationAssumption
               location={situation.location}
-              isActive={assume}
+              isActive={situation.assume}
             />
             <SelectPicker
               id="location-select"
