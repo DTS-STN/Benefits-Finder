@@ -30,7 +30,7 @@ export async function getServerSideProps(context) {
     ) {
       //check if the request requirements are valid to get the location
       const apiResponse = await fetch(
-        process.env.IP_LOCATION_API_URL +
+        process.env.NEXT_IP_LOCATION_API_URL +
           "?ip=" +
           context.req.connection.remoteAddress //use the secret api call to get the user location
       );
