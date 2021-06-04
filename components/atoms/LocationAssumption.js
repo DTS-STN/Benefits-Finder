@@ -5,11 +5,12 @@ import { useTranslation } from "next-i18next";
 export function LocationAssumption(props) {
   const { t } = useTranslation("common");
   return props.isActive ? (
-    <p>
+    <p className="text-sm text-left">
       {t("locationAssumption")}
-      {" " + (!props?.location ? t("outsideCanada") : props.location) + " "}
-      {t("basedOnIP")} <br />
-      {t("confirmModify")}
+      <span className="font-bold">
+        {" " + (!props?.location ? t("outsideCanada") : props.location) + " "}
+      </span>
+      {t("basedOnIP")}
     </p>
   ) : (
     ""

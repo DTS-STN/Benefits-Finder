@@ -32,7 +32,7 @@
   "contentMissing": "Content coming soon!",
   "locationAssumption": "It seems like you are located in",
   "outsideCanada": "someplace outside of Canada",
-  "basedOnIP": "based on your IP address",
+  "basedOnIP": "based on your IP address. Change these selections if needed.",
   "confirmModify": "Please confirm or modify this information",
   "collapse": "Collapse",
   "expand": "Expand",
