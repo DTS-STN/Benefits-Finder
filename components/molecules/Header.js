@@ -14,8 +14,8 @@ export function Header(props) {
   }
 
   return (
-    <div className="w-full flex  h-auto flex-col mt-8 lg:flex lg:flex-row  xl:flex xl:flex-row   justify-between ">
-      <div className="mb-4">
+    <div className="flex w-full h-auto flex-col lg:flex-row justify-between ">
+      <div className="mb-4 ">
         <img
           className="h-auto xs:h-8 sm:h-8 md:h-8 lg:h-7 xl:h-8 w-auto "
           src={props.headerLogoImage}
