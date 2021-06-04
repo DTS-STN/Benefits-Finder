@@ -7,11 +7,11 @@ import Link from "next/link";
 export function AlphaBanner(props) {
   const { t } = useTranslation("common");
   return (
-    <div className="flex items-center flex-wrap lg:flex lg:flex-row justify-between bg-gray-100 ">
-      <div className="flex justify-start items-center flex-wrap pl-2">
-        <div className=" bg-gray-100  border-2 border-gray-700 p-1 mt-2 lg:mt-0">
+    <div className="flex flex-col md:flex-row items-stretch sm:items-center  lg:flex lg:flex-row justify-between bg-gray-100 ">
+      <div className="flex justify-start items-baseline ">
+        <div className=" bg-gray-100  border-2 border-gray-700 p-1 mt-1 lg:mt-0 ">
           <p
-            className="font-medium break-normal text-sm"
+            className="font-medium whitespace-normal md:whitespace-nowrap text-sm pl-2 sm:pl-0"
             data-cy="alpha-banner-text"
           >
             {props.bannerText}
@@ -19,17 +19,17 @@ export function AlphaBanner(props) {
         </div>
 
         <p
-          className=" font-medium pl-2 text-sm"
+          className="font-small sm:font-medium self-center pl-2 text-sm "
           data-cy="alpha-banner-description"
         >
           {props.bannerDesc}
         </p>
       </div>
 
-      <div className="flex items-baseline justify-end flex-wrap my-4 lg:mt-0 ">
+      <div className="flex items-baseline justify-end ">
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          className="h-4 w-4 items-center pt-1"
+          className="h-6 w-6 items-center pt-3 pl-1"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
@@ -44,7 +44,7 @@ export function AlphaBanner(props) {
 
         <Link href={props.link}>
           <a
-            className="font-body text-custom-blue-dark hover:text-custom-blue-link visited:text-purple-700 underline pr-2"
+            className="font-body xl:whitespace-nowrap text-custom-blue-dark hover:text-custom-blue-link visited:text-purple-700 underline pl-1 lg:pl-0"
             data-cy="back-to-active-experiments"
           >
             {props.linkText}
