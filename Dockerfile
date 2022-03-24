@@ -1,4 +1,4 @@
-FROM node:current-alpine AS base
+FROM node:17.8-alpine3.15 AS base
 WORKDIR /base
 COPY package*.json ./
 RUN npm install
@@ -15,7 +15,7 @@ WORKDIR /build
 COPY --from=base /base ./
 RUN npm run build
 
-FROM node:current-alpine AS production
+FROM node:17.8-alpine3.15 AS production
 ENV NODE_ENV=production
 WORKDIR /app
 COPY --from=build /build/next.config.js ./
